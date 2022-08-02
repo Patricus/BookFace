@@ -11,7 +11,10 @@ class Friend(db.Model):
         'users.id', ondelete='CASCADE'), nullable=False)
     accepted = db.Column(db.Boolean, nullable=True)
 
-    users = db.relationship('User', back_populates='friends')
+    user1 = db.relationship('User', foreign_keys=[
+        user_id, ], back_populates='friend1')
+    user2 = db.relationship('User', foreign_keys=[
+        friend_id], back_populates='friend2')
 
     def to_dict(self):
         return {

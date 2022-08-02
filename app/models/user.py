@@ -22,7 +22,9 @@ class User(db.Model, UserMixin):
                             cascade='all, delete-orphan', passive_deletes=True)
     comments = db.relationship("Comment", back_populates="users",
                                cascade='all, delete-orphan', passive_deletes=True)
-    friends = db.relationship("Friend", back_populates="users",
+    friend1 = db.relationship("Friend", foreign_keys="[Friend.user_id]", back_populates="user1",
+                              cascade='all, delete-orphan', passive_deletes=True)
+    friend2 = db.relationship("Friend", foreign_keys="[Friend.friend_id]", back_populates="user2",
                               cascade='all, delete-orphan', passive_deletes=True)
 
     @property
