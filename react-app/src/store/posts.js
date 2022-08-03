@@ -119,7 +119,6 @@ export default function reducer(state = initialState, action) {
             return createState;
         case READ_POST:
             const readState = {};
-            console.log("action.payload", action.payload);
             action.payload.posts.forEach(post => {
                 readState[post.id] = post;
             });
@@ -130,7 +129,7 @@ export default function reducer(state = initialState, action) {
             return updateState;
         case DELETE_POST:
             const deleteState = { ...state };
-            delete deleteState[action.payload];
+            delete deleteState[action.payload.id];
             return deleteState;
         default:
             return state;

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { editPost } from "../../../store/posts";
 
 // Form used to edit a post
-function CreatePostForm({ post }) {
+function CreatePostForm({ post, setShowEditPost }) {
     const [text, setText] = useState(post.text);
     const [image, setImage] = useState(post.image_link);
     const [errors, setErrors] = useState([]);
@@ -21,6 +21,7 @@ function CreatePostForm({ post }) {
             setErrors(data);
         } else {
             //Close modal
+            setShowEditPost(false);
         }
     };
 

@@ -4,7 +4,8 @@ import { removePost } from "../../../store/posts";
 import EditPostForm from "../Form/EditPostForm";
 
 function Post({ post }) {
-    const [showDropdown, setShowDropdown] = useState(false);
+    // const [showDropdown, setShowDropdown] = useState(false);
+    const [showEditPost, setShowEditPost] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -15,12 +16,12 @@ function Post({ post }) {
     return (
         <div>
             Post
-            {showDropdown ? (
+            {showEditPost ? (
                 //Change to dropdown
-                <EditPostForm post={post} />
+                <EditPostForm post={post} setShowEditPost={setShowEditPost} />
             ) : (
                 <>
-                    <button onClick={() => setShowDropdown(true)}>...</button>
+                    <button onClick={() => setShowEditPost(true)}>...</button>
                     {post.image && <img src={post.image_link} alt="post" />}
                     <p>{post.text}</p>
                     <button onClick={deletePost}>Delete Post</button>
