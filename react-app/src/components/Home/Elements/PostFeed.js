@@ -1,10 +1,17 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import CreatePostForm from "../../Post/Form/CreatePostForm";
 import Post from "../../Post/Elements/Post";
+import { getPosts } from "../../../store/posts";
 
 function PostFeed() {
     const posts = useSelector(state => state.posts);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getPosts());
+    }, [dispatch]);
     return (
         <div>
             PostFeed

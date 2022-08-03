@@ -9,8 +9,9 @@ const createPost = post => ({
     payload: post,
 });
 
-const readPosts = () => ({
+const readPosts = posts => ({
     type: READ_POST,
+    payload: posts,
 });
 
 const updatePost = post => ({
@@ -117,8 +118,9 @@ export default function reducer(state = initialState, action) {
             return createState;
         case READ_POST:
             const readState = {};
-            action.payload.forEach(post => {
-                readState[action.payload.id] = action.payload;
+            console.log("action.payload", action.payload);
+            action.payload.posts.forEach(post => {
+                readState[post.id] = post;
             });
             return readState;
         case UPDATE_POST:

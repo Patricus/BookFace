@@ -23,9 +23,6 @@ def create_post():
     """
     Create a post.
     """
-    data = request.data
-    print(f"\n\n\n\n\n\n\n {data} \n\n\n")
-    print(f"\n\n\n\n\n\n\n {current_user.id} \n\n\n")
 
     form = PostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -43,3 +40,15 @@ def create_post():
         db.session.commit()
         return post.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+@post_routes.route('/')
+@login_required
+def read_posts():
+    """
+    Read posts.
+    """
+
+    my_posts = Post.query.filter(Post.user_id == current_user.id).all()
+
+    return {'posts': [post.to_dict() for post in my_posts]}
