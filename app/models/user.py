@@ -1,6 +1,7 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from .post import Post
 
 
 class User(db.Model, UserMixin):
@@ -39,6 +40,8 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password, password)
 
     def to_dict(self):
+        posts = Post.query.filter(Post.user_id == self.id).all()
+
         return {
             'id': self.id,
             'first_name': self.first_name,
@@ -50,4 +53,6 @@ class User(db.Model, UserMixin):
             'born_from': self.born_from,
             'profile_pic': self.profile_pic,
             'cover_pic': self.cover_pic,
+
+            'posts': [post.to_dict() for post in posts]
         }

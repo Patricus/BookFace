@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { editPost } from "../../../store/posts";
+import { Modal } from "../../Modal";
 
 // Form used to edit a post
 function CreatePostForm({ post, setShowEditPost }) {
@@ -26,7 +27,7 @@ function CreatePostForm({ post, setShowEditPost }) {
     };
 
     return (
-        <>
+        <Modal onClose={() => setShowEditPost(false)}>
             <h2>EditPostForm</h2>
             <div>
                 {errors.map((error, ind) => (
@@ -47,9 +48,9 @@ function CreatePostForm({ post, setShowEditPost }) {
                     value={image}
                     onChange={e => setImage(e.target.value)}
                 />
-                <button>Post</button>
+                <button>Update Post</button>
             </form>
-        </>
+        </Modal>
     );
 }
 

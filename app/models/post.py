@@ -1,4 +1,5 @@
 from .db import db
+from .comment import Comment
 
 
 class Post(db.Model):
@@ -17,6 +18,8 @@ class Post(db.Model):
                                cascade='all, delete-orphan', passive_deletes=True)
 
     def to_dict(self):
+        comments = Comment.query.filter(Comment.post_id == self.id).all()
+
         return {
             'id': self.id,
             'user_id': self.user_id,
@@ -24,4 +27,7 @@ class Post(db.Model):
             'image_link': self.image_link,
             'created_at': self.created_at,
             'edited_at': self.edited_at,
+
+            'comments': [comment.to_dict() for comment in comments]
+
         }

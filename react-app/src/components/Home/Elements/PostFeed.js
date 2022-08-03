@@ -5,7 +5,7 @@ import Post from "../../Post/Elements/Post";
 import { getPosts } from "../../../store/posts";
 
 function PostFeed() {
-    const posts = useSelector(state => state.posts);
+    const my_posts = useSelector(state => state.session.user.posts);
 
     const dispatch = useDispatch();
 
@@ -14,10 +14,9 @@ function PostFeed() {
     }, [dispatch]);
     return (
         <div>
-            PostFeed
             <CreatePostForm />
-            {posts &&
-                Object.values(posts).map(post => {
+            {my_posts &&
+                Object.values(my_posts).map(post => {
                     return <Post key={post.id} post={post} />;
                 })}
         </div>

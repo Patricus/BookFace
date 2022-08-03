@@ -36,16 +36,15 @@
     position: absolute;
     right: 8px;
     top: 4px;
-    font-weight: 600;
-    border: 2px solid gray;
-    border-radius: 4px;
-    padding: 0 3px;
-    color: gray;
+    font-weight: 800;
+    background-color: gray;
+    border-radius: 50%;
+    padding: 2px 8px;
+    color: white;
     cursor: pointer;
 }
 
 .closeModal:hover {
     color: white;
     background-color: #ff521b;
-    border-color: #ff521b;
 }

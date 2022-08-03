@@ -29,7 +29,7 @@ export function Modal({ onClose, children }) {
             <div id="modal-bg" onClick={onClose} />
             <div id="modal-content">
                 <div className="closeModal" onClick={onClose}>
-                    X
+                    &times;
                 </div>
                 {children}
             </div>

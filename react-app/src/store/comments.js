@@ -1,43 +1,42 @@
-import comments from "./comments"
 // constants
-const CREATE_POST = "post/CREATE_POST";
-const READ_POST = "post/READ_POST";
-const UPDATE_POST = "post/UPDATE_POST";
-const DELETE_POST = "post/DELETE_POST";
+const CREATE_COMMENT = "comment/CREATE_COMMENT";
+const READ_COMMENT = "comment/READ_COMMENT";
+const UPDATE_COMMENT = "comment/UPDATE_COMMENT";
+const DELETE_COMMENT = "comment/DELETE_COMMENT";
 
-const createPost = post => ({
-    type: CREATE_POST,
-    payload: post,
+const createComment = comment => ({
+    type: CREATE_COMMENT,
+    payload: comment,
 });
 
-const readPosts = posts => ({
-    type: READ_POST,
-    payload: posts,
+const readComments = comments => ({
+    type: READ_COMMENT,
+    payload: comments,
 });
 
-const updatePost = post => ({
-    type: UPDATE_POST,
-    payload: post,
+const updateComment = comment => ({
+    type: UPDATE_COMMENT,
+    payload: comment,
 });
 
-const deletePost = id => ({
-    type: DELETE_POST,
+const deleteComment = id => ({
+    type: DELETE_COMMENT,
     payload: id,
 });
 
-export const makePost = (text, image_link) => async dispatch => {
+export const makeComment = (post_id, text) => async dispatch => {
     const created_at = new Date().toUTCString();
     const edited_at = new Date().toUTCString();
-    const response = await fetch("/api/posts/", {
+    const response = await fetch("/api/comments/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ text, image_link, created_at, edited_at }),
+        body: JSON.stringify({ post_id, text, created_at, edited_at }),
     });
     if (response.ok) {
         const data = await response.json();
-        dispatch(createPost(data));
+        dispatch(createComment(data));
         return null;
     } else if (response.status < 500) {
         const data = await response.json();
@@ -49,11 +48,11 @@ export const makePost = (text, image_link) => async dispatch => {
     }
 };
 
-export const getPosts = () => async dispatch => {
-    const response = await fetch("/api/posts/");
+export const getComments = (postId) => async dispatch => {
+    const response = await fetch(`/api/posts/${postId}/comments`);
     if (response.ok) {
         const data = await response.json();
-        dispatch(readPosts(data));
+        dispatch(readComments(data));
         return null;
     } else if (response.status < 500) {
         const data = await response.json();
@@ -65,18 +64,18 @@ export const getPosts = () => async dispatch => {
     }
 };
 
-export const editPost = (postId, text, image_link) => async dispatch => {
+export const editComment = (commentId, text) => async dispatch => {
     const edited_at = new Date().toUTCString();
-    const response = await fetch(`/api/posts/${postId}`, {
+    const response = await fetch(`/api/comments/${commentId}`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ text, image_link, edited_at }),
+        body: JSON.stringify({ text, edited_at }),
     });
     if (response.ok) {
         const data = await response.json();
-        dispatch(updatePost(data));
+        dispatch(updateComment(data));
         return null;
     } else if (response.status < 500) {
         const data = await response.json();
@@ -88,17 +87,17 @@ export const editPost = (postId, text, image_link) => async dispatch => {
     }
 };
 
-export const removePost = postId => async dispatch => {
-    const response = await fetch(`/api/posts/${postId}`, {
+export const removeComment = commentId => async dispatch => {
+    const response = await fetch(`/api/comments/${commentId}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(postId),
+        body: JSON.stringify(commentId),
     });
     if (response.ok) {
         const data = await response.json();
-        dispatch(deletePost(data));
+        dispatch(deleteComment(data));
         return null;
     } else if (response.status < 500) {
         const data = await response.json();
@@ -114,27 +113,25 @@ const initialState = {};
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
-        case CREATE_POST:
+        case CREATE_COMMENT:
             const createState = { ...state };
-            createState[action.payload.id] = { ...action.payload, comments: {} };
+            createState[action.payload.id] = action.payload;
             return createState;
-        case READ_POST:
+        case READ_COMMENT:
             const readState = {};
-            action.payload.posts.forEach(post => {
-                readState[post.id] = post;
+            action.payload.comments.forEach(comment => {
+                readState[comment.id] = comment;
             });
             return readState;
-        case UPDATE_POST:
+        case UPDATE_COMMENT:
             const updateState = { ...state };
             updateState[action.payload.id] = action.payload;
             return updateState;
-        case DELETE_POST:
+        case DELETE_COMMENT:
             const deleteState = { ...state };
             delete deleteState[action.payload.id];
             return deleteState;
         default:
-            const defaultState = { ...state, comments: { ...state.comments } };
-            defaultState.comments = comments(defaultState.comments, action);
-            return defaultState;
+            return state;
     }
 }

@@ -51,6 +51,7 @@ def read_posts():
 
     my_posts = Post.query.filter(Post.user_id == current_user.id).all()
 
+
     return {'posts': [post.to_dict() for post in my_posts]}
 
 
