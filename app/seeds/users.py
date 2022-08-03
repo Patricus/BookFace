@@ -8,7 +8,7 @@ def seed_users():
         last_name='Doe',
         email='demo@demo.com',
         password='password',
-        birthday='CHANGE ME',
+        birthday='2022-02-02',
         bio='This is my bio.',
         lives_in='Santa Barbara, California',
         born_from='Santa Clara, California',

@@ -59,13 +59,18 @@ def sign_up():
     """
     Creates a new user and logs them in
     """
+    data = request.data
+    # print(f"\n\n\n\n\n\n\n {data} \n\n\n")
     form = SignUpForm()
+    # print(f"\n\n\n\n\n\n\n {form} \n\n\n")
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         user = User(
-            username=form.data['username'],
+            first_name=form.data['firstName'],
+            last_name=form.data['lastName'],
             email=form.data['email'],
-            password=form.data['password']
+            hashed_password=form.data['password'],
+            birthday=form.data['birthday'],
         )
         db.session.add(user)
         db.session.commit()
