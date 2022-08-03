@@ -23,13 +23,13 @@ const deletePost = id => ({
     payload: id,
 });
 
-export const makePost = (user_id, title, text, image_link) => async dispatch => {
+export const makePost = (text, image_link) => async dispatch => {
     const response = await fetch("/api/posts/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ user_id, title, text, image_link }),
+        body: JSON.stringify({ text, image_link }),
     });
     if (response.ok) {
         const data = await response.json();
@@ -61,8 +61,8 @@ export const getPosts = () => async dispatch => {
     }
 };
 
-export const editPost = (user_id, title, text, image_link) => async dispatch => {
-    const response = await fetch("/api/posts/", {
+export const editPost = (postId, user_id, title, text, image_link) => async dispatch => {
+    const response = await fetch(`/api/posts/${postId}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -83,8 +83,8 @@ export const editPost = (user_id, title, text, image_link) => async dispatch => 
     }
 };
 
-export const removePost = (postId) => async dispatch => {
-    const response = await fetch("/api/posts/", {
+export const removePost = postId => async dispatch => {
+    const response = await fetch(`/api/posts/${postId}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
@@ -105,14 +105,27 @@ export const removePost = (postId) => async dispatch => {
     }
 };
 
-const initialState = { post: null };
+const initialState = {};
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case CREATE_POST:
-            return { user: action.payload };
-        case REMOVE_USER:
-            return { user: null };
+            const post = ([action.payload.id] = action.payload);
+            return { ...state, post };
+        case READ_POST:
+            const readState = {};
+            action.payload.forEach(post => {
+                readState[action.payload.id] = action.payload;
+            });
+            return readState;
+        case UPDATE_POST:
+            const updateState = { ...state };
+            updateState[action.payload.id] = action.payload;
+            return updateState;
+        case DELETE_POST:
+            const deleteState = { ...state };
+            delete deleteState[action.payload];
+            return deleteState;
         default:
             return state;
     }

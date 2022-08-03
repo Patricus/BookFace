@@ -7,9 +7,8 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(
         'users.id', ondelete='CASCADE'), nullable=False)
-    title = db.Column(db.String(30), nullable=False)
     text = db.Column(db.Text, nullable=False)
-    image_link = db.Column(db.String(255), nullable=False)
+    image_link = db.Column(db.String(255), nullable=True)
     created_at = db.Column(db.String(255), nullable=False)
     edited_at = db.Column(db.String(255), nullable=False)
 
@@ -21,7 +20,6 @@ class Post(db.Model):
         return {
             'id': self.id,
             'user_id': self.user_id,
-            'title': self.title,
             'text': self.text,
             'image_link': self.image_link,
             'created_at': self.created_at,

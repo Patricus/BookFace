@@ -17,7 +17,7 @@ def age_check(form, field):
     # Checking if username is already in use
     birthday = datetime(field.data)
     now = datetime.now()
-    if now - birthday < 13:
+    if now + datetime.timedelta(days=365*13) - birthday > 0:
         raise ValidationError('Must be over 13.')
 
 
