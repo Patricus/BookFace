@@ -17,5 +17,5 @@ class PostForm(FlaskForm):
     text = TextField(
         'text', validators=[DataRequired()])
     image_link = StringField('image_link')
-    created_at = StringField('created_at', default=datetime.now())
-    edited_at = StringField('edited_at', default=datetime.now())
+    created_at = StringField('created_at', default=str(datetime.now()))
+    edited_at = StringField('edited_at', default=str(datetime.now()))

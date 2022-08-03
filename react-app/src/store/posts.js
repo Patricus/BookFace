@@ -24,12 +24,14 @@ const deletePost = id => ({
 });
 
 export const makePost = (text, image_link) => async dispatch => {
+    const created_at = new Date().toUTCString();
+    const edited_at = new Date().toUTCString();
     const response = await fetch("/api/posts/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ text, image_link }),
+        body: JSON.stringify({ text, image_link, created_at, edited_at }),
     });
     if (response.ok) {
         const data = await response.json();
@@ -110,8 +112,9 @@ const initialState = {};
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case CREATE_POST:
-            const post = ([action.payload.id] = action.payload);
-            return { ...state, post };
+            const createState = { ...state };
+            createState[action.payload.id] = action.payload;
+            return createState;
         case READ_POST:
             const readState = {};
             action.payload.forEach(post => {

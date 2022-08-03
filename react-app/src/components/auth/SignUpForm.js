@@ -21,11 +21,7 @@ const SignUpForm = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log("bDay", bDay);
-        console.log("bMonth", +bMonth + 1);
-        console.log("bYear", bYear);
         setBirthday(new Date(`${bYear} ${+bMonth + 1} ${bDay}`));
-        console.log("birthday", birthday);
     }, [setBirthday, bDay, bMonth, bYear]);
 
     const onSignUp = async e => {
