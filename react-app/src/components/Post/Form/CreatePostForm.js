@@ -21,6 +21,9 @@ function CreatePostForm() {
             setErrors(data);
         } else {
             //Close modal
+            setText("");
+            setImage("");
+            setErrors([]);
         }
     };
 
