@@ -48,8 +48,8 @@ export const makeComment = (post_id, text) => async dispatch => {
     }
 };
 
-export const getComments = (postId) => async dispatch => {
-    const response = await fetch(`/api/posts/${postId}/comments`);
+export const getComments = postId => async dispatch => {
+    const response = await fetch(`/api/comments/${postId}/`);
     if (response.ok) {
         const data = await response.json();
         dispatch(readComments(data));
@@ -64,14 +64,14 @@ export const getComments = (postId) => async dispatch => {
     }
 };
 
-export const editComment = (commentId, text) => async dispatch => {
+export const editComment = (post_id, commentId, text) => async dispatch => {
     const edited_at = new Date().toUTCString();
     const response = await fetch(`/api/comments/${commentId}`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ text, edited_at }),
+        body: JSON.stringify({ post_id, text, edited_at }),
     });
     if (response.ok) {
         const data = await response.json();
@@ -116,9 +116,11 @@ export default function reducer(state = initialState, action) {
         case CREATE_COMMENT:
             const createState = { ...state };
             createState[action.payload.id] = action.payload;
+            console.log("createState", createState);
             return createState;
         case READ_COMMENT:
             const readState = {};
+            console.log("action.payload", action.payload);
             action.payload.comments.forEach(comment => {
                 readState[comment.id] = comment;
             });

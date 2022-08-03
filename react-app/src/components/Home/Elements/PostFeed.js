@@ -17,7 +17,7 @@ function PostFeed() {
             <CreatePostForm />
             {my_posts &&
                 Object.values(my_posts).map(post => {
-                    return <Post key={post.id} post={post} />;
+                    return <Post key={post.id} postId={post.id} />;
                 })}
         </div>
     );

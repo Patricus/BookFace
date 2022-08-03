@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { removeComment } from "../../../store/comments";
+import { getPosts } from "../../../store/posts";
 import EditCommentForm from "../Form/EditCommentForm";
 
 function Comment({ comment }) {
@@ -9,8 +10,9 @@ function Comment({ comment }) {
 
     const dispatch = useDispatch();
 
-    const deleteComment = () => {
-        dispatch(removeComment(comment.id));
+    const deleteComment = async () => {
+        await dispatch(removeComment(comment.id));
+        dispatch(getPosts(comment.post_id));
     };
 
     return (

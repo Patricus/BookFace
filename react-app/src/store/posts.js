@@ -1,4 +1,4 @@
-import comments from "./comments"
+import comments from "./comments";
 // constants
 const CREATE_POST = "post/CREATE_POST";
 const READ_POST = "post/READ_POST";

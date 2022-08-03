@@ -29,7 +29,7 @@ function CreatePostForm() {
 
     return (
         <>
-            <h2>CreatePostForm</h2>
+            <h2>Create Post Form</h2>
             <div>
                 {errors.map((error, ind) => (
                     <div key={ind}>{error}</div>
