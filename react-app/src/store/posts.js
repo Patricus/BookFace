@@ -64,13 +64,14 @@ export const getPosts = () => async dispatch => {
     }
 };
 
-export const editPost = (postId, user_id, title, text, image_link) => async dispatch => {
+export const editPost = (postId, text, image_link) => async dispatch => {
+    const edited_at = new Date().toUTCString();
     const response = await fetch(`/api/posts/${postId}`, {
-        method: "PUT",
+        method: "PATCH",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ user_id, title, text, image_link }),
+        body: JSON.stringify({ text, image_link, edited_at }),
     });
     if (response.ok) {
         const data = await response.json();

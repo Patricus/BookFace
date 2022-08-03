@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from app.models import Post, db
-from app.forms import PostForm
+from app.forms import PostForm, EditPostForm
 from flask_login import current_user, login_required
 
 post_routes = Blueprint('post', __name__)
@@ -52,3 +52,48 @@ def read_posts():
     my_posts = Post.query.filter(Post.user_id == current_user.id).all()
 
     return {'posts': [post.to_dict() for post in my_posts]}
+
+
+@post_routes.route('/<int:id>', methods=['PATCH'])
+@login_required
+def update_post(id):
+    """
+    Update a post.
+    """
+
+    form = EditPostForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        # Update the post
+        post = Post.query.get(id)
+
+        if post.user_id != current_user.id:
+            return {'errors': [{"user": "You don't own this post."}]}
+
+        post.text = form.data['text'],
+        post.image_link = form.data['image_link'],
+        post.edited_at = form.data['edited_at'],
+
+        db.session.commit()
+        return post.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+@post_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_post(id):
+    """
+    Update a post.
+    """
+
+    post = Post.query.get(id)
+
+    if not post:
+        return {"errors": [{"post": "Post not found."}]}
+    if post.user_id != current_user.id:
+        return {'errors': [{"user": "You don't own this post."}]}
+
+    db.session.delete(post)
+    db.session.commit()
+    return {"message": "Post deleted."}
