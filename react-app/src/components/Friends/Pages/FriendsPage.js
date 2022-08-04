@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getFriends } from "../../../store/friends";
 import Friend from "../Elements/Friend";
 import FriendSideBar from "../Elements/FriendSideBar";
+import Users from "../Elements/Users";
 
 function FriendsPage() {
     const [friendTab, setFriendTab] = useState("home");
@@ -20,7 +21,35 @@ function FriendsPage() {
             <div>
                 <FriendSideBar friendTab={friendTab} setFriendTab={setFriendTab} />
                 <div>
-                    {friends && Object.values(friends).map(friend => <Friend friend={friend} />)}
+                    {
+                        {
+                            home: (
+                                <>
+                                    <h2>Home</h2>
+
+                                    <Users />
+                                </>
+                            ),
+                            "friend-requests": (
+                                <>
+                                    <h2>Friend Requests</h2>
+                                    {friends &&
+                                        Object.values(friends).map(friend => (
+                                            <Friend friend={friend} />
+                                        ))}
+                                </>
+                            ),
+                            "all-friends": (
+                                <>
+                                    <h2>All Friends</h2>
+                                    {friends &&
+                                        Object.values(friends).map(friend => (
+                                            <Friend friend={friend} />
+                                        ))}
+                                </>
+                            ),
+                        }[friendTab]
+                    }
                 </div>
             </div>
         </div>

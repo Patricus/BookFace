@@ -46,6 +46,8 @@ export const makeFriend = (user_id, friend_id) => async dispatch => {
     }
 };
 
+
+
 export const getFriends = () => async dispatch => {
     const response = await fetch(`/api/friends/`);
     if (response.ok) {
@@ -116,7 +118,7 @@ export default function reducer(state = initialState, action) {
         case READ_FRIENDS:
             const readState = { ...state };
             action.payload.friends.forEach(friend => {
-                readState[friend.post_id].friends[friend.id] = friend;
+                readState[friend.id] = friend;
             });
             return readState;
         case UPDATE_FRIENDS:

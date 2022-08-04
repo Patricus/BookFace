@@ -1,7 +1,8 @@
 from flask import Blueprint, request
-from app.models import Friend, db
+from app.models import Friend, User, db
 from app.forms import FriendForm
 from flask_login import current_user, login_required
+
 
 friend_routes = Blueprint('friend', __name__)
 
