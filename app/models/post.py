@@ -27,7 +27,7 @@ class Post(db.Model):
             'image_link': self.image_link,
             'created_at': self.created_at,
             'edited_at': self.edited_at,
-
-            'comments': [comment.to_dict() for comment in comments]
+            'comments': {}
+            # 'comments': [comment.to_dict() for comment in comments]
 
         }

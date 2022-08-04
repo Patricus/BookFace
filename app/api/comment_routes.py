@@ -55,7 +55,7 @@ def read_comments(id):
     return {'comments': [comment.to_dict() for comment in post_comments]}
 
 
-@comment_routes.route('/<int:id>', methods=['PATCH'])
+@comment_routes.route('/<int:id>/', methods=['PATCH'])
 @login_required
 def update_comment(id):
     """
@@ -73,7 +73,6 @@ def update_comment(id):
             return {'errors': [{"user": "You don't own this comment."}]}
 
         comment.text = form.data['text'],
-        comment.image_link = form.data['image_link'],
         comment.edited_at = form.data['edited_at'],
 
         db.session.commit()
@@ -97,4 +96,4 @@ def delete_comment(id):
 
     db.session.delete(comment)
     db.session.commit()
-    return {"id": id}
+    return comment.to_dict()

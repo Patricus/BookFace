@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { editComment } from "../../../store/comments";
 
 // Form used to Edit a comment
-function EditCommentForm({ comment }) {
+function EditCommentForm({ comment, setShowEditComment }) {
     const [text, setText] = useState(comment.text);
     const [errors, setErrors] = useState([]);
 
@@ -13,7 +13,7 @@ function EditCommentForm({ comment }) {
         e.preventDefault();
         setErrors([]);
 
-        const data = await dispatch(editComment(comment.post_id, text));
+        const data = await dispatch(editComment(comment.post_id, comment.id, text));
 
         if (data) {
             //Show errors
@@ -21,6 +21,7 @@ function EditCommentForm({ comment }) {
         } else {
             setText("");
             setErrors([]);
+            setShowEditComment(false);
         }
     };
 

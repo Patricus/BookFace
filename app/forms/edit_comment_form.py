@@ -3,6 +3,7 @@ from wtforms import StringField, TextField, IntegerField
 from wtforms.validators import DataRequired, Email, ValidationError
 from datetime import datetime
 from ..models.post import Post
+from ..models.comment import Comment
 
 
 def check_post(form, field):
@@ -16,7 +17,7 @@ def check_post(form, field):
 
 
 class EditCommentForm(FlaskForm):
+    post_id = IntegerField('post_id', validators=[DataRequired(), check_post])
     text = TextField(
         'text', validators=[DataRequired()])
-    post_id = IntegerField('post_id', validators=[DataRequired(), check_post])
     edited_at = StringField('edited_at', default=str(datetime.now()))

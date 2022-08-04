@@ -64,9 +64,9 @@ export const getComments = postId => async dispatch => {
     }
 };
 
-export const editComment = (post_id, commentId, text) => async dispatch => {
+export const editComment = (post_id, comment_id, text) => async dispatch => {
     const edited_at = new Date().toUTCString();
-    const response = await fetch(`/api/comments/${commentId}`, {
+    const response = await fetch(`/api/comments/${comment_id}/`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",
@@ -93,7 +93,6 @@ export const removeComment = commentId => async dispatch => {
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(commentId),
     });
     if (response.ok) {
         const data = await response.json();
@@ -115,23 +114,22 @@ export default function reducer(state = initialState, action) {
     switch (action.type) {
         case CREATE_COMMENT:
             const createState = { ...state };
-            createState[action.payload.id] = action.payload;
-            console.log("createState", createState);
+            const post = createState[action.payload.post_id];
+            post.comments[action.payload.id] = action.payload;
             return createState;
         case READ_COMMENT:
-            const readState = {};
-            console.log("action.payload", action.payload);
+            const readState = { ...state };
             action.payload.comments.forEach(comment => {
-                readState[comment.id] = comment;
+                readState[comment.post_id].comments[comment.id] = comment;
             });
             return readState;
         case UPDATE_COMMENT:
             const updateState = { ...state };
-            updateState[action.payload.id] = action.payload;
+            updateState[action.payload.post_id].comments[action.payload.id] = action.payload;
             return updateState;
         case DELETE_COMMENT:
             const deleteState = { ...state };
-            delete deleteState[action.payload.id];
+            delete deleteState[action.payload.post_id].comments[action.payload.id];
             return deleteState;
         default:
             return state;

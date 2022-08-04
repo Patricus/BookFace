@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { removeComment } from "../../../store/comments";
-import { getPosts } from "../../../store/posts";
 import EditCommentForm from "../Form/EditCommentForm";
 
 function Comment({ comment }) {
@@ -12,27 +11,29 @@ function Comment({ comment }) {
 
     const deleteComment = async () => {
         await dispatch(removeComment(comment.id));
-        dispatch(getPosts(comment.post_id));
     };
 
     return (
         <>
-            {showEditComment && (
+            {showEditComment ? (
                 <EditCommentForm comment={comment} setShowEditComment={setShowEditComment} />
-            )}
-            <div>
-                Comment
-                <div style={{ position: "relative" }}>
-                    <button onClick={() => setShowDropdown(!showDropdown)}>...</button>
-                    {showDropdown && (
-                        <div style={{ position: "absolute" }} className="dropdown">
-                            <button onClick={() => setShowEditComment(true)}>Edit Comment</button>
-                            <button onClick={deleteComment}>Delete Comment</button>
-                        </div>
-                    )}
+            ) : (
+                <div>
+                    Comment
+                    <div style={{ position: "relative" }}>
+                        <button onClick={() => setShowDropdown(!showDropdown)}>...</button>
+                        {showDropdown && (
+                            <div style={{ position: "absolute" }} className="dropdown">
+                                <button onClick={() => setShowEditComment(true)}>
+                                    Edit Comment
+                                </button>
+                                <button onClick={deleteComment}>Delete Comment</button>
+                            </div>
+                        )}
+                    </div>
+                    <p>{comment.text}</p>
                 </div>
-                <p>{comment.text}</p>
-            </div>
+            )}
         </>
     );
 }

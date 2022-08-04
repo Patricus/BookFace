@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getComments, makeComment } from "../../../store/comments";
+import { makeComment } from "../../../store/comments";
 
 // Form used to create a comment
 function CreateCommentForm({ post_id }) {
@@ -14,7 +14,6 @@ function CreateCommentForm({ post_id }) {
         setErrors([]);
 
         const data = await dispatch(makeComment(post_id, text));
-        dispatch(getComments(post_id));
 
         if (data) {
             //Show errors

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getComments } from "../../../store/comments";
 import { removePost } from "../../../store/posts";
 import Comment from "../../Comment/Elements/Comment";
 import CreateCommentForm from "../../Comment/Form/CreateCommentForm";
@@ -12,7 +13,10 @@ function Post({ postId }) {
     const dispatch = useDispatch();
 
     const post = useSelector(state => state.session.user.posts[postId]);
-    // const comments = useSelector(state => state.session.user.posts[postId].comments);
+
+    useEffect(() => {
+        if (post) dispatch(getComments(post.id));
+    }, [dispatch, post]);
 
     const deletePost = () => {
         dispatch(removePost(post.id));
