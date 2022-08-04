@@ -12,7 +12,7 @@ function Post({ postId }) {
 
     const dispatch = useDispatch();
 
-    const post = useSelector(state => state.session.user.posts[postId]);
+    const post = useSelector(state => state.posts[postId]);
 
     useEffect(() => {
         if (post) dispatch(getComments(post.id));

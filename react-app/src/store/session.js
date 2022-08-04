@@ -1,5 +1,3 @@
-import posts from "./posts";
-
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
@@ -105,8 +103,7 @@ export default function reducer(state = initialState, action) {
         case REMOVE_USER:
             return { user: null };
         default:
-            const defaultState = { ...state, user: { ...state.user } };
-            defaultState.user.posts = posts(defaultState.user.posts, action);
+            const defaultState = { ...state };
             return defaultState;
     }
 }

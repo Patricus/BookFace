@@ -53,6 +53,4 @@ class User(db.Model, UserMixin):
             'born_from': self.born_from,
             'profile_pic': self.profile_pic,
             'cover_pic': self.cover_pic,
-
-            'posts': [post.to_dict() for post in posts]
         }
