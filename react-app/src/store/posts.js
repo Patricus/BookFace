@@ -67,7 +67,7 @@ export const getPosts = () => async dispatch => {
 
 export const editPost = (postId, text, image_link) => async dispatch => {
     const edited_at = new Date().toUTCString();
-    const response = await fetch(`/api/posts/${postId}`, {
+    const response = await fetch(`/api/posts/${postId}/`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",
@@ -89,7 +89,7 @@ export const editPost = (postId, text, image_link) => async dispatch => {
 };
 
 export const removePost = postId => async dispatch => {
-    const response = await fetch(`/api/posts/${postId}`, {
+    const response = await fetch(`/api/posts/${postId}/`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",

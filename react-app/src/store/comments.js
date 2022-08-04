@@ -88,7 +88,7 @@ export const editComment = (post_id, comment_id, text) => async dispatch => {
 };
 
 export const removeComment = commentId => async dispatch => {
-    const response = await fetch(`/api/comments/${commentId}`, {
+    const response = await fetch(`/api/comments/${commentId}/`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",

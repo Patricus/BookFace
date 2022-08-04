@@ -55,7 +55,7 @@ def read_posts():
     return {'posts': [post.to_dict() for post in my_posts]}
 
 
-@post_routes.route('/<int:id>', methods=['PATCH'])
+@post_routes.route('/<int:id>/', methods=['PATCH'])
 @login_required
 def update_post(id):
     """
@@ -81,7 +81,7 @@ def update_post(id):
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@post_routes.route('/<int:id>', methods=['DELETE'])
+@post_routes.route('/<int:id>/', methods=['DELETE'])
 @login_required
 def delete_post(id):
     """
