@@ -13,8 +13,29 @@ function CreatePostForm() {
     const submit = async e => {
         e.preventDefault();
         setErrors([]);
+        let image_link = "";
 
-        const data = await dispatch(makePost(text, image));
+        const imageData = new FormData();
+        imageData.append("image", image);
+
+        const imageRes = await fetch(`/api/images/`, {
+            method: "POST",
+            body: imageData,
+        });
+
+        if (imageRes.ok) {
+            image_link = await imageRes.json();
+            image_link = image_link.url;
+        } else if (imageRes.status < 500) {
+            const data = await imageRes.json();
+            if (data.errors) {
+                return [data.errors];
+            }
+        } else {
+            return ["An error occurred. Please try again."];
+        }
+
+        const data = await dispatch(makePost(text, image_link));
 
         if (data) {
             //Show errors
@@ -46,8 +67,7 @@ function CreatePostForm() {
                     name="image"
                     type="file"
                     accept="image/*"
-                    value={image}
-                    onChange={e => setImage(e.target.value)}
+                    onChange={e => setImage(e.target.files[0])}
                 />
                 <button>Post</button>
             </form>

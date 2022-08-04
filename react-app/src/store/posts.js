@@ -133,9 +133,6 @@ export default function reducer(state = initialState, action) {
             delete deleteState[action.payload.id];
             return deleteState;
         default:
-            // const defaultState = { ...state, comments(defaultState.comments, action) };
-            // defaultState = {comments(defaultState.comments, action);
-            // return defaultState;
             const defaultState = { ...state, ...comments(state, action) };
             return defaultState;
     }
