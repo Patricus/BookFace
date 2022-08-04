@@ -6,9 +6,7 @@ import LogInPage from "./LogInPage";
 function Home() {
     const user = useSelector(state => state.session.user);
 
-    return <div>
-        {user ? <HomePage /> : <LogInPage />}
-    </div>;
+    return <main>{user ? <HomePage /> : <LogInPage />}</main>;
 }
 
 export default Home;

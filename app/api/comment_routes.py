@@ -84,7 +84,7 @@ def update_comment(id):
 @login_required
 def delete_comment(id):
     """
-    Update a comment.
+    Delete a comment.
     """
 
     comment = Comment.query.get(id)

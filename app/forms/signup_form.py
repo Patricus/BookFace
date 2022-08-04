@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, DateField
+from wtforms import StringField
 from wtforms.validators import DataRequired, Email, ValidationError
 from app.models import User
 from datetime import datetime
@@ -20,21 +20,12 @@ def age_check(form, field):
     if now + datetime.timedelta(days=365*13) - birthday > 0:
         raise ValidationError('Must be over 13.')
 
-
-# def not_null(form, field):
-#     # Checking for null
-#     birthday = field.data
-#     print(f"\n\n\n\n\n\n\n\n\ {birthday} \n\n\n\n\n")
-#     if birthday == null:
-#         return ValidationError("Birthday is required.")
-
-
 class SignUpForm(FlaskForm):
     firstName = StringField(
         'first_name', validators=[DataRequired()])
     lastName = StringField(
         'last_name', validators=[DataRequired()])
     email = StringField('email', validators=[
-                        DataRequired(), user_exists])
+                        DataRequired(), Email(), user_exists])
     password = StringField('password', validators=[DataRequired()])
     birthday = StringField('birthday', validators=[DataRequired()])
