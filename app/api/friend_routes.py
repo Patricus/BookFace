@@ -95,20 +95,26 @@ def update_friend():
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@friend_routes.route('/<int:id>/', methods=['DELETE'])
+@friend_routes.route('/', methods=['DELETE'])
 @login_required
-def delete_friend(id):
+def delete_friend():
     """
     Delete a friend or decline friend request.
     """
 
-    friend_request = Friend.query.get(id)
+    form = FriendForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
 
-    if not friend_request:
-        return {"errors": [{"friend": "Friend request not found."}]}
-    if friend_request.user_id != current_user.id or friend_request.friend_id != current_user.id:
-        return {'errors': [{"friend": "You aren't a part of this friendship."}]}
+    if form.validate_on_submit():
+        friend = Friend.query.filter(
+            or_(and_(Friend.user_id == form.data['user_id'], Friend.friend_id == form.data['friend_id']), and_(Friend.user_id == form.data['friend_id'], Friend.friend_id == form.data['user_id']))).first()
 
-    db.session.delete(friend_request)
-    db.session.commit()
-    return friend_request.to_dict()
+        if not friend:
+            return {"errors": [{"friend": "Friend request not found."}]}
+        if friend.user_id != current_user.id and friend.friend_id != current_user.id:
+            return {'errors': [{"friend": "You aren't a part of this friendship."}]}
+
+        db.session.delete(friend)
+        db.session.commit()
+        return friend.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
