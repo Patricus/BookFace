@@ -32,16 +32,23 @@ def create_friend_request():
     if form.validate_on_submit():
         # Check if request already exists
         friend_request_check = Friend.query.filter(
-            or_(and_(Friend.user_id == current_user.id, Friend.friend_id == form.data['friend_id']), and_(Friend.friend_id == current_user.id, Friend.user_id == form.data['friend_id']))).first()
+            or_(and_(Friend.user_id == current_user.id, Friend.friend_id == form.data['friend_id']), and_(Friend.friend_id == current_user.id, Friend.user_id == form.data['friend_id'])))
+
+        # TODO create check logic
+
         # Create the friend request
         friend_request = Friend(
             user_id=current_user.id,
             friend_id=form.data['friend_id'],
             accepted=False,
         )
+
+        # Get friend user
+        friend = User.query.get(form.data['friend_id'])
+
         db.session.add(friend_request)
         db.session.commit()
-        return friend_request.to_dict()
+        return friend.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
@@ -51,8 +58,8 @@ def read_friends():
     """
     Read all friends.
     """
-    friends = User.query.join(Friend, and_(or_(
-        Friend.user_id == current_user.id, Friend.friend_id == current_user.id, ), Friend.accepted == True)).filter(User.id != current_user.id).all()
+    friends = User.query.join(Friend, or_(Friend.friend_id == User.id, Friend.user_id == User.id)).filter(
+        and_(Friend.accepted == True, User.id != current_user.id)).all()
 
     return {'friends': [friend.to_dict() for friend in friends]}
 
@@ -63,8 +70,8 @@ def read_friend_requests():
     """
     Read all friend requests.
     """
-    friend_requests = User.query.join(Friend, and_(
-        Friend.friend_id == current_user.id, Friend.accepted == False)).filter(User.id != current_user.id).all()
+    friend_requests = User.query.join(Friend, Friend.user_id == User.id).filter(
+        and_(Friend.accepted == False, User.id != current_user.id, Friend.friend_id == current_user.id)).all()
 
     return {'friend_requests': [friend_request.to_dict() for friend_request in friend_requests]}
 
@@ -75,8 +82,8 @@ def read_sent_requests():
     """
     Read all sent requests.
     """
-    friend_requests = User.query.join(Friend, and_(
-        Friend.user_id == current_user.id, Friend.accepted == False)).filter(User.id != current_user.id).all()
+    friend_requests = User.query.join(Friend, Friend.friend_id == User.id).filter(
+        and_(Friend.accepted == False, User.id != current_user.id, Friend.user_id == current_user.id)).all()
 
     return {'friend_requests': [friend_request.to_dict() for friend_request in friend_requests]}
 
@@ -113,6 +120,9 @@ def delete_friend():
     """
     Delete a friend or decline friend request.
     """
+
+    data = request.data
+    print(f"\n\n\n\n data - {data}\n\n")
 
     form = FriendForm()
     form['csrf_token'].data = request.cookies['csrf_token']

@@ -4,11 +4,6 @@ const READ_FRIENDS = "friend/READ_FRIENDS";
 const UPDATE_FRIENDS = "friend/UPDATE_FRIENDS";
 const DELETE_FRIENDS = "friend/DELETE_FRIENDS";
 
-const createFriend = friend => ({
-    type: CREATE_FRIENDS,
-    payload: friend,
-});
-
 const readFriends = friends => ({
     type: READ_FRIENDS,
     payload: friends,
@@ -23,28 +18,6 @@ const deleteFriend = id => ({
     type: DELETE_FRIENDS,
     payload: id,
 });
-
-export const requestFriend = (user_id, friend_id) => async dispatch => {
-    const response = await fetch("/api/friends/", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ user_id, friend_id }),
-    });
-    if (response.ok) {
-        const data = await response.json();
-        dispatch(createFriend(data));
-        return null;
-    } else if (response.status < 500) {
-        const data = await response.json();
-        if (data.errors) {
-            return data.errors;
-        }
-    } else {
-        return ["An error occurred. Please try again."];
-    }
-};
 
 export const getFriends = () => async dispatch => {
     const response = await fetch(`/api/friends/`);

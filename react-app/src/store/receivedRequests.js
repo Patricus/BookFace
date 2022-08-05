@@ -29,7 +29,6 @@ export const getRequests = () => async dispatch => {
 };
 
 export const deleteReceivedRequest = request => async dispatch => {
-    console.log("request", request);
     dispatch(deleteRequest(request));
 };
 

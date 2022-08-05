@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { requestFriend } from "../../../../store/friends";
+import { requestFriend } from "../../../../store/sentRequests";
 import { removeUser } from "../../../../store/users";
 
 function UserCard({ friend }) {
