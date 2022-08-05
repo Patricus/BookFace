@@ -34,7 +34,7 @@ def confirm_password_check(form, field):
 
 
 def reEmail_check(form, field):
-    # Check if confirm password == password
+    # Check if reEmail == email
     if form.data['email'] != field.data:
         raise ValidationError('Emails must match.')
 

@@ -54,7 +54,10 @@ def read_posts():
     """
 
     posts = Post.query.select_from(User).join(Friend,
-                                              Friend.user_id == User.id).filter(or_(Friend.accepted == True, Post.user_id == current_user.id)).all()
+                                              Friend.user_id == User.id).filter(
+        or_(and_(Friend.accepted == True,
+                 or_(Friend.user_id == current_user.id,
+                     Friend.friend_id == current_user.id)), Post.user_id == current_user.id)).all()
 
     return {'posts': [post.to_dict() for post in posts]}
 
@@ -89,7 +92,7 @@ def update_post(id):
 @ login_required
 def delete_post(id):
     """
-    Update a post.
+    Delete a post.
     """
 
     post = Post.query.get(id)
