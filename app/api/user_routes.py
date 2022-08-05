@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify
 from flask_login import current_user, login_required
 from app.models import User
+from app.models.friend import Friend
 
 user_routes = Blueprint('users', __name__)
 
@@ -9,6 +10,10 @@ user_routes = Blueprint('users', __name__)
 @login_required
 def users():
     users = User.query.filter(User.id != current_user.id).all()
+    friends = User.query.join(Friend, or_(
+        Friend.user_id == current_user.id, Friend.friend_id == current_user.id, )).filter(User.id != current_user.id).all()
+
+    users = users - friends
     return {'users': [user.to_dict() for user in users]}
 
 
