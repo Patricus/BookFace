@@ -27,7 +27,7 @@ const initialState = {};
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case READ_USERS:
-            const readState = { ...state };
+            const readState = {};
             action.payload.users.forEach(user => {
                 readState[user.id] = user;
             });

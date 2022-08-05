@@ -6,7 +6,6 @@ import FriendCard from "./FriendCard";
 function Friends() {
     const friends = useSelector(state => state.friends);
     const dispatch = useDispatch();
-    console.log("friends", friends);
 
     useEffect(() => {
         dispatch(getFriends());

@@ -115,7 +115,7 @@ export default function reducer(state = initialState, action) {
             createState[action.payload.id] = action.payload;
             return createState;
         case READ_FRIENDS:
-            const readState = { ...state };
+            const readState = {};
             action.payload.friends.forEach(friend => {
                 readState[friend.id] = friend;
             });

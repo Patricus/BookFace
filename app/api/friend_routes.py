@@ -32,7 +32,7 @@ def create_friend_request():
     if form.validate_on_submit():
         # Check if request already exists
         friend_request_check = Friend.query.filter(
-            or_((Friend.user_id == current_user.id, Friend.friend_id == form.data['friend_id']), (Friend.friend_id == current_user.id, Friend.user_id == form.data['friend_id'])))
+            or_(and_(Friend.user_id == current_user.id, Friend.friend_id == form.data['friend_id']), and_(Friend.friend_id == current_user.id, Friend.user_id == form.data['friend_id']))).first()
         # Create the friend request
         friend_request = Friend(
             user_id=current_user.id,
