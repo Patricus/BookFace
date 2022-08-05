@@ -53,14 +53,14 @@ def read_posts():
     Read posts.
     """
 
-    posts = Post.query.select_from(User).join(Friend, and_(or_(
-        Friend.user_id == current_user.id, Friend.friend_id == current_user.id, ), Friend.accepted == True)).all()
+    posts = Post.query.select_from(User).join(Friend,
+                                              Friend.user_id == User.id).filter(or_(Friend.accepted == True, Post.user_id == current_user.id)).all()
 
     return {'posts': [post.to_dict() for post in posts]}
 
 
-@post_routes.route('/<int:id>/', methods=['PATCH'])
-@login_required
+@ post_routes.route('/<int:id>/', methods=['PATCH'])
+@ login_required
 def update_post(id):
     """
     Update a post.
@@ -85,8 +85,8 @@ def update_post(id):
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@post_routes.route('/<int:id>/', methods=['DELETE'])
-@login_required
+@ post_routes.route('/<int:id>/', methods=['DELETE'])
+@ login_required
 def delete_post(id):
     """
     Update a post.

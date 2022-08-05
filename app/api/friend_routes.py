@@ -121,9 +121,6 @@ def delete_friend():
     Delete a friend or decline friend request.
     """
 
-    data = request.data
-    print(f"\n\n\n\n data - {data}\n\n")
-
     form = FriendForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
