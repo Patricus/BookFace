@@ -70,7 +70,7 @@ def update_comment(id):
         comment = Comment.query.get(id)
 
         if comment.user_id != current_user.id:
-            return {'errors': [{"user": "You don't own this comment."}]}
+            return {'errors': ["You don't own this comment."]}, 403
 
         comment.text = form.data['text'],
         comment.edited_at = form.data['edited_at'],
@@ -90,9 +90,9 @@ def delete_comment(id):
     comment = Comment.query.get(id)
 
     if not comment:
-        return {"errors": [{"comment": "Comment not found."}]}
+        return {"errors": ["Comment not found."]}, 400
     if comment.user_id != current_user.id:
-        return {'errors': [{"user": "You don't own this comment."}]}
+        return {'errors': ["You don't own this comment."]}, 403
 
     db.session.delete(comment)
     db.session.commit()
