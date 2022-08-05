@@ -27,8 +27,8 @@ const initialState = {};
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case READ_FRIEND_REQUESTS:
-            const readState = { ...state };
-            action.payload.requests.forEach(request => {
+            const readState = {};
+            action.payload.friend_requests.forEach(request => {
                 readState[request.id] = request;
             });
             return readState;

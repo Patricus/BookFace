@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUsers } from "../../../store/users";
+import { getUsers } from "../../../../store/users";
 import UserCard from "./UserCard";
 
 function Users() {

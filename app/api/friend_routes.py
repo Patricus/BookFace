@@ -57,7 +57,7 @@ def read_friends():
     return {'friends': [friend.to_dict() for friend in friends]}
 
 
-@friend_routes.route('requests/')
+@friend_routes.route('/requests/')
 @login_required
 def read_friend_requests():
     """

@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getFriends } from "../../../store/friends";
-import Friend from "../Elements/Friend";
-import FriendRequests from "../Elements/FriendRequests";
+import Friends from "../Elements/Friends/Friends";
 import FriendSideBar from "../Elements/FriendSideBar";
-import Users from "../Elements/Users";
+import Requests from "../Elements/Requests/Requests";
+import Users from "../Elements/Users/Users";
 
 function FriendsPage() {
     const [friendTab, setFriendTab] = useState("home");
 
     const dispatch = useDispatch();
-    const friends = useSelector(state => state.friends);
 
     useEffect(() => {
         dispatch(getFriends());
@@ -34,19 +33,15 @@ function FriendsPage() {
                             "friend-requests": (
                                 <>
                                     <h2>Friend Requests</h2>
-                                    {friends &&
-                                        Object.values(friends).map(friend => (
-                                            <FriendRequests key={friend.id} friend={friend} />
-                                        ))}
+
+                                    <Requests />
                                 </>
                             ),
                             "all-friends": (
                                 <>
                                     <h2>All Friends</h2>
-                                    {friends &&
-                                        Object.values(friends).map(friend => (
-                                            <Friend key={friend.id} friend={friend} />
-                                        ))}
+
+                                    <Friends />
                                 </>
                             ),
                         }[friendTab]

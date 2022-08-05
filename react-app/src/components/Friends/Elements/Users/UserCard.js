@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { requestFriend } from "../../../store/friends";
+import { requestFriend } from "../../../../store/friends";
 
 function UserCard({ friend }) {
     const user = useSelector(state => state.session.user);

@@ -3,14 +3,14 @@ import thunk from "redux-thunk";
 import session from "./session";
 import posts from "./posts";
 import friends from "./friends";
-import friendRequests from "./friendRequests";
+import requests from "./requests";
 import users from "./users";
 
 const rootReducer = combineReducers({
     session,
     posts,
     friends,
-    friendRequests,
+    requests,
     users,
 });
 
