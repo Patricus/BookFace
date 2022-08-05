@@ -69,9 +69,9 @@ def read_friend_requests():
     return {'friend_requests': [friend_request.to_dict() for friend_request in friend_requests]}
 
 
-@friend_routes.route('/<int:id>/', methods=['PATCH'])
+@friend_routes.route('/', methods=['PATCH'])
 @login_required
-def update_friend(id):
+def update_friend():
     """
     Accept a friend request.
     """
@@ -80,13 +80,15 @@ def update_friend(id):
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        friend_request = Friend.query.get(id)
+        friend_request = Friend.query.filter(
+            or_(and_(Friend.user_id == form.data['user_id'], Friend.friend_id == form.data['friend_id']), and_(Friend.user_id == form.data['friend_id'], Friend.friend_id == form.data['user_id']))).first()
 
-        if friend_request.user_id != current_user.id or friend_request.friend_id != current_user.id:
-            return {'errors': [{"user": "You can't accept this friend_request."}]}
+        # Check if current user is part of the friend request
+        if friend_request.user_id != current_user.id and friend_request.friend_id != current_user.id:
+            return {'errors': [{"user": "You can't accept this friend request."}]}
 
         # Update the friend request
-        friend_request.accepted = True,
+        friend_request.accepted = True
 
         db.session.commit()
         return friend_request.to_dict()

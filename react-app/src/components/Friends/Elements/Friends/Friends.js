@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFriends } from "../../../../store/friends";
-import UserCard from "../Users/UserCard";
+import FriendCard from "./FriendCard";
 
 function Friends() {
     const friends = useSelector(state => state.friends);
     const dispatch = useDispatch();
+    console.log("friends", friends);
 
     useEffect(() => {
         dispatch(getFriends());
@@ -14,7 +15,9 @@ function Friends() {
     return (
         <div>
             {friends &&
-                Object.values(friends).map(friend => <UserCard key={friend.id} friend={friend} />)}
+                Object.values(friends).map(friend => (
+                    <FriendCard key={friend.id} friend={friend} />
+                ))}
         </div>
     );
 }

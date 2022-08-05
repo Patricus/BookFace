@@ -11,10 +11,6 @@ function FriendsPage() {
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getFriends());
-    }, [dispatch]);
-
     return (
         <div>
             <h1>FriendsPage</h1>
