@@ -74,7 +74,7 @@ def update_post(id):
         post = Post.query.get(id)
 
         if post.user_id != current_user.id:
-            return {'errors': [{"user": "You don't own this post."}]}
+            return {'errors': ["You don't own this post."]}, 403
 
         post.text = form.data['text'],
         post.image_link = form.data['image_link'],

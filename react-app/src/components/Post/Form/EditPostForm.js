@@ -20,6 +20,7 @@ function CreatePostForm({ post, setShowEditPost }) {
         if (data) {
             //Show errors
             setErrors(data);
+            return;
         } else {
             //Close modal
             setShowEditPost(false);
