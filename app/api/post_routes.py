@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from sqlalchemy import or_
+from sqlalchemy import and_, or_
 from app.models import Post, db
 from app.forms import PostForm, EditPostForm
 from flask_login import current_user, login_required
@@ -53,8 +53,8 @@ def read_posts():
     Read posts.
     """
 
-    posts = Post.query.select_from(User).join(Friend, or_(
-        Friend.user_id == current_user.id, Friend.friend_id == current_user.id, )).all()
+    posts = Post.query.select_from(User).join(Friend, and_(or_(
+        Friend.user_id == current_user.id, Friend.friend_id == current_user.id, ), Friend.accepted == True)).all()
 
     return {'posts': [post.to_dict() for post in posts]}
 
