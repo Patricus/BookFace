@@ -14,6 +14,7 @@ const SignUpForm = () => {
     const [bYear, setBYear] = useState(new Date().getFullYear());
     const [birthday, setBirthday] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
 
     //birthday must be 13 years old
 
@@ -26,11 +27,18 @@ const SignUpForm = () => {
 
     const onSignUp = async e => {
         e.preventDefault();
-        if (email === reEmail) {
-            const data = await dispatch(signUp(firstName, lastName, email, password, birthday));
-            if (data) {
-                setErrors(data);
-            }
+        setErrors([]);
+        const emailPassCheck = [];
+
+        if (email !== reEmail) emailPassCheck.push("Email and Re-email must match.");
+        if (password !== confirmPassword)
+            emailPassCheck.push("Password and Confirm Password must match.");
+
+        const data = await dispatch(
+            signUp(firstName, lastName, email, reEmail, password, confirmPassword, birthday)
+        );
+        if (data) {
+            setErrors(data);
         }
     };
 
@@ -88,6 +96,14 @@ const SignUpForm = () => {
                             onChange={e => setPassword(e.target.value)}
                             value={password}
                             placeholder="New password"></input>
+                    </div>
+                    <div>
+                        <input
+                            type="password"
+                            name="confirmPassword"
+                            onChange={e => setConfirmPassword(e.target.value)}
+                            value={confirmPassword}
+                            placeholder="Confirm password"></input>
                     </div>
                     <div>
                         <div>
