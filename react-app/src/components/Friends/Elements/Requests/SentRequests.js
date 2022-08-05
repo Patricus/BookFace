@@ -9,7 +9,7 @@ function SentRequests({ requests, setShowSentRequests }) {
                 <h2>SentRequests</h2>
                 {requests &&
                     Object.values(requests).map(request => {
-                        return <RequestSentCard request={request} />;
+                        return <RequestSentCard key={request.id} request={request} />;
                     })}
             </div>
         </Modal>

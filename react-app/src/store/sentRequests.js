@@ -1,9 +1,15 @@
 // constants
 const READ_SENT_REQUESTS = "request/READ_SENT_REQUESTS";
+const DELETE_SENT_REQUESTS = "request/DELETE_SENT_REQUESTS";
 
 const readRequests = requests => ({
     type: READ_SENT_REQUESTS,
     payload: requests,
+});
+
+const deleteRequest = request => ({
+    type: DELETE_SENT_REQUESTS,
+    payload: request,
 });
 
 export const getSentRequests = () => async dispatch => {
@@ -22,6 +28,10 @@ export const getSentRequests = () => async dispatch => {
     }
 };
 
+export const deleteSentRequest = request => async dispatch => {
+    dispatch(deleteRequest(request));
+};
+
 const initialState = {};
 
 export default function reducer(state = initialState, action) {
@@ -32,6 +42,10 @@ export default function reducer(state = initialState, action) {
                 readState[request.id] = request;
             });
             return readState;
+        case DELETE_SENT_REQUESTS:
+            const deleteState = { ...state };
+            delete deleteState[action.payload.id];
+            return deleteState;
         default:
             return state;
     }

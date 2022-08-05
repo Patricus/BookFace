@@ -1,14 +1,16 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { requestFriend } from "../../../../store/friends";
+import { removeUser } from "../../../../store/users";
 
 function UserCard({ friend }) {
     const user = useSelector(state => state.session.user);
 
     const dispatch = useDispatch();
 
-    const addFriend = () => {
-        dispatch(requestFriend(user.id, friend.id));
+    const addFriend = async () => {
+        await dispatch(requestFriend(user.id, friend.id));
+        dispatch(removeUser(friend));
     };
     return (
         <div>

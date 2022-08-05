@@ -1,9 +1,15 @@
 // constants
 const READ_FRIEND_REQUESTS = "request/READ_FRIEND_REQUESTS";
+const DELETE_RECEIVED_REQUESTS = "request/DELETE_RECEIVED_REQUESTS";
 
 const readRequests = requests => ({
     type: READ_FRIEND_REQUESTS,
     payload: requests,
+});
+
+const deleteRequest = request => ({
+    type: DELETE_RECEIVED_REQUESTS,
+    payload: request,
 });
 
 export const getRequests = () => async dispatch => {
@@ -22,6 +28,11 @@ export const getRequests = () => async dispatch => {
     }
 };
 
+export const deleteReceivedRequest = request => async dispatch => {
+    console.log("request", request);
+    dispatch(deleteRequest(request));
+};
+
 const initialState = {};
 
 export default function reducer(state = initialState, action) {
@@ -32,6 +43,10 @@ export default function reducer(state = initialState, action) {
                 readState[request.id] = request;
             });
             return readState;
+        case DELETE_RECEIVED_REQUESTS:
+            const deleteState = { ...state };
+            delete deleteState[action.payload.id];
+            return deleteState;
         default:
             return state;
     }

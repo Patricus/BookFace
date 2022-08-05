@@ -1,9 +1,15 @@
 // constants
 const READ_USERS = "user/READ_USERS";
+const DELETE_USER = "user/DELETE_USER";
 
 const readUsers = users => ({
     type: READ_USERS,
     payload: users,
+});
+
+const deleteUser = user => ({
+    type: DELETE_USER,
+    payload: user,
 });
 
 export const getUsers = () => async dispatch => {
@@ -22,6 +28,10 @@ export const getUsers = () => async dispatch => {
     }
 };
 
+export const removeUser = user => async dispatch => {
+    dispatch(deleteUser(user));
+};
+
 const initialState = {};
 
 export default function reducer(state = initialState, action) {
@@ -32,6 +42,10 @@ export default function reducer(state = initialState, action) {
                 readState[user.id] = user;
             });
             return readState;
+        case DELETE_USER:
+            const deleteState = { ...state };
+            delete deleteState[action.payload.id];
+            return deleteState;
         default:
             return state;
     }
