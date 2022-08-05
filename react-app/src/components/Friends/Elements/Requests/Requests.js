@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getRequests } from "../../../../store/requests";
-import UserCard from "../Users/UserCard";
+import RequestCard from "./RequestCard";
 
 function Requests() {
     const requests = useSelector(state => state.requests);
@@ -15,7 +15,7 @@ function Requests() {
         <div>
             {requests &&
                 Object.values(requests).map(request => (
-                    <UserCard key={request.id} friend={request} />
+                    <RequestCard key={request.id} request={request} />
                 ))}
         </div>
     );

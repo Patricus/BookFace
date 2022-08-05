@@ -62,8 +62,8 @@ export const getFriends = () => async dispatch => {
     }
 };
 
-export const acceptFriend = (friend_request_id, user_id, friend_id) => async dispatch => {
-    const response = await fetch(`/api/friends/${friend_request_id}/`, {
+export const acceptFriend = (user_id, friend_id) => async dispatch => {
+    const response = await fetch(`/api/friends/`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",
@@ -84,12 +84,13 @@ export const acceptFriend = (friend_request_id, user_id, friend_id) => async dis
     }
 };
 
-export const removeFriend = friendRequestId => async dispatch => {
-    const response = await fetch(`/api/friends/${friendRequestId}/`, {
+export const removeFriend = (user_id, friend_id) => async dispatch => {
+    const response = await fetch(`/api/friends/`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
         },
+        body: JSON.stringify({ user_id, friend_id }),
     });
     if (response.ok) {
         const data = await response.json();
