@@ -11,7 +11,11 @@ function Users() {
         dispatch(getUsers());
     }, [dispatch]);
 
-    return <div>{users && Object.values(users).map(user => <UserCard friend={user} />)}</div>;
+    return (
+        <div>
+            {users && Object.values(users).map(user => <UserCard key={user.id} friend={user} />)}
+        </div>
+    );
 }
 
 export default Users;

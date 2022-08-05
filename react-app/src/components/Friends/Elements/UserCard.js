@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { makeFriend } from "../../../store/friends";
+import { requestFriend } from "../../../store/friends";
 
 function UserCard({ friend }) {
     const user = useSelector(state => state.session.user);
@@ -8,7 +8,7 @@ function UserCard({ friend }) {
     const dispatch = useDispatch();
 
     const addFriend = () => {
-        dispatch(makeFriend(user.id, friend.id));
+        dispatch(requestFriend(user.id, friend.id));
     };
     return (
         <div>

@@ -1,7 +1,11 @@
 from flask import Blueprint, request
+from sqlalchemy import or_
 from app.models import Post, db
 from app.forms import PostForm, EditPostForm
 from flask_login import current_user, login_required
+
+from app.models.friend import Friend
+from app.models.user import User
 
 post_routes = Blueprint('post', __name__)
 
@@ -49,10 +53,11 @@ def read_posts():
     Read posts.
     """
 
-    my_posts = Post.query.filter(Post.user_id == current_user.id).all()
+    posts = Post.query.select_from(User).join(Friend, or_(
+        Friend.user_id == current_user.id, Friend.friend_id == current_user.id, )).all()
+    print(f"\n\n\n\n{posts}\n\n\n")
 
-
-    return {'posts': [post.to_dict() for post in my_posts]}
+    return {'posts': [post.to_dict() for post in posts]}
 
 
 @post_routes.route('/<int:id>/', methods=['PATCH'])

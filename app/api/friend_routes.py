@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from app.models import Friend, User, db
 from app.forms import FriendForm
 from flask_login import current_user, login_required
+from sqlalchemy import or_
 
 
 friend_routes = Blueprint('friend', __name__)
@@ -29,6 +30,9 @@ def create_friend_request():
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
+        # Check if request already exists
+        friend_request_check = Friend.query.filter(
+            or_((Friend.user_id == current_user.id, Friend.friend_id == form.data['friend_id']), (Friend.friend_id == current_user.id, Friend.user_id == form.data['friend_id'])))
         # Create the friend request
         friend_request = Friend(
             user_id=current_user.id,
@@ -47,11 +51,10 @@ def read_friends():
     """
     Read all friends and friend requests.
     """
+    friends = User.query.join(Friend, or_(
+        Friend.user_id == current_user.id, Friend.friend_id == current_user.id, )).filter(User.id != current_user.id).all()
 
-    friend_requests = Friend.query.filter(
-        Friend.user_id == current_user.id or Friend.friend_id == current_user.id).all()
-
-    return {'friends': [friend_request.to_dict() for friend_request in friend_requests]}
+    return {'friends': [friend.to_dict() for friend in friends]}
 
 
 @friend_routes.route('/<int:id>/', methods=['PATCH'])

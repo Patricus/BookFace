@@ -24,7 +24,7 @@ const deleteFriend = id => ({
     payload: id,
 });
 
-export const makeFriend = (user_id, friend_id) => async dispatch => {
+export const requestFriend = (user_id, friend_id) => async dispatch => {
     const response = await fetch("/api/friends/", {
         method: "POST",
         headers: {
@@ -46,8 +46,6 @@ export const makeFriend = (user_id, friend_id) => async dispatch => {
     }
 };
 
-
-
 export const getFriends = () => async dispatch => {
     const response = await fetch(`/api/friends/`);
     if (response.ok) {
@@ -64,7 +62,7 @@ export const getFriends = () => async dispatch => {
     }
 };
 
-export const editFriend = (friend_request_id, user_id, friend_id) => async dispatch => {
+export const acceptFriend = (friend_request_id, user_id, friend_id) => async dispatch => {
     const response = await fetch(`/api/friends/${friend_request_id}/`, {
         method: "PATCH",
         headers: {

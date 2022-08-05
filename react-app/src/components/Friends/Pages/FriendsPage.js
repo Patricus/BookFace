@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFriends } from "../../../store/friends";
 import Friend from "../Elements/Friend";
+import FriendRequests from "../Elements/FriendRequests";
 import FriendSideBar from "../Elements/FriendSideBar";
 import Users from "../Elements/Users";
 
@@ -35,7 +36,7 @@ function FriendsPage() {
                                     <h2>Friend Requests</h2>
                                     {friends &&
                                         Object.values(friends).map(friend => (
-                                            <Friend friend={friend} />
+                                            <FriendRequests key={friend.id} friend={friend} />
                                         ))}
                                 </>
                             ),
@@ -44,7 +45,7 @@ function FriendsPage() {
                                     <h2>All Friends</h2>
                                     {friends &&
                                         Object.values(friends).map(friend => (
-                                            <Friend friend={friend} />
+                                            <Friend key={friend.id} friend={friend} />
                                         ))}
                                 </>
                             ),
