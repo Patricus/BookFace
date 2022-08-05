@@ -2,7 +2,7 @@ from flask import Blueprint, request
 from app.models import Friend, User, db
 from app.forms import FriendForm
 from flask_login import current_user, login_required
-from sqlalchemy import or_
+from sqlalchemy import and_, or_
 
 
 friend_routes = Blueprint('friend', __name__)
@@ -49,12 +49,24 @@ def create_friend_request():
 @login_required
 def read_friends():
     """
-    Read all friends and friend requests.
+    Read all friends.
     """
-    friends = User.query.join(Friend, or_(
-        Friend.user_id == current_user.id, Friend.friend_id == current_user.id, )).filter(User.id != current_user.id).all()
+    friends = User.query.join(Friend, and_(or_(
+        Friend.user_id == current_user.id, Friend.friend_id == current_user.id, ), Friend.accepted == True)).filter(User.id != current_user.id).all()
 
     return {'friends': [friend.to_dict() for friend in friends]}
+
+
+@friend_routes.route('requests/')
+@login_required
+def read_friend_requests():
+    """
+    Read all friend requests.
+    """
+    friend_requests = User.query.join(Friend, and_(or_(
+        Friend.user_id == current_user.id, Friend.friend_id == current_user.id, ), Friend.accepted == False)).filter(User.id != current_user.id).all()
+
+    return {'friend_requests': [friend_request.to_dict() for friend_request in friend_requests]}
 
 
 @friend_routes.route('/<int:id>/', methods=['PATCH'])

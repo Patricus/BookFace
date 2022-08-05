@@ -14,7 +14,8 @@ def users():
     friends = User.query.join(Friend, or_(
         Friend.user_id == current_user.id, Friend.friend_id == current_user.id, )).filter(User.id != current_user.id).all()
 
-    users = users - friends
+    # filter out friends
+    users = [user for user in users if user not in friends]
     return {'users': [user.to_dict() for user in users]}
 
 
