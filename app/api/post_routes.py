@@ -95,9 +95,9 @@ def delete_post(id):
     post = Post.query.get(id)
 
     if not post:
-        return {"errors": [{"post": "Post not found."}]}
+        return {"errors": ["Post not found."]}, 400
     if post.user_id != current_user.id:
-        return {'errors': [{"user": "You don't own this post."}]}
+        return {'errors': ["You don't own this post."]}, 403
 
     db.session.delete(post)
     db.session.commit()
