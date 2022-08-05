@@ -64,7 +64,7 @@ def read_friend_requests():
     Read all friend requests.
     """
     friend_requests = User.query.join(Friend, and_(
-        Friend.friend_id == current_user.id, Friend.accepted == False)).all()
+        Friend.friend_id == current_user.id, Friend.accepted == False)).filter(User.id != current_user.id).all()
 
     return {'friend_requests': [friend_request.to_dict() for friend_request in friend_requests]}
 
@@ -76,7 +76,7 @@ def read_sent_requests():
     Read all sent requests.
     """
     friend_requests = User.query.join(Friend, and_(
-        Friend.user_id == current_user.id, Friend.accepted == False)).all()
+        Friend.user_id == current_user.id, Friend.accepted == False)).filter(User.id != current_user.id).all()
 
     return {'friend_requests': [friend_request.to_dict() for friend_request in friend_requests]}
 
