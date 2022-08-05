@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import current_user, login_required
+from sqlalchemy import or_
 from app.models import User
 from app.models.friend import Friend
 
