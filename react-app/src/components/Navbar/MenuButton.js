@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Dropdown from "./Dropdown";
 
-function ProfileButton() {
+function MenuButton() {
     const [showDropdown, setShowDropdown] = useState(false);
 
     useEffect(() => {
         const clickCheck = e => {
-            if (e.target.id === "profile-button") return;
+            if (e.target.id === "user-menu-button") return;
             if (!e.target.classList.contains("dropdown")) setShowDropdown(false);
         };
         document.addEventListener("mousedown", clickCheck);
@@ -16,15 +16,15 @@ function ProfileButton() {
     return (
         <>
             <button
-                id="profile-button"
+                id="user-menu-button"
                 onClick={() => {
                     setShowDropdown(!showDropdown);
                 }}>
-                Profile
+                User Menu
             </button>
-            <Dropdown />
+            {showDropdown && <Dropdown />}
         </>
     );
 }
 
-export default ProfileButton;
+export default MenuButton;

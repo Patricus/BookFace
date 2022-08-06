@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import ProfileButton from "./ProfileButton";
+import MenuButton from "./MenuButton";
 
 const NavBar = () => {
     const user = useSelector(state => state.session.user);
@@ -38,7 +38,7 @@ const NavBar = () => {
                     </div>
                     <div>
                         <div>
-                            <ProfileButton />
+                            <MenuButton />
                         </div>
                     </div>
                 </nav>

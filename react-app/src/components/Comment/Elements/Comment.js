@@ -1,17 +1,12 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { removeComment } from "../../../store/comments";
+import { useSelector } from "react-redux";
 import EditCommentForm from "../Form/EditCommentForm";
+import CommentDropdown from "./CommentDropdown";
 
 function Comment({ comment }) {
-    const [showDropdown, setShowDropdown] = useState(false);
     const [showEditComment, setShowEditComment] = useState(false);
 
-    const dispatch = useDispatch();
-
-    const deleteComment = async () => {
-        await dispatch(removeComment(comment.id));
-    };
+    const userId = useSelector(state => state.session.user.id);
 
     return (
         <>
@@ -20,17 +15,12 @@ function Comment({ comment }) {
             ) : (
                 <div>
                     Comment
-                    <div style={{ position: "relative" }}>
-                        <button onClick={() => setShowDropdown(!showDropdown)}>...</button>
-                        {showDropdown && (
-                            <div style={{ position: "absolute" }} className="dropdown">
-                                <button onClick={() => setShowEditComment(true)}>
-                                    Edit Comment
-                                </button>
-                                <button onClick={deleteComment}>Delete Comment</button>
-                            </div>
-                        )}
-                    </div>
+                    {userId === comment.user_id && (
+                        <CommentDropdown
+                            comment={comment}
+                            setShowEditComment={setShowEditComment}
+                        />
+                    )}
                     <p>{comment.text}</p>
                 </div>
             )}
