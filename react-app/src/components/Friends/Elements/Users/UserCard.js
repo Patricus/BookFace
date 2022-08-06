@@ -13,7 +13,7 @@ function UserCard({ friend }) {
         dispatch(removeUser(friend));
     };
     return (
-        <div>
+        <div className="user-card">
             <div>{`${friend.first_name} ${friend.last_name}`}</div>
             <div>
                 <button onClick={addFriend}>Add Friend</button>

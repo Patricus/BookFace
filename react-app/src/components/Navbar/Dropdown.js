@@ -10,7 +10,9 @@ function Dropdown() {
         <div className="dropdown">
             <div>
                 <LogoutButton />
-                <button onClick={() => history.push(`/profile/${user.id}/`)}>Profile</button>
+                <button className="dropdown" onClick={() => history.push(`/profile/${user.id}/`)}>
+                    Profile
+                </button>
             </div>
         </div>
     );

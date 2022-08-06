@@ -11,7 +11,7 @@ function FriendCard({ friend }) {
         dispatch(removeFriend(user.id, friend.id));
     };
     return (
-        <div>
+        <div className="friend-card">
             <div>
                 <h4>{`${friend.first_name} ${friend.last_name}`}</h4>
             </div>

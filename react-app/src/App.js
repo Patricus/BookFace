@@ -6,6 +6,8 @@ import { authenticate } from "./store/session";
 import NavBar from "./components/Navbar/NavBar";
 import Home from "./components/Home/Pages";
 import FriendsPage from "./components/Friends/Pages/FriendsPage";
+import UsersPage from "./components/Friends/Pages/UsersPage";
+import RequestsPage from "./components/Friends/Pages/RequestsPage";
 
 function App() {
     const [loaded, setLoaded] = useState(false);
@@ -27,9 +29,13 @@ function App() {
             <NavBar />
             <Switch>
                 <Route path="/about" exact={true}></Route>
-                <ProtectedRoute path="/friends/requests" exact={true}></ProtectedRoute>
-                <ProtectedRoute path="/friends/list" exact={true}></ProtectedRoute>
                 <ProtectedRoute path="/friends" exact={true}>
+                    <UsersPage />
+                </ProtectedRoute>
+                <ProtectedRoute path="/friends/requests" exact={true}>
+                    <RequestsPage />
+                </ProtectedRoute>
+                <ProtectedRoute path="/friends/list" exact={true}>
                     <FriendsPage />
                 </ProtectedRoute>
                 <ProtectedRoute path="/profile/:id" exact={true}></ProtectedRoute>

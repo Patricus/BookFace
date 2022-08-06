@@ -21,7 +21,7 @@ function RequestCard({ request }) {
     };
 
     return (
-        <div>
+        <div className="request-card">
             <div>{`${request.first_name} ${request.last_name}`}</div>
             <div>
                 <button onClick={acceptRequest}>Accept Friend Request</button>
