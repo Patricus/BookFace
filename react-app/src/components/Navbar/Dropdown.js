@@ -7,13 +7,13 @@ function Dropdown() {
     const user = useSelector(state => state.session.user);
     const history = useHistory();
     return (
-        <div className="dropdown">
-            <div>
-                <LogoutButton />
-                <button className="dropdown" onClick={() => history.push(`/profile/${user.id}/`)}>
-                    Profile
-                </button>
-            </div>
+        <div style={{ position: "absolute" }} id="profileDropdown">
+            <button
+                className="profile-dropdown-button"
+                onClick={() => history.push(`/profile/${user.id}/`)}>
+                Profile
+            </button>
+            <LogoutButton />
         </div>
     );
 }

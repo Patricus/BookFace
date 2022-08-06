@@ -8,6 +8,7 @@ import Home from "./components/Home/Pages";
 import FriendsPage from "./components/Friends/Pages/FriendsPage";
 import UsersPage from "./components/Friends/Pages/UsersPage";
 import RequestsPage from "./components/Friends/Pages/RequestsPage";
+import ContactPage from "./components/Contact/pages/ContactPage";
 
 function App() {
     const [loaded, setLoaded] = useState(false);
@@ -28,7 +29,9 @@ function App() {
         <BrowserRouter>
             <NavBar />
             <Switch>
-                <Route path="/about" exact={true}></Route>
+                <Route path="/contact" exact={true}>
+                    <ContactPage />
+                </Route>
                 <ProtectedRoute path="/friends" exact={true}>
                     <UsersPage />
                 </ProtectedRoute>

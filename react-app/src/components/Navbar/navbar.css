@@ -1,0 +1,119 @@
+#navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0 0px 5px rgba(183, 183, 183, 0.5);
+    padding: 3px 15px;
+}
+
+.navlink {
+    margin: 0 10px;
+    padding: 15px 40px;
+    border-radius: 10px;
+}
+
+.navlink:hover:not(.activeNav) {
+    background-color: whitesmoke;
+}
+
+.activeNav {
+    position: relative;
+}
+
+.activeNav::after {
+    content: "";
+    position: absolute;
+    background-color: #3e7cdf;
+    height: 3px;
+    width: 100%;
+    left: 0;
+    bottom: -5px;
+    border-radius: 5px;
+}
+
+#nav-buttons {
+    display: flex;
+    justify-content: space-around;
+    width: fit-content;
+    height: 100%;
+}
+
+.nav-button {
+    margin: 0 3px;
+    height: 100%;
+    padding: 5px 25px;
+}
+
+.empty-nav {
+    padding: 5px 40px;
+}
+
+#home-link {
+    background-image: url("./images/house.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 25px;
+}
+
+#home-link.activeNav {
+    background-image: url("./images/house-selected.png");
+}
+
+#friend-link {
+    background-image: url("./images/people.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 25px;
+}
+
+#friend-link.activeNav {
+    background-image: url("./images/people-selected.png");
+}
+
+#contact-link {
+    background-image: url("./images/block.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 25px;
+}
+
+#contact-link.activeNav {
+    background-image: url("./images/block-selected.png");
+}
+
+#user-menu-button {
+    height: "fit-content";
+    width: "fit-content";
+    background-color: transparent;
+    border: none;
+}
+
+#user-menu-pic {
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    border: 2px solid #3e7cdf;
+    cursor: pointer;
+}
+
+#user-menu-pic:hover {
+    box-shadow: 0 0 3px black;
+}
+
+#profileDropdown {
+    width: "fit-content";
+    height: "fit-content";
+    padding: 10px;
+    right: 0;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 5px grey;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.profile-dropdown-button {
+    width: 16em;
+}
