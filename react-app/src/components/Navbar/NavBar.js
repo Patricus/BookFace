@@ -3,12 +3,6 @@ import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import MenuButton from "./MenuButton";
 import B from "./images/B.png";
-import house from "./images/house.png";
-import houseSelected from "./images/house-selected.png";
-import people from "./images/people.png";
-import peopleSelected from "./images/people-selected.png";
-import block from "./images/block.png";
-import blockSelected from "./images/block-selected.png";
 import "./navbar.css";
 
 const NavBar = () => {

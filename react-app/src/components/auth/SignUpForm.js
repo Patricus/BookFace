@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { signUp } from "../../store/session";
 
 const SignUpForm = () => {
-    const [errors, setErrors] = useState([]);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
@@ -16,7 +15,14 @@ const SignUpForm = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
-    //birthday must be 13 years old
+    const [errors, setErrors] = useState([]);
+    const [firstNameErrors, setFirstNameErrors] = useState([]);
+    const [lastNameErrors, setLastNameErrors] = useState([]);
+    const [emailErrors, setEmailErrors] = useState([]);
+    const [reEmailErrors, setReEmailErrors] = useState([]);
+    const [birthdayErrors, setBirthdayErrors] = useState([]);
+    const [passwordErrors, setPasswordErrors] = useState([]);
+    const [confirmPasswordErrors, setConfirmPasswordErrors] = useState([]);
 
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
@@ -28,11 +34,6 @@ const SignUpForm = () => {
     const onSignUp = async e => {
         e.preventDefault();
         setErrors([]);
-        const emailPassCheck = [];
-
-        if (email !== reEmail) emailPassCheck.push("Email and Re-email must match.");
-        if (password !== confirmPassword)
-            emailPassCheck.push("Password and Confirm Password must match.");
 
         const data = await dispatch(
             signUp(firstName, lastName, email, reEmail, password, confirmPassword, birthday)
@@ -42,71 +43,119 @@ const SignUpForm = () => {
         }
     };
 
-    // const checkAge = () => {};
+    useEffect(() => {
+        const firstNameErrs = [];
+        const lastNameErrs = [];
+        const emailErrs = [];
+        const reEmailErrs = [];
+        const birthdayErrs = [];
+        const passwordErrs = [];
+        const confirmPasswordErrs = [];
 
-    // if (user) {
-    //   return <Redirect to='/' />;
-    // }
+        errors.forEach(error => {
+            error = error.split(":");
+            if (error[0] === "firstName") firstNameErrs.push(error[1]);
+            if (error[0] === "lastName") lastNameErrs.push(error[1]);
+            if (error[0] === "email") emailErrs.push(error[1]);
+            if (error[0] === "reEmail") reEmailErrs.push(error[1]);
+            if (error[0] === "birthday") birthdayErrs.push(error[1]);
+            if (error[0] === "password") passwordErrs.push(error[1]);
+            if (error[0] === "confirmPassword") confirmPasswordErrs.push(error[1]);
+        });
+
+        setFirstNameErrors(firstNameErrs);
+        setLastNameErrors(lastNameErrs);
+        setEmailErrors(emailErrs);
+        setReEmailErrors(reEmailErrs);
+        setBirthdayErrors(birthdayErrs);
+        setConfirmPasswordErrors(confirmPasswordErrs);
+        setPasswordErrors(passwordErrs);
+    }, [errors]);
 
     return (
         <>
             {!user && (
-                <form onSubmit={onSignUp}>
-                    <div>
-                        {errors.map((error, ind) => (
-                            <div key={ind}>{error}</div>
-                        ))}
+                <>
+                    <div id="signup-text">
+                        <h2>Sign Up</h2>
+                        It's quick and easy.
                     </div>
-                    <div>
-                        <input
-                            type="text"
-                            name="firstname"
-                            onChange={e => setFirstName(e.target.value)}
-                            value={firstName}
-                            placeholder="First name"></input>
-                    </div>
-                    <div>
-                        <input
-                            type="text"
-                            name="firstname"
-                            onChange={e => setLastName(e.target.value)}
-                            value={lastName}
-                            placeholder="Last name"></input>
-                    </div>
-                    <div>
+                    <form onSubmit={onSignUp} id="signup-form">
+                        <div id="name-input">
+                            {firstNameErrors.length > 0 && (
+                                <div className="errors">
+                                    <div className="error">{firstNameErrors}</div>
+                                </div>
+                            )}
+                            <input
+                                type="text"
+                                name="firstname"
+                                onChange={e => setFirstName(e.target.value)}
+                                value={firstName}
+                                placeholder="First name"></input>
+                            {lastNameErrors.length > 0 && (
+                                <div className="last-name-errors">
+                                    <div className="last-name-error">{lastNameErrors}</div>
+                                </div>
+                            )}
+                            <input
+                                type="text"
+                                name="lastname"
+                                onChange={e => setLastName(e.target.value)}
+                                value={lastName}
+                                placeholder="Last name"></input>
+                        </div>
+                        {emailErrors.length > 0 && (
+                            <div className="errors">
+                                <div className="error">{emailErrors}</div>
+                            </div>
+                        )}
                         <input
                             type="email"
                             name="email"
                             onChange={e => setEmail(e.target.value)}
                             value={email}
                             placeholder="email"></input>
-                    </div>
-                    <div>
+                        {reEmailErrors.length > 0 && (
+                            <div className="errors">
+                                <div className="error">{reEmailErrors}</div>
+                            </div>
+                        )}
                         <input
                             type="email"
                             name="re-email"
                             onChange={e => setReEmail(e.target.value)}
                             value={reEmail}
                             placeholder="Re-enter email"></input>
-                    </div>
-                    <div>
+                        {passwordErrors.length > 0 && (
+                            <div className="errors">
+                                <div className="error">{passwordErrors}</div>
+                            </div>
+                        )}
                         <input
                             type="password"
                             name="password"
                             onChange={e => setPassword(e.target.value)}
                             value={password}
                             placeholder="New password"></input>
-                    </div>
-                    <div>
+                        {confirmPasswordErrors.length > 0 && (
+                            <div className="errors">
+                                <div className="error">{confirmPasswordErrors}</div>
+                            </div>
+                        )}
                         <input
                             type="password"
                             name="confirmPassword"
                             onChange={e => setConfirmPassword(e.target.value)}
                             value={confirmPassword}
                             placeholder="Confirm password"></input>
-                    </div>
-                    <div>
-                        <div>
+                        {birthdayErrors.length > 0 && (
+                            <div className="errors">
+                                <div className="error">{birthdayErrors}</div>
+                            </div>
+                        )}
+                        <div id="birthday-input">
+                            <label>Birthday</label>
                             <select
                                 name="month"
                                 onChange={e => setBMonth(e.target.value)}
@@ -124,15 +173,11 @@ const SignUpForm = () => {
                                 <option value={10}>Nov</option>
                                 <option value={11}>Dec</option>
                             </select>
-                        </div>
-                        <div>
                             <select name="day" onChange={e => setBDay(e.target.value)} value={bDay}>
                                 {[...Array(31).keys()].map(day => (
                                     <option key={day}>{day + 1}</option>
                                 ))}
                             </select>
-                        </div>
-                        <div>
                             <select
                                 name="year"
                                 onChange={e => setBYear(e.target.value)}
@@ -142,9 +187,11 @@ const SignUpForm = () => {
                                 ))}
                             </select>
                         </div>
-                    </div>
-                    <button type="submit">Sign Up</button>
-                </form>
+                        <button className="green-button" type="submit">
+                            Sign Up
+                        </button>
+                    </form>
+                </>
             )}
         </>
     );
