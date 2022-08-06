@@ -210,3 +210,19 @@
     padding-bottom: 10px;
     border-bottom: 1px solid rgb(128, 128, 128, 0.2);
 }
+
+#getlinked {
+    display: flex;
+}
+
+#gitlinked * {
+    margin: 0 20px;
+    font-size: 24px;
+    color: #1877f2;
+    text-decoration: none;
+}
+
+#gitlinked a:hover {
+    color: #0762da;
+    text-shadow: 0 0 1px rgb(0 0 0 / 20%);
+}

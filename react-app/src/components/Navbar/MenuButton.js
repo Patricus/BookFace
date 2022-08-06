@@ -9,7 +9,11 @@ function MenuButton() {
 
     useEffect(() => {
         const clickCheck = e => {
-            if (e.target.id === "user-menu-pic") return;
+            if (
+                e.target.id === "user-menu-pic" ||
+                e.target.classList.contains("profile-dropdown-button")
+            )
+                return;
             if (!e.target.classList.contains("profileDropdown")) setShowDropdown(false);
         };
         document.addEventListener("mousedown", clickCheck);
@@ -27,7 +31,7 @@ function MenuButton() {
                     <img id="user-menu-pic" src={user.profile_pic} alt="User Menu" />
                 </button>
             )}
-            {showDropdown && <Dropdown />}
+            {showDropdown && <Dropdown setShowDropdown={setShowDropdown} />}
         </div>
     );
 }

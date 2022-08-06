@@ -3,14 +3,17 @@ import LogoutButton from "../auth/LogoutButton";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-function Dropdown() {
+function Dropdown({ setShowDropdown }) {
     const user = useSelector(state => state.session.user);
     const history = useHistory();
     return (
         <div style={{ position: "absolute" }} id="profileDropdown">
             <button
                 className="profile-dropdown-button"
-                onClick={() => history.push(`/profile/${user.id}/`)}>
+                onClick={() => {
+                    setShowDropdown(false);
+                    history.push(`/profile/${user.id}/`);
+                }}>
                 Profile
             </button>
             <LogoutButton />
