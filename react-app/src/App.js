@@ -29,9 +29,9 @@ function App() {
         <BrowserRouter>
             <NavBar />
             <Switch>
-                <Route path="/contact" exact={true}>
+                <ProtectedRoute path="/contact" exact={true}>
                     <ContactPage />
-                </Route>
+                </ProtectedRoute>
                 <ProtectedRoute path="/friends" exact={true}>
                     <UsersPage />
                 </ProtectedRoute>

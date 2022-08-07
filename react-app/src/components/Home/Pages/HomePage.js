@@ -2,11 +2,11 @@ import React from "react";
 import RightSideBar from "../Elements/RightSideBar";
 import LeftSideBar from "../Elements/LeftSideBar";
 import PostFeed from "../Elements/PostFeed";
+import "./home.css";
 
 function HomePage() {
     return (
-        <div>
-            <h1>HomePage</h1>
+        <div id="home">
             <LeftSideBar />
             <PostFeed />
             <RightSideBar />

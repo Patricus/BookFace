@@ -1,14 +1,20 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { makePost } from "../../../store/posts";
+import { Modal } from "../../Modal";
+import defaultProfilePic from "../../images/default-profile.png";
+import "../../Home/Elements/postFeed.css";
 
 // Form used to create a post
 function CreatePostForm() {
     const [text, setText] = useState("");
     const [image, setImage] = useState("");
     const [errors, setErrors] = useState([]);
+    const [showCreatePost, setShowCreatePost] = useState(false);
+    const [profilePic, setProfilePic] = useState(defaultProfilePic);
 
     const dispatch = useDispatch();
+    const user = useSelector(state => state.session.user);
 
     const submit = async e => {
         e.preventDefault();
@@ -48,29 +54,48 @@ function CreatePostForm() {
         }
     };
 
+    useEffect(() => {
+        setProfilePic(user.profile_pic);
+    }, [user]);
+
     return (
         <>
-            <h2>Create Post Form</h2>
-            <div>
-                {errors.map((error, ind) => (
-                    <div key={ind}>{error}</div>
-                ))}
+            {showCreatePost && (
+                <Modal onClose={() => setShowCreatePost(false)}>
+                    <h2>Create post</h2>
+                    <div>
+                        {errors.map((error, ind) => (
+                            <div key={ind}>{error}</div>
+                        ))}
+                    </div>
+                    <form onSubmit={submit}>
+                        <textarea
+                            name="text"
+                            placeholder="What's on your mind?"
+                            value={text}
+                            onChange={e => setText(e.target.value)}
+                        />
+                        <input
+                            name="image"
+                            type="file"
+                            accept="image/*"
+                            onChange={e => setImage(e.target.files[0])}
+                        />
+                        <button>Post</button>
+                    </form>
+                </Modal>
+            )}
+            <div id="create-post">
+                <img
+                    src={profilePic}
+                    alt="profile"
+                    onError={() => setProfilePic(defaultProfilePic)}
+                    className="profile-img-circle"
+                />
+                <button onClick={() => setShowCreatePost(true)}>
+                    What's on your mind, {user.first_name}?
+                </button>
             </div>
-            <form onSubmit={submit}>
-                <textarea
-                    name="text"
-                    placeholder="What's on your mind?"
-                    value={text}
-                    onChange={e => setText(e.target.value)}
-                />
-                <input
-                    name="image"
-                    type="file"
-                    accept="image/*"
-                    onChange={e => setImage(e.target.files[0])}
-                />
-                <button>Post</button>
-            </form>
         </>
     );
 }

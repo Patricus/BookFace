@@ -1,0 +1,16 @@
+#home {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.profile-img-circle {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+@media only screen and (max-width: 1920px) {
+    #home {
+        justify-content: space-between;
+    }
+}

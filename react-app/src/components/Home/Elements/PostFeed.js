@@ -13,7 +13,7 @@ function PostFeed() {
         dispatch(getPosts());
     }, [dispatch]);
     return (
-        <div>
+        <div id="feed">
             <CreatePostForm />
             {posts &&
                 Object.values(posts).map(post => {

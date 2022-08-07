@@ -1,7 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import friendsIcon from "../../images/friends-icon.png";
+import defaultProfileIcon from "../../images/default-profile.png";
+import "./leftSideBar.css";
+
+import { useSelector } from "react-redux";
 
 function LeftSideBar() {
-    return <div>LeftSideBar</div>;
+    const [profilePic, setProfilePic] = useState(defaultProfileIcon);
+    const user = useSelector(state => state.session.user);
+
+    useEffect(() => {
+        setProfilePic(user.profile_pic);
+    }, [user]);
+    return (
+        <div id="left-sidebar">
+            <Link to={`/profile/${user.id}/`}>
+                <img
+                    src={profilePic}
+                    alt="profile"
+                    className="profile-img-circle"
+                    onError={() => setProfilePic(defaultProfileIcon)}
+                />
+                {`${user.first_name} ${user.last_name}`}
+            </Link>
+            <Link to="/friends/">
+                <img src={friendsIcon} alt="friends" />
+                Friends
+            </Link>
+        </div>
+    );
 }
 
 export default LeftSideBar;

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Dropdown from "./Dropdown";
+import defaultProfilePic from "../images/default-profile.png";
 
 function MenuButton() {
+    const [profilePic, setProfilePic] = useState(defaultProfilePic);
     const [showDropdown, setShowDropdown] = useState(false);
 
     const user = useSelector(state => state.session.user);
@@ -20,6 +22,10 @@ function MenuButton() {
         return () => document.removeEventListener("mousedown", clickCheck);
     }, [showDropdown]);
 
+    useEffect(() => {
+        setProfilePic(user.profile_pic);
+    }, [user]);
+
     return (
         <div style={{ position: "relative" }}>
             {user && (
@@ -28,7 +34,12 @@ function MenuButton() {
                     onClick={() => {
                         setShowDropdown(!showDropdown);
                     }}>
-                    <img id="user-menu-pic" src={user.profile_pic} alt="User Menu" />
+                    <img
+                        id="user-menu-pic"
+                        src={profilePic}
+                        onError={() => setProfilePic(defaultProfilePic)}
+                        alt="User Menu"
+                    />
                 </button>
             )}
             {showDropdown && <Dropdown setShowDropdown={setShowDropdown} />}

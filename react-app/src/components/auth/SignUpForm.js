@@ -81,12 +81,12 @@ const SignUpForm = () => {
                         It's quick and easy.
                     </div>
                     <form onSubmit={onSignUp} id="signup-form">
+                        {firstNameErrors.length > 0 && (
+                            <div className="errors">
+                                <div className="error">{firstNameErrors}</div>
+                            </div>
+                        )}
                         <div id="name-input">
-                            {firstNameErrors.length > 0 && (
-                                <div className="errors">
-                                    <div className="error">{firstNameErrors}</div>
-                                </div>
-                            )}
                             <input
                                 type="text"
                                 name="firstname"
@@ -154,8 +154,8 @@ const SignUpForm = () => {
                                 <div className="error">{birthdayErrors}</div>
                             </div>
                         )}
+                        <label>Birthday</label>
                         <div id="birthday-input">
-                            <label>Birthday</label>
                             <select
                                 name="month"
                                 onChange={e => setBMonth(e.target.value)}

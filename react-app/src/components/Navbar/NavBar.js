@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import MenuButton from "./MenuButton";
-import B from "./images/B.png";
+import B from "../images/B.png";
 import "./navbar.css";
 
 const NavBar = () => {

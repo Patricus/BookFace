@@ -110,9 +110,9 @@
     border-radius: 6px;
 }
 
-#birthday-input > label {
+#signup-form > label {
     color: grey;
-    border-radius: 6px;
+    align-self: flex-start;
 }
 
 #login-form input:focus,

@@ -26,7 +26,7 @@ function EditCommentForm({ comment, setShowEditComment }) {
     };
 
     return (
-        <div>
+        <div className="comment-edit">
             <h2>Update Comment Form</h2>
             <div>
                 {errors.map((error, ind) => (

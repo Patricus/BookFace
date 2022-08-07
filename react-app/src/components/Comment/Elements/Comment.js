@@ -13,7 +13,7 @@ function Comment({ comment }) {
             {showEditComment ? (
                 <EditCommentForm comment={comment} setShowEditComment={setShowEditComment} />
             ) : (
-                <div>
+                <div className="comment">
                     Comment
                     {userId === comment.user_id && (
                         <CommentDropdown

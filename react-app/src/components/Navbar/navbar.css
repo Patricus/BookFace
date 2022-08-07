@@ -50,36 +50,36 @@
 }
 
 #home-link {
-    background-image: url("./images/house.png");
+    background-image: url("../images/house.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: 25px;
 }
 
 #home-link.activeNav {
-    background-image: url("./images/house-selected.png");
+    background-image: url("../images/house-selected.png");
 }
 
 #friend-link {
-    background-image: url("./images/people.png");
+    background-image: url("../images/people.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: 25px;
 }
 
 #friend-link.activeNav {
-    background-image: url("./images/people-selected.png");
+    background-image: url("../images/people-selected.png");
 }
 
 #contact-link {
-    background-image: url("./images/block.png");
+    background-image: url("../images/block.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: 25px;
 }
 
 #contact-link.activeNav {
-    background-image: url("./images/block-selected.png");
+    background-image: url("../images/block-selected.png");
 }
 
 #user-menu-button {
