@@ -55,7 +55,7 @@ function CreatePostForm() {
     };
 
     useEffect(() => {
-        setProfilePic(user.profile_pic);
+        if (user.profile_pic) setProfilePic(user.profile_pic);
     }, [user]);
 
     return (

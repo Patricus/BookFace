@@ -11,8 +11,9 @@ function LeftSideBar() {
     const user = useSelector(state => state.session.user);
 
     useEffect(() => {
-        setProfilePic(user.profile_pic);
+        if (user.profile_pic) setProfilePic(user.profile_pic);
     }, [user]);
+
     return (
         <div id="left-sidebar">
             <Link to={`/profile/${user.id}/`}>
