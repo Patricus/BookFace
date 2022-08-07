@@ -4,3 +4,7 @@ body {
     background-color: rgb(240, 242, 245);
     color: rgb(28, 30, 33);
 }
+
+#root {
+    min-height: 100vh;
+}
