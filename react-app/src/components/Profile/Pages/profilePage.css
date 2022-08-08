@@ -1,0 +1,42 @@
+#profile-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+}
+
+#underCover {
+    position: relative;
+    max-width: 1265px;
+    width: 100vw;
+    display: flex;
+    border-bottom: 0 1px 2px lightgray;
+}
+
+#underCover > h1 {
+    position: relative;
+    left: 50px;
+    font-size: 40px;
+}
+
+#edit-profile-button {
+    position: absolute;
+    right: 50px;
+    bottom: 60px;
+    align-items: center;
+    background-color: rgba(211, 211, 211, 0.6);
+    border-radius: 6px;
+    border-width: 0px;
+    color: rgb(28, 30, 33);
+    cursor: pointer;
+    height: 36px;
+    line-height: 16px;
+    padding: 0px 12px;
+    font-weight: 600;
+    font-size: 16px;
+    box-shadow: 0 1px 3px rgba(113, 114, 115, 0.2);
+}
+
+#edit-profile-button:hover {
+    background-color: rgba(211, 211, 211, 0.8);
+}

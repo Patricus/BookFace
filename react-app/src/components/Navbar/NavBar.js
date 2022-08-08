@@ -13,7 +13,7 @@ const NavBar = () => {
             {user && (
                 <nav id="navbar">
                     <div>
-                        <Link to="/" exact={true}>
+                        <Link to="/">
                             <div id="logo">
                                 <img src={B} alt="Logo" />
                             </div>

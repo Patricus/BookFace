@@ -5,3 +5,4 @@ from .edit_post_form import EditPostForm
 from .comment_form import CommentForm
 from .edit_comment_form import EditCommentForm
 from .friend_form import FriendForm
+from .edit_profile_form import EditProfileForm

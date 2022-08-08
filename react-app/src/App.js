@@ -9,6 +9,7 @@ import FriendsPage from "./components/Friends/Pages/FriendsPage";
 import UsersPage from "./components/Friends/Pages/UsersPage";
 import RequestsPage from "./components/Friends/Pages/RequestsPage";
 import ContactPage from "./components/Contact/pages/ContactPage";
+import ProfilePage from "./components/Profile/Pages/ProfilePage";
 
 function App() {
     const [loaded, setLoaded] = useState(false);
@@ -41,8 +42,10 @@ function App() {
                 <ProtectedRoute path="/friends/list" exact={true}>
                     <FriendsPage />
                 </ProtectedRoute>
-                <ProtectedRoute path="/profile/:id" exact={true}></ProtectedRoute>
-                <Route path="/" exact={true}>
+                <ProtectedRoute path="/profile/:id" exact={true}>
+                    <ProfilePage />
+                </ProtectedRoute>
+                <Route exact path="/">
                     <Home />
                 </Route>
             </Switch>

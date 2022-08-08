@@ -12,6 +12,7 @@ from .api.post_routes import post_routes
 from .api.comment_routes import comment_routes
 from .api.aws_routes import aws_routes
 from .api.friend_routes import friend_routes
+from .api.profile_routes import profile_routes
 
 from .seeds import seed_commands
 
@@ -41,6 +42,7 @@ app.register_blueprint(post_routes, url_prefix='/api/posts')
 app.register_blueprint(comment_routes, url_prefix='/api/comments')
 app.register_blueprint(aws_routes, url_prefix='/api/images')
 app.register_blueprint(friend_routes, url_prefix='/api/friends')
+app.register_blueprint(profile_routes, url_prefix='/api/profile')
 
 db.init_app(app)
 Migrate(app, db)

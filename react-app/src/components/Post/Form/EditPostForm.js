@@ -4,7 +4,7 @@ import { editPost } from "../../../store/posts";
 import { Modal } from "../../Modal";
 
 // Form used to edit a post
-function CreatePostForm({ post, setShowEditPost }) {
+function EditPostForm({ post, setShowEditPost }) {
     const [text, setText] = useState(post.text);
     const [image, setImage] = useState(post.image_link);
     const [errors, setErrors] = useState([]);
@@ -29,7 +29,7 @@ function CreatePostForm({ post, setShowEditPost }) {
 
     return (
         <Modal onClose={() => setShowEditPost(false)}>
-            <h2>EditPostForm</h2>
+            <h2>Edit profile</h2>
             <div>
                 {errors.map((error, ind) => (
                     <div key={ind}>{error}</div>
@@ -46,13 +46,12 @@ function CreatePostForm({ post, setShowEditPost }) {
                     name="image"
                     type="file"
                     accept="image/*"
-                    value={image}
                     onChange={e => setImage(e.target.value)}
                 />
-                <button>Update Post</button>
+                <button>Update profile</button>
             </form>
         </Modal>
     );
 }
 
-export default CreatePostForm;
+export default EditPostForm;
