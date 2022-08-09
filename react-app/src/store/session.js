@@ -116,11 +116,9 @@ export const editUser = (bio, born_from, cover_pic, profile_pic, lives_in) => as
         method: "POST",
         body: profilePicData,
     });
-    console.log("imageProfileRes", imageProfileRes);
 
     if (imageProfileRes.ok) {
         image_link = await imageProfileRes.json();
-        console.log("image_link", image_link.url);
         profile_pic = image_link.url;
     } else if (imageProfileRes.status < 500) {
         const data = await imageProfileRes.json();

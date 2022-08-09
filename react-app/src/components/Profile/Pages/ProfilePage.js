@@ -19,7 +19,6 @@ function ProfilePage() {
     const user = useSelector(state => state.session.user);
     const friends = useSelector(state => state.friends);
     const posts = Object.values(useSelector(state => state.posts));
-    console.log("posts", posts);
 
     const dispatch = useDispatch();
 
@@ -81,7 +80,6 @@ function ProfilePage() {
                         {posts.length > 0 &&
                             posts
                                 .filter(post => {
-                                    console.log("post", post.user_id === profile.id);
                                     return post.user_id === profile.id;
                                 })
                                 .map(post => {

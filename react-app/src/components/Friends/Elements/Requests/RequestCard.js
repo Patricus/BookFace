@@ -10,8 +10,6 @@ function RequestCard({ request }) {
     const dispatch = useDispatch();
 
     const acceptRequest = async () => {
-        console.log("user", user.id);
-        console.log("request", request.id);
         await dispatch(acceptFriend(user.id, request.id));
         dispatch(deleteReceivedRequest(request));
     };

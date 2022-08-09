@@ -52,7 +52,6 @@ def upload_file_to_s3(file, acl="public-read"):
 @aws_routes.route('/', methods=["POST"])
 @login_required
 def upload():
-    print(f"\n\n\n\n\n files {request.files}\n\n\n")
 
     if "image" not in request.files:
         return {"url": ""}
@@ -64,7 +63,6 @@ def upload():
 
     image.filename = get_unique_filename(image.filename)
     upload = upload_file_to_s3(image)
-    print(f"\n\n\n\n\n upload - {upload}\n")
 
     if "url" not in upload:
         return {"errors": upload}, 400
