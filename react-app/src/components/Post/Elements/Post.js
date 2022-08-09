@@ -6,10 +6,9 @@ import CreateCommentForm from "../../Comment/Form/CreateCommentForm";
 import PostDropdown from "./PostDropdown";
 import "./post.css";
 
-function Post({ postId }) {
+function Post({ post }) {
     const dispatch = useDispatch();
 
-    const post = useSelector(state => state.posts[postId]);
     const user = useSelector(state => state.session.user);
 
     useEffect(() => {
@@ -22,7 +21,7 @@ function Post({ postId }) {
                 <div className="post-container">
                     <div className="post">
                         {post.user_id === user.id && <PostDropdown post={post} />}
-                        {post.image && <img src={post.image_link} alt="post" />}
+                        {post.image_link && <img src={post.image_link} alt="post" />}
                         <p>{post.text}</p>
                         <CreateCommentForm post_id={post.id} />
                     </div>
