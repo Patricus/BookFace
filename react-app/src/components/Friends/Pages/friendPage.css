@@ -1,0 +1,16 @@
+.friend-page {
+    display: flex;
+}
+
+.friend-sidebar {
+    max-width: 300px;
+    width: 20vw;
+    height: calc(100vh - 77px);
+    background-color: white;
+    margin-right: 40px;
+    padding: 10px 30px;
+}
+
+.cardContainer {
+    margin-top: 20px;
+}

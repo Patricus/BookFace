@@ -1,6 +1,7 @@
 import React from "react";
 import Users from "../Elements/Users/Users";
 import UserSideBar from "../Elements/Users/UserSideBar";
+import "./friendPage.css";
 
 function UsersPage() {
     return (

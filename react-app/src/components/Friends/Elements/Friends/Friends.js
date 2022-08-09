@@ -12,7 +12,7 @@ function Friends() {
     }, [dispatch]);
 
     return (
-        <div>
+        <div className="cardContainer">
             {friends &&
                 Object.values(friends).map(friend => (
                     <FriendCard key={friend.id} friend={friend} />

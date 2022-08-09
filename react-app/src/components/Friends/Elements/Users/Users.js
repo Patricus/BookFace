@@ -12,7 +12,7 @@ function Users() {
     }, [dispatch]);
 
     return (
-        <div>
+        <div className="cardContainer">
             {users && Object.values(users).map(user => <UserCard key={user.id} friend={user} />)}
         </div>
     );

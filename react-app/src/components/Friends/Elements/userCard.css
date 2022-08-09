@@ -1,0 +1,15 @@
+.userCard {
+    width: 220px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: white;
+    padding-bottom: 10px;
+}
+
+.cardTop {
+    width: 100%;
+}
+
+.cardTop > img {
+    width: 100%;
+}

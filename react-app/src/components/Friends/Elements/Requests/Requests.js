@@ -3,12 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getRequests } from "../../../../store/receivedRequests";
 import { getSentRequests } from "../../../../store/sentRequests";
 import RequestCard from "./RequestCard";
-import SentRequests from "./SentRequests";
 
-function Requests() {
-    const [showSentRequests, setShowSentRequests] = useState(false);
-
-    const requests = useSelector(state => state.requests);
+function Requests({requests}) {
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -17,15 +13,9 @@ function Requests() {
     }, [dispatch]);
 
     return (
-        <div>
-            {showSentRequests && (
-                <SentRequests requests={requests.sent} setShowSentRequests={setShowSentRequests} />
-            )}
-            <div>
-                <button onClick={() => setShowSentRequests(true)}>Sent Requests</button>
-            </div>
+        <div className="cardContainer">
             {requests &&
-                Object.values(requests.received).map(request => (
+                Object.values(requests).map(request => (
                     <RequestCard key={request.id} request={request} />
                 ))}
         </div>

@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { requestFriend } from "../../../../store/sentRequests";
 import { removeUser } from "../../../../store/users";
+import UserCardTop from "../UserCardTop";
 
 function UserCard({ friend }) {
     const user = useSelector(state => state.session.user);
@@ -13,8 +14,8 @@ function UserCard({ friend }) {
         dispatch(removeUser(friend));
     };
     return (
-        <div className="user-card">
-            <div>{`${friend.first_name} ${friend.last_name}`}</div>
+        <div className="userCard">
+            <UserCardTop cardUser={friend} />
             <div>
                 <button onClick={addFriend}>Add Friend</button>
             </div>
