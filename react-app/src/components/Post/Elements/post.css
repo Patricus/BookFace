@@ -19,7 +19,19 @@
 .post-menu-button {
     position: absolute;
     right: 10px;
-    top: 0px;
+    top: -5px;
+    background-color: white;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.5);
+    padding: 0 10px 10px 10px;
+}
+
+.post-menu-button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 .post > p {
@@ -27,7 +39,16 @@
 }
 
 .poster-info > h3 {
+    position: absolute;
+    top: 10px;
+    left: 60px;
     margin: 0;
+}
+
+.post > div > small {
+    position: absolute;
+    top: 30px;
+    left: 60px;
 }
 
 .poster-info > img {
@@ -42,4 +63,23 @@
     gap: 10px;
     margin-left: 10px;
     margin-top: 10px;
+}
+
+.post-dropdown {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    right: 10px;
+    top: 30px;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+.post-menu-buttons {
+    width: 150px;
 }

@@ -46,13 +46,13 @@ function Post({ post }) {
                             ) : (
                                 <PosterInfo poster={friends[post.user_id]} />
                             )}
+                            <small>
+                                {post_time(post.edited_at)}
+                                {post.created_at !== post.edited_at && `edited`}
+                            </small>
                         </div>
-                        <small>
-                            {post_time(post.edited_at)}
-                            {post.created_at !== post.edited_at && `edited`}
-                        </small>
-                        {post.image_link && <img src={post.image_link} alt="post" />}
                         <p>{post.text}</p>
+                        {post.image_link && <img src={post.image_link} alt="post" />}
                         <CreateCommentForm post_id={post.id} />
                     </div>
                     {post.comments &&

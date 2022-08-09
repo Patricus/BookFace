@@ -14,8 +14,8 @@ function PostDropdown({ post }) {
 
     useEffect(() => {
         const clickCheck = e => {
-            if (e.target.classList.contains("post-menu-button")) return;
-            if (!e.target.classList.contains("dropdown")) setShowDropdown(false);
+            if (e.target.classList.contains("post-menu-buttons")) return;
+            if (!e.target.classList.contains("post-dropdown")) setShowDropdown(false);
         };
         document.addEventListener("mousedown", clickCheck);
         return () => document.removeEventListener("mousedown", clickCheck);
@@ -25,20 +25,20 @@ function PostDropdown({ post }) {
         <>
             {showEditPost && <EditPostForm post={post} setShowEditPost={setShowEditPost} />}
             <div style={{ position: "relative" }}>
-                <button className="post-menu-button" onClick={() => setShowDropdown(!showDropdown)}>
+                <div className="post-menu-button" onClick={() => setShowDropdown(!showDropdown)}>
                     ...
-                </button>
+                </div>
                 {showDropdown && (
-                    <div style={{ position: "absolute" }} className="dropdown">
+                    <div className="post-dropdown">
                         <button
-                            className="post-menu-button"
+                            className="post-menu-buttons"
                             onClick={() => {
                                 setShowEditPost(true);
                                 setShowDropdown(false);
                             }}>
                             Edit Post
                         </button>
-                        <button className="post-menu-button" onClick={deletePost}>
+                        <button className="post-menu-buttons" onClick={deletePost}>
                             Delete Post
                         </button>
                     </div>

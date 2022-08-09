@@ -18,7 +18,8 @@ function ProfilePage() {
     const profileId = parseInt(useParams().id);
     const user = useSelector(state => state.session.user);
     const friends = useSelector(state => state.friends);
-    const posts = useSelector(state => state.posts);
+    const posts = Object.values(useSelector(state => state.posts));
+    console.log("posts", posts);
 
     const dispatch = useDispatch();
 
@@ -77,13 +78,14 @@ function ProfilePage() {
                     </div>
                     <div id="right-column">
                         {user === profile && <CreatePostForm />}
-                        {posts &&
-                            Object.values(posts)
+                        {posts.length > 0 &&
+                            posts
                                 .filter(post => {
+                                    console.log("post", post.user_id === profile.id);
                                     return post.user_id === profile.id;
                                 })
                                 .map(post => {
-                                    return <Post key={post.id} postId={post.id} />;
+                                    return <Post key={post.id} post={post} />;
                                 })}
                     </div>
                 </div>
