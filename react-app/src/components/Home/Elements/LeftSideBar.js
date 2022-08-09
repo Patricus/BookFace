@@ -25,7 +25,7 @@ function LeftSideBar() {
                 />
                 {`${user.first_name} ${user.last_name}`}
             </Link>
-            <Link to="/friends/">
+            <Link to="/friends/list/">
                 <img src={friendsIcon} alt="friends" />
                 Friends
             </Link>
