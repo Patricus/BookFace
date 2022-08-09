@@ -7,7 +7,7 @@ function Dropdown({ setShowDropdown }) {
     const user = useSelector(state => state.session.user);
     const history = useHistory();
     return (
-        <div style={{ position: "absolute" }} id="profileDropdown">
+        <div className="profileDropdown">
             <button
                 className="profile-dropdown-button"
                 onClick={() => {

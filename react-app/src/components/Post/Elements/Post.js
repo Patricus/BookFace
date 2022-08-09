@@ -47,8 +47,9 @@ function Post({ post }) {
                                 <PosterInfo poster={friends[post.user_id]} />
                             )}
                             <small>
-                                {post_time(post.edited_at)}
-                                {post.created_at !== post.edited_at && `edited`}
+                                {post_time(post.created_at)}
+                                {post.created_at !== post.edited_at &&
+                                    ` • Edited ${post_time(post.edited_at)}`}
                             </small>
                         </div>
                         <p>{post.text}</p>
