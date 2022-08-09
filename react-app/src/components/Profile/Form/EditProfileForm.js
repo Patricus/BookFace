@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { editUser } from "../../../store/session";
 import { Modal } from "../../Modal";
 import defaultProfile from "../../images/default-profile.png";
+import "./editProfileForm.css";
 
 // Form used to edit a post
 function EditProfileForm({ profile, setShowEditProfile }) {
@@ -110,89 +111,91 @@ function EditProfileForm({ profile, setShowEditProfile }) {
 
     return (
         <Modal onClose={() => setShowEditProfile(false)}>
-            <h2>Edit profile</h2>
-            <div>
-                {errors.map((error, ind) => (
-                    <div key={ind}>{error}</div>
-                ))}
-            </div>
-            <form onSubmit={submit}>
-                <h3>Profile Picture</h3>
-                <div id="editProfileContainer">
-                    <img
-                        src={previewProfile_pic}
-                        alt="profile"
-                        onError={() => setPreviewProfile_pic(defaultProfile)}
-                    />
+            <div id="profile-form">
+                <h2>Edit profile</h2>
+                <div>
+                    {errors.map((error, ind) => (
+                        <div key={ind}>{error}</div>
+                    ))}
                 </div>
-                <input
-                    name="image"
-                    type="file"
-                    accept="image/*"
-                    onChange={e => updateProfilePic(e.target)}
-                />
-                <h3>Cover Photo</h3>
-                <div id="editCoverContainer">
-                    {previewCover_pic && (
+                <form onSubmit={submit}>
+                    <h3>Profile Picture</h3>
+                    <div id="editProfileContainer">
                         <img
-                            src={previewCover_pic}
-                            alt="cover"
-                            onError={() => setPreviewCover_pic()}
+                            src={previewProfile_pic}
+                            alt="profile"
+                            onError={() => setPreviewProfile_pic(defaultProfile)}
                         />
-                    )}
-                </div>
-                <input
-                    name="image"
-                    type="file"
-                    accept="image/*"
-                    onChange={e => updateCoverPic(e.target)}
-                />
-                <h3>Bio</h3>
-                <textarea
-                    name="bio"
-                    placeholder="Describe yourself..."
-                    value={bio}
-                    onChange={e => setBio(e.target.value)}
-                />
-                <h3>Customize your intro</h3>
-                <div>
-                    <label>Lives in</label>
+                    </div>
                     <input
-                        name="lives_in_city"
-                        placeholder="What city do you live in?"
-                        value={lives_in_city}
-                        onChange={e => setLives_in_city(e.target.value)}
+                        name="image"
+                        type="file"
+                        accept="image/*"
+                        onChange={e => updateProfilePic(e.target)}
                     />
-                    <select
-                        name="lives_in_state"
-                        value={lives_in_state}
-                        onChange={e => setLives_in_state(e.target.value)}>
-                        <option hidden>Choose State</option>
-                        {states.map(state => {
-                            return <option key={state}>{state}</option>;
-                        })}
-                    </select>
-                </div>
-                <div>
-                    <label>Born from</label>
+                    <h3>Cover Photo</h3>
+                    <div id="editCoverContainer">
+                        {previewCover_pic && (
+                            <img
+                                src={previewCover_pic}
+                                alt="cover"
+                                onError={() => setPreviewCover_pic()}
+                            />
+                        )}
+                    </div>
                     <input
-                        name="born_from_city"
-                        placeholder="What city do you live in?"
-                        value={born_from_city}
-                        onChange={e => setBorn_from_city(e.target.value)}
+                        name="image"
+                        type="file"
+                        accept="image/*"
+                        onChange={e => updateCoverPic(e.target)}
                     />
-                    <select
-                        name="born_from_state"
-                        value={born_from_state}
-                        onChange={e => setBorn_from_state(e.target.value)}>
-                        <option hidden>Choose State</option>
-                        {states.map(state => {
-                            return <option key={state}>{state}</option>;
-                        })}
-                    </select>
-                </div>
-                <button>Update profile</button>
-            </form>
+                    <h3>Bio</h3>
+                    <textarea
+                        name="bio"
+                        placeholder="Describe yourself..."
+                        value={bio}
+                        onChange={e => setBio(e.target.value)}
+                    />
+                    <h3>Customize your intro</h3>
+                    <div>
+                        <label>Lives in</label>
+                        <input
+                            name="lives_in_city"
+                            placeholder="What city do you live in?"
+                            value={lives_in_city}
+                            onChange={e => setLives_in_city(e.target.value)}
+                        />
+                        <select
+                            name="lives_in_state"
+                            value={lives_in_state}
+                            onChange={e => setLives_in_state(e.target.value)}>
+                            <option hidden>Choose State</option>
+                            {states.map(state => {
+                                return <option key={state}>{state}</option>;
+                            })}
+                        </select>
+                    </div>
+                    <div>
+                        <label>Born from</label>
+                        <input
+                            name="born_from_city"
+                            placeholder="What city do you live in?"
+                            value={born_from_city}
+                            onChange={e => setBorn_from_city(e.target.value)}
+                        />
+                        <select
+                            name="born_from_state"
+                            value={born_from_state}
+                            onChange={e => setBorn_from_state(e.target.value)}>
+                            <option hidden>Choose State</option>
+                            {states.map(state => {
+                                return <option key={state}>{state}</option>;
+                            })}
+                        </select>
+                    </div>
+                    <button>Update profile</button>
+                </form>
+            </div>
         </Modal>
     );
 }

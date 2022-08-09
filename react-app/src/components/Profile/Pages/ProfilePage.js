@@ -2,8 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getFriends } from "../../../store/friends";
+import { getPosts } from "../../../store/posts";
+import Post from "../../Post/Elements/Post";
+import CreatePostForm from "../../Post/Form/CreatePostForm";
 import BigProfilePicture from "../Elements/BigProfilePicture";
 import CoverPhoto from "../Elements/CoverPhoto";
+import Intro from "../Elements/Intro";
+import Photos from "../Elements/Photos";
 import EditProfileForm from "../Form/EditProfileForm";
 import "./profilePage.css";
 
@@ -13,11 +18,13 @@ function ProfilePage() {
     const profileId = parseInt(useParams().id);
     const user = useSelector(state => state.session.user);
     const friends = useSelector(state => state.friends);
+    const posts = useSelector(state => state.posts);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getFriends());
+        dispatch(getPosts());
     }, [dispatch]);
 
     useEffect(() => {
@@ -62,7 +69,25 @@ function ProfilePage() {
                     </>
                 )}
             </div>
-            <div id="profile-bottom"></div>
+            <div id="profile-bottom">
+                <div id="column-container">
+                    <div id="left-column">
+                        <Intro profile={profile} />
+                        <Photos profile={profile} />
+                    </div>
+                    <div id="right-column">
+                        {user === profile && <CreatePostForm />}
+                        {posts &&
+                            Object.values(posts)
+                                .filter(post => {
+                                    return post.user_id === profile.id;
+                                })
+                                .map(post => {
+                                    return <Post key={post.id} postId={post.id} />;
+                                })}
+                    </div>
+                </div>
+            </div>
         </>
     );
 }

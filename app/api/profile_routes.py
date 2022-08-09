@@ -30,7 +30,6 @@ def edit_profile():
 
     if form.validate_on_submit():
         user = User.query.get(current_user.id)
-        print(f"\n\n\n user - {user.to_dict()}\n\n")
 
         user.bio = form.data['bio']
         user.born_from = form.data['born_from']
@@ -39,8 +38,6 @@ def edit_profile():
         if form.data['profile_pic']:
             user.profile_pic = form.data['profile_pic']
         user.lives_in = form.data['lives_in']
-
-        print(f"\n\n\n updated user - {user.to_dict()}\n\n")
 
         db.session.commit()
         return user.to_dict()

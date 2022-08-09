@@ -1,0 +1,10 @@
+#profile-form {
+    max-width: 60vw;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+#profile-form img {
+    max-width: calc(100% - 10px);
+    max-height: 30vh;
+}
