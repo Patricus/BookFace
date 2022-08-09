@@ -54,12 +54,12 @@ function Post({ post }) {
                         </div>
                         <p>{post.text}</p>
                         {post.image_link && <img src={post.image_link} alt="post" />}
-                        <CreateCommentForm post_id={post.id} />
                     </div>
                     {post.comments &&
                         Object.values(post.comments).map(comment => (
                             <Comment key={comment.id} comment={comment} />
                         ))}
+                    <CreateCommentForm post_id={post.id} />
                 </div>
             )}
         </>
