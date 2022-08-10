@@ -32,7 +32,7 @@ function CreateCommentForm({ post_id }) {
                     <div className="errors">
                         {errors.map((error, ind) => (
                             <div className="error" key={ind}>
-                                {error}
+                                {error.split(":")[1]}
                             </div>
                         ))}
                     </div>

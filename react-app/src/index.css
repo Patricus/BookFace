@@ -10,7 +10,7 @@ body {
 }
 
 button {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: white;
     border: none;
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
     padding: 3px 10px;
@@ -19,5 +19,9 @@ button {
 }
 
 button:hover {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+* {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }

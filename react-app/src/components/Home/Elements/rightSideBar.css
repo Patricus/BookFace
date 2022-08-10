@@ -1,4 +1,5 @@
 #right-sidebar {
-    width: 340px;
+    max-width: 340px;
+    width: 20%;
     margin-right: 5px;
 }

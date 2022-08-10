@@ -47,13 +47,14 @@
 .post > p {
     margin: 10px;
 }
-/*
-#create-post {
-    width: 100px;
-} */
+
+.profile-img-circle {
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+}
 
 .create-post-form-button {
     width: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .poster-info > h3 {

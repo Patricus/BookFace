@@ -34,18 +34,15 @@ function EditCommentForm({ comment, setShowEditComment }) {
     return (
         <div className="comment-edit">
             {errors.length > 0 && (
-                <div className="errors">
+                <div className="comment-errors">
                     {errors.map((error, ind) => (
                         <div className="error" key={ind}>
-                            {error}
+                            {error.split(":")[1]}
                         </div>
                     ))}
                 </div>
             )}
             <form className="comment-form" onSubmit={submit}>
-                <button className="comment-edit-cancel" onClick={cancel}>
-                    Cancel
-                </button>
                 <textarea
                     name="text"
                     placeholder="Write a comment..."
@@ -53,6 +50,9 @@ function EditCommentForm({ comment, setShowEditComment }) {
                     onChange={e => setText(e.target.value)}
                 />
                 <button className="comment-submit-button">Update Comment</button>
+                <button className="comment-edit-cancel" onClick={cancel}>
+                    Cancel
+                </button>
             </form>
         </div>
     );
