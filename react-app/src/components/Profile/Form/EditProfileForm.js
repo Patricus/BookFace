@@ -118,7 +118,7 @@ function EditProfileForm({ profile, setShowEditProfile }) {
                         <div key={ind}>{error}</div>
                     ))}
                 </div>
-                <form onSubmit={submit}>
+                <form className="edit-profile-form" onSubmit={submit}>
                     <h3>Profile Picture</h3>
                     <div id="editProfileContainer">
                         <img
@@ -163,7 +163,7 @@ function EditProfileForm({ profile, setShowEditProfile }) {
                         onChange={e => setBio(e.target.value)}
                     />
                     <h3>Customize your intro</h3>
-                    <div>
+                    <div className="profile-datefields">
                         <label>Lives in</label>
                         <input
                             name="lives_in_city"
@@ -172,6 +172,7 @@ function EditProfileForm({ profile, setShowEditProfile }) {
                             onChange={e => setLives_in_city(e.target.value)}
                         />
                         <select
+                            className="state-select"
                             name="lives_in_state"
                             value={lives_in_state}
                             onChange={e => setLives_in_state(e.target.value)}>
@@ -181,7 +182,7 @@ function EditProfileForm({ profile, setShowEditProfile }) {
                             })}
                         </select>
                     </div>
-                    <div>
+                    <div className="profile-datefields">
                         <label>Born from</label>
                         <input
                             name="born_from_city"
@@ -190,6 +191,7 @@ function EditProfileForm({ profile, setShowEditProfile }) {
                             onChange={e => setBorn_from_city(e.target.value)}
                         />
                         <select
+                            className="state-select"
                             name="born_from_state"
                             value={born_from_state}
                             onChange={e => setBorn_from_state(e.target.value)}>
@@ -199,7 +201,7 @@ function EditProfileForm({ profile, setShowEditProfile }) {
                             })}
                         </select>
                     </div>
-                    <button>Update profile</button>
+                    <button id="update-profile-button">Update profile</button>
                 </form>
             </div>
         </Modal>
