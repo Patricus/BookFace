@@ -134,7 +134,7 @@ function EditProfileForm({ profile, setShowEditProfile }) {
                             accept="image/*"
                             onChange={e => updateProfilePic(e.target)}
                         />
-                        Upload Profile Photo
+                        {profile_pic ? profile_pic.name : `Upload Profile Photo`}
                     </label>
                     <h3>Cover Photo</h3>
                     <div id="editCoverContainer">
@@ -153,7 +153,7 @@ function EditProfileForm({ profile, setShowEditProfile }) {
                             accept="image/*"
                             onChange={e => updateCoverPic(e.target)}
                         />
-                        Upload Cover Photo
+                        {cover_pic ? cover_pic.name : `Upload Cover Photo`}
                     </label>
                     <h3>Bio</h3>
                     <textarea

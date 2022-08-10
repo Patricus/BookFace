@@ -77,7 +77,7 @@ function EditPostForm({ post, setShowEditPost }) {
                         accept="image/*"
                         onChange={e => setImage(e.target.value)}
                     />
-                    Upload Photo
+                    {image ? image.name : `Upload Photo`}
                 </label>
                 <button>Update profile</button>
             </form>
