@@ -1,17 +1,13 @@
 import React from "react";
 import Users from "../Elements/Users/Users";
-import UserSideBar from "../Elements/Users/UserSideBar";
+import FriendSideBar from "./FriendSideBar";
 import "./friendPage.css";
 
 function UsersPage() {
     return (
         <div className="friend-page">
-            <div>
-                <UserSideBar />
-            </div>
-            <div>
-                <Users />
-            </div>
+            <FriendSideBar />
+            <Users />
         </div>
     );
 }

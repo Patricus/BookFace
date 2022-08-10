@@ -13,10 +13,8 @@ function FriendCard({ friend }) {
     };
     return (
         <div className="userCard">
-            <div>
-                <UserCardTop cardUser={friend} />
-                <button onClick={deleteFriend}>Unfriend</button>
-            </div>
+            <UserCardTop cardUser={friend} />
+            <button onClick={deleteFriend}>Unfriend</button>
         </div>
     );
 }

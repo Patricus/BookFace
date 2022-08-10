@@ -127,12 +127,15 @@ function EditProfileForm({ profile, setShowEditProfile }) {
                             onError={() => setPreviewProfile_pic(defaultProfile)}
                         />
                     </div>
-                    <input
-                        name="image"
-                        type="file"
-                        accept="image/*"
-                        onChange={e => updateProfilePic(e.target)}
-                    />
+                    <label className="custom-file-upload">
+                        <input
+                            name="image"
+                            type="file"
+                            accept="image/*"
+                            onChange={e => updateProfilePic(e.target)}
+                        />
+                        Upload Profile Photo
+                    </label>
                     <h3>Cover Photo</h3>
                     <div id="editCoverContainer">
                         {previewCover_pic && (
@@ -143,12 +146,15 @@ function EditProfileForm({ profile, setShowEditProfile }) {
                             />
                         )}
                     </div>
-                    <input
-                        name="image"
-                        type="file"
-                        accept="image/*"
-                        onChange={e => updateCoverPic(e.target)}
-                    />
+                    <label className="custom-file-upload">
+                        <input
+                            name="image"
+                            type="file"
+                            accept="image/*"
+                            onChange={e => updateCoverPic(e.target)}
+                        />
+                        Upload Cover Photo
+                    </label>
                     <h3>Bio</h3>
                     <textarea
                         name="bio"

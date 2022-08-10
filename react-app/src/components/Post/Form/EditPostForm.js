@@ -69,12 +69,15 @@ function EditPostForm({ post, setShowEditPost }) {
                         ))}
                     </div>
                 )}
-                <input
-                    name="image"
-                    type="file"
-                    accept="image/*"
-                    onChange={e => setImage(e.target.value)}
-                />
+                <label className="custom-file-upload">
+                    <input
+                        name="image"
+                        type="file"
+                        accept="image/*"
+                        onChange={e => setImage(e.target.value)}
+                    />
+                    Upload Photo
+                </label>
                 <button>Update profile</button>
             </form>
         </Modal>

@@ -102,12 +102,15 @@ function CreatePostForm() {
                                 ))}
                             </div>
                         )}
-                        <input
-                            name="image"
-                            type="file"
-                            accept="image/*"
-                            onChange={e => setImage(e.target.files[0])}
-                        />
+                        <label className="custom-file-upload">
+                            <input
+                                name="image"
+                                type="file"
+                                accept="image/*"
+                                onChange={e => setImage(e.target.files[0])}
+                            />
+                            Upload Photo
+                        </label>
                         <button>Post</button>
                     </form>
                 </Modal>

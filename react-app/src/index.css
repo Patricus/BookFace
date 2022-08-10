@@ -7,6 +7,7 @@ body {
 
 #root {
     min-height: 100vh;
+    max-width: 100vw;
 }
 
 button {
@@ -30,4 +31,26 @@ a {
     text-decoration: none;
     color: black;
     font-weight: 600;
+}
+
+.custom-file-upload {
+    background-color: #42b72a;
+    width: 180px;
+    border-radius: 6px;
+    padding: 8px;
+    border: none;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 32px;
+}
+
+.custom-file-upload:hover {
+    background-color: #3ca227;
+}
+
+input[type="file"] {
+    display: none;
 }

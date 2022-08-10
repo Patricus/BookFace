@@ -22,10 +22,8 @@ function RequestCard({ request }) {
     return (
         <div className="userCard">
             <UserCardTop cardUser={request} />
-            <div>
-                <button onClick={acceptRequest}>Accept Friend Request</button>
-                <button onClick={deleteFriend}>Decline Friend Request</button>
-            </div>
+            <button onClick={acceptRequest}>Accept Friend Request</button>
+            <button onClick={deleteFriend}>Decline Friend Request</button>
         </div>
     );
 }

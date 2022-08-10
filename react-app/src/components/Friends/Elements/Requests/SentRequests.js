@@ -6,7 +6,7 @@ function SentRequests({ requests, setShowSentRequests }) {
     return (
         <Modal onClose={() => setShowSentRequests(false)}>
             <div>
-                <h2>SentRequests</h2>
+                <h2>Sent Requests</h2>
                 {requests &&
                     Object.values(requests).map(request => {
                         return <RequestSentCard key={request.id} request={request} />;

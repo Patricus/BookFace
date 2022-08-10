@@ -16,9 +16,7 @@ function UserCard({ friend }) {
     return (
         <div className="userCard">
             <UserCardTop cardUser={friend} />
-            <div>
-                <button onClick={addFriend}>Add Friend</button>
-            </div>
+            <button onClick={addFriend}>Add Friend</button>
         </div>
     );
 }

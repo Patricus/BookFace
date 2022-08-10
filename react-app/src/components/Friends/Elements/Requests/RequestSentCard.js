@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFriend } from "../../../../store/friends";
 import { deleteSentRequest } from "../../../../store/sentRequests";
+import defaultProfilePic from "../../../images/default-profile.png";
 
 function RequestSentCard({ request }) {
     const user = useSelector(state => state.session.user);
@@ -14,16 +15,18 @@ function RequestSentCard({ request }) {
     };
 
     return (
-        <div>
+        <>
             {request && (
-                <>
+                <div className="requestCard">
+                    <img
+                        src={request.profile_pic ? request.profile_pic : defaultProfilePic}
+                        alt="profile"
+                    />
                     <div>{`${request.first_name} ${request.last_name}`}</div>
-                    <div>
-                        <button onClick={deleteFriend}>Rescind Friend Request</button>
-                    </div>
-                </>
+                    <button onClick={deleteFriend}>Rescind Friend Request</button>
+                </div>
             )}
-        </div>
+        </>
     );
 }
 
