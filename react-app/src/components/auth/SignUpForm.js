@@ -87,7 +87,9 @@ const SignUpForm = () => {
                             </div>
                         )}
                         <div id="name-input">
+                            <div className="required"></div>
                             <input
+                                style={{ marginRight: "10px" }}
                                 type="text"
                                 name="firstname"
                                 onChange={e => setFirstName(e.target.value)}
@@ -98,6 +100,7 @@ const SignUpForm = () => {
                                     <div className="last-name-error">{lastNameErrors}</div>
                                 </div>
                             )}
+                            <div className="required"></div>
                             <input
                                 type="text"
                                 name="lastname"
@@ -110,6 +113,7 @@ const SignUpForm = () => {
                                 <div className="error">{emailErrors}</div>
                             </div>
                         )}
+                        <div className="required"></div>
                         <input
                             type="email"
                             name="email"
@@ -121,6 +125,7 @@ const SignUpForm = () => {
                                 <div className="error">{reEmailErrors}</div>
                             </div>
                         )}
+                        <div className="required"></div>
                         <input
                             type="email"
                             name="re-email"
@@ -132,6 +137,7 @@ const SignUpForm = () => {
                                 <div className="error">{passwordErrors}</div>
                             </div>
                         )}
+                        <div className="required"></div>
                         <input
                             type="password"
                             name="password"
@@ -143,6 +149,7 @@ const SignUpForm = () => {
                                 <div className="error">{confirmPasswordErrors}</div>
                             </div>
                         )}
+                        <div className="required"></div>
                         <input
                             type="password"
                             name="confirmPassword"
@@ -154,6 +161,7 @@ const SignUpForm = () => {
                                 <div className="error">{birthdayErrors}</div>
                             </div>
                         )}
+                        <div className="required"></div>
                         <label>Birthday</label>
                         <div id="birthday-input">
                             <select

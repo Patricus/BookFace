@@ -17,6 +17,7 @@ button {
     padding: 3px 10px;
     border-radius: 10px;
     cursor: pointer;
+    font-weight: 600;
 }
 
 button:hover {
@@ -53,4 +54,32 @@ a {
 
 input[type="file"] {
     display: none;
+}
+
+.required {
+    position: relative;
+    align-self: flex-start;
+}
+
+.required::before {
+    position: absolute;
+    content: "*";
+    font-size: 26px;
+    color: red;
+    left: 5px;
+    top: 10px;
+}
+
+.post-required {
+    position: relative;
+    align-self: flex-start;
+}
+
+.post-required::before {
+    position: absolute;
+    content: "*";
+    font-size: 26px;
+    color: red;
+    left: 5px;
+    top: -20px;
 }

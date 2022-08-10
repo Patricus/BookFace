@@ -43,6 +43,7 @@ const LoginForm = () => {
                             <div className="error">{emailErrors}</div>
                         </div>
                     )}
+                    <div className="required"></div>
                     <input
                         name="email"
                         type="email"
@@ -57,6 +58,7 @@ const LoginForm = () => {
                             <div className="error">{passwordErrors}</div>
                         </div>
                     )}
+                    <div className="required"></div>
                     <input
                         name="password"
                         type="password"

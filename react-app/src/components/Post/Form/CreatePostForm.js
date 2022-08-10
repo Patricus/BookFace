@@ -87,6 +87,7 @@ function CreatePostForm() {
                                 ))}
                             </div>
                         )}
+                        <div className="post-required"></div>
                         <textarea
                             name="text"
                             placeholder="What's on your mind?"
