@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { editComment } from "../../../store/comments";
+import "./commentForm.css";
 
 // Form used to Edit a comment
 function EditCommentForm({ comment, setShowEditComment }) {
@@ -25,22 +26,33 @@ function EditCommentForm({ comment, setShowEditComment }) {
         }
     };
 
+    const cancel = e => {
+        e.preventDefault();
+        setShowEditComment(false);
+    };
+
     return (
         <div className="comment-edit">
-            <h2>Update Comment Form</h2>
-            <div>
-                {errors.map((error, ind) => (
-                    <div key={ind}>{error}</div>
-                ))}
-            </div>
-            <form onSubmit={submit}>
+            {errors.length > 0 && (
+                <div className="errors">
+                    {errors.map((error, ind) => (
+                        <div className="error" key={ind}>
+                            {error}
+                        </div>
+                    ))}
+                </div>
+            )}
+            <form className="comment-form" onSubmit={submit}>
+                <button className="comment-edit-cancel" onClick={cancel}>
+                    Cancel
+                </button>
                 <textarea
                     name="text"
                     placeholder="Write a comment..."
                     value={text}
                     onChange={e => setText(e.target.value)}
                 />
-                <button>Comment</button>
+                <button className="comment-submit-button">Update Comment</button>
             </form>
         </div>
     );

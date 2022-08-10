@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import "./coverPhoto.css";
 
 function CoverPhoto({ coverPhoto, owner }) {
-    const [showEditCover, setShowEditCover] = useState(false);
+    // const [showEditCover, setShowEditCover] = useState(false);
     return (
         <div id="cover-photo">
             {coverPhoto && <img src={coverPhoto} alt="cover" id="coverImg" />}
-            {owner && !coverPhoto && (
+            {/* {owner && !coverPhoto && (
                 <button onClick={() => setShowEditCover(true)}>Add cover photo</button>
-            )}
+            )} */}
         </div>
     );
 }

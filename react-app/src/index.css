@@ -8,3 +8,16 @@ body {
 #root {
     min-height: 100vh;
 }
+
+button {
+    background-color: rgba(0, 0, 0, 0.1);
+    border: none;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
+    padding: 3px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}

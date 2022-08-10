@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { makeComment } from "../../../store/comments";
+import "./commentForm.css";
 
 // Form used to create a comment
 function CreateCommentForm({ post_id }) {
@@ -26,20 +27,23 @@ function CreateCommentForm({ post_id }) {
 
     return (
         <div>
-            <p>Create Comment Form</p>
-            <div>
-                {errors.map((error, ind) => (
-                    <div key={ind}>{error}</div>
-                ))}
-            </div>
-            <form onSubmit={submit}>
+            <form className="comment-form" onSubmit={submit}>
+                {errors.length > 0 && (
+                    <div className="errors">
+                        {errors.map((error, ind) => (
+                            <div className="error" key={ind}>
+                                {error}
+                            </div>
+                        ))}
+                    </div>
+                )}
                 <textarea
                     name="text"
                     placeholder="Write a comment..."
                     value={text}
                     onChange={e => setText(e.target.value)}
                 />
-                <button>Comment</button>
+                <button className="comment-submit-button">Comment</button>
             </form>
         </div>
     );

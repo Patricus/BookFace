@@ -1,20 +1,30 @@
 .post {
     border-bottom: 1px solid lightgrey;
+    width: 100%;
 }
 
 .post > img {
     width: 100%;
     max-height: 565px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .post-container {
     position: relative;
     background-color: white;
     padding: 0px;
+    max-width: 680px;
+    width: 50vw;
     border-radius: 10px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
+    /* overflow: hidden; */
+    /* border: 1px solid blue; */
 }
+
+/* .post-container * {
+    border: 1px solid red;
+} */
 
 .post-menu-button {
     position: absolute;
@@ -37,6 +47,14 @@
 .post > p {
     margin: 10px;
 }
+/*
+#create-post {
+    width: 100px;
+} */
+
+.create-post-form-button {
+    width: 100%;
+}
 
 .poster-info > h3 {
     position: absolute;
@@ -55,13 +73,16 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
 }
 
 .poster-info {
+    width: 100%;
     display: flex;
     align-items: center;
     gap: 10px;
     margin-left: 10px;
+    margin-right: 10px;
     margin-top: 10px;
 }
 

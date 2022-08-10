@@ -12,7 +12,7 @@ function CommentDropdown({ setShowEditComment, comment }) {
 
     useEffect(() => {
         const clickCheck = e => {
-            if (e.target.classList.contains("comment-menu-button")) return;
+            if (e.target.classList.contains("comment-menu-buttons")) return;
             if (!e.target.classList.contains("dropdown")) setShowDropdown(false);
         };
         document.addEventListener("mousedown", clickCheck);
@@ -21,25 +21,21 @@ function CommentDropdown({ setShowEditComment, comment }) {
 
     return (
         <>
-            <div style={{ position: "relative" }}>
-                <button
-                    className="comment-menu-button"
-                    onClick={() => setShowDropdown(!showDropdown)}>
-                    ...
-                </button>
-                {showDropdown && (
-                    <div style={{ position: "absolute" }} className="dropdown">
-                        <button
-                            className="comment-menu-button"
-                            onClick={() => setShowEditComment(true)}>
-                            Edit Comment
-                        </button>
-                        <button className="comment-menu-button" onClick={deleteComment}>
-                            Delete Comment
-                        </button>
-                    </div>
-                )}
-            </div>
+            <button className="comment-menu-button" onClick={() => setShowDropdown(!showDropdown)}>
+                ...
+            </button>
+            {showDropdown && (
+                <div className="comment-dropdown">
+                    <button
+                        className="comment-menu-buttons"
+                        onClick={() => setShowEditComment(true)}>
+                        Edit Comment
+                    </button>
+                    <button className="comment-menu-buttons" onClick={deleteComment}>
+                        Delete Comment
+                    </button>
+                </div>
+            )}
         </>
     );
 }

@@ -92,7 +92,7 @@ function CreatePostForm() {
                     onError={() => setProfilePic(defaultProfilePic)}
                     className="profile-img-circle"
                 />
-                <button onClick={() => setShowCreatePost(true)}>
+                <button className="create-post-form-button" onClick={() => setShowCreatePost(true)}>
                     What's on your mind, {user.first_name}?
                 </button>
             </div>

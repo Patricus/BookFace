@@ -40,7 +40,7 @@ function Post({ post }) {
                 <div className="post-container">
                     <div className="post">
                         {post.user_id === user.id && <PostDropdown post={post} />}
-                        <div>
+                        <div style={{ width: "100%" }}>
                             {post.user_id === user.id ? (
                                 <PosterInfo poster={user} />
                             ) : (

@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { getRequests } from "../../../../store/receivedRequests";
 import { getSentRequests } from "../../../../store/sentRequests";
 import RequestCard from "./RequestCard";
 
-function Requests({requests}) {
+function Requests({ requests }) {
     const dispatch = useDispatch();
 
     useEffect(() => {
