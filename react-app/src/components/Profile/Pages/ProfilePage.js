@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getFriends } from "../../../store/friends";
 import { getPosts } from "../../../store/posts";
 import Post from "../../Post/Elements/Post";
@@ -34,8 +34,9 @@ function ProfilePage() {
 
     if (!profile)
         return (
-            <div>
-                <h1>You aren't friends with this user.</h1>
+            <div id="noFriend">
+                <h1>You aren't friends with this user, or they don't exist.</h1>
+                <Link to="/">Back to home</Link>
             </div>
         );
 

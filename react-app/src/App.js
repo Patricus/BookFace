@@ -10,6 +10,7 @@ import UsersPage from "./components/Friends/Pages/UsersPage";
 import RequestsPage from "./components/Friends/Pages/RequestsPage";
 import ContactPage from "./components/Contact/pages/ContactPage";
 import ProfilePage from "./components/Profile/Pages/ProfilePage";
+import NotFound from "./components/NotFound/NotFound";
 
 function App() {
     const [loaded, setLoaded] = useState(false);
@@ -47,6 +48,9 @@ function App() {
                 </ProtectedRoute>
                 <Route exact path="/">
                     <Home />
+                </Route>
+                <Route path="">
+                    <NotFound />
                 </Route>
             </Switch>
         </BrowserRouter>

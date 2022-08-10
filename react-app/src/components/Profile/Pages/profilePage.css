@@ -81,3 +81,18 @@
 #left-column {
     margin-bottom: 25px;
 }
+
+#noFriend {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#noFriend > a {
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+#noFriend > a:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
