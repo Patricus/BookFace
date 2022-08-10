@@ -10,6 +10,8 @@ function CreatePostForm() {
     const [text, setText] = useState("");
     const [image, setImage] = useState("");
     const [errors, setErrors] = useState([]);
+    const [textErrors, setTextErrors] = useState([]);
+    const [imageErrors, setImageErrors] = useState([]);
     const [showCreatePost, setShowCreatePost] = useState(false);
     const [profilePic, setProfilePic] = useState(defaultProfilePic);
 
@@ -58,23 +60,48 @@ function CreatePostForm() {
         if (user.profile_pic) setProfilePic(user.profile_pic);
     }, [user]);
 
+    useEffect(() => {
+        const textErrs = [];
+        const imageErrs = [];
+        errors.forEach(error => {
+            error = error.split(" : ");
+            if (error[0] === "text") textErrs.push(error[1]);
+            if (error[0] === "image") imageErrs.push(error[1]);
+        });
+        setTextErrors(textErrs);
+        setImageErrors(imageErrs);
+    }, [errors]);
+
     return (
         <>
             {showCreatePost && (
                 <Modal onClose={() => setShowCreatePost(false)}>
                     <h2>Create post</h2>
-                    <div>
-                        {errors.map((error, ind) => (
-                            <div key={ind}>{error}</div>
-                        ))}
-                    </div>
-                    <form onSubmit={submit}>
+                    <form className="post-form" onSubmit={submit}>
+                        {textErrors.length > 0 && (
+                            <div className="errors">
+                                {textErrors.map((error, ind) => (
+                                    <div className="error" key={ind}>
+                                        {error}
+                                    </div>
+                                ))}
+                            </div>
+                        )}
                         <textarea
                             name="text"
                             placeholder="What's on your mind?"
                             value={text}
                             onChange={e => setText(e.target.value)}
                         />
+                        {imageErrors.length > 0 && (
+                            <div className="post-errors">
+                                {imageErrors.map((error, ind) => (
+                                    <div className="error" key={ind}>
+                                        {error}
+                                    </div>
+                                ))}
+                            </div>
+                        )}
                         <input
                             name="image"
                             type="file"
