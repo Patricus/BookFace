@@ -63,7 +63,7 @@
 }
 
 #right-column > * {
-    width: 100%;
+    width: 40vw;
     max-width: 600px;
 }
 
@@ -75,7 +75,7 @@
 }
 
 #right-column {
-    width: 40vw;
+    width: fit-content;
 }
 
 #left-column {
