@@ -20,19 +20,19 @@ Checkout Bookface at https://bookface-site.herokuapp.com/
 
 ## Login Page
 
-![](LINK HERE)
+![](./README_images/loginPage.png)
 
 ## Post Feed Page
 
-![](LINK HERE)
+![](./README_images/postFeed.png)
 
 ## Friends Page
 
-![](LINK HERE)
+![](./README_images/friendsPage.png)
 
 ## Profile Page
 
-![](LINK HERE)
+![](./README_images/profilePage.png)
 
 ## Run Bookface on a local machine:
 
