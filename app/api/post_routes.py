@@ -55,11 +55,8 @@ def read_posts():
 
     posts = Post.query.select_from(User).join(Friend,
                                               Friend.user_id == User.id).filter(
-        or_(and_(Friend.accepted == True,
-                 or_(Friend.user_id == current_user.id,
-                     Friend.friend_id == current_user.id)), Post.user_id == current_user.id)).all()
-
-    print(f"\n\n\n\n\n\n\n\n\n\n {posts} \n\n\n\n\n\n\n\n\n\n\n")
+        or_(Post.user_id == current_user.id,
+            and_(or_(Friend.user_id == Post.user_id, Friend.friend_id == Post.user_id), Friend.accepted == True))).all()
 
     return {'posts': [post.to_dict() for post in posts]}
 
