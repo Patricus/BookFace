@@ -44,6 +44,7 @@
 
 .post > p {
     margin: 10px;
+    word-wrap: break-word;
 }
 
 .profile-img-circle {
@@ -60,6 +61,7 @@
     top: 10px;
     left: 60px;
     margin: 0;
+    word-wrap: break-word;
 }
 
 .post > div > small {
