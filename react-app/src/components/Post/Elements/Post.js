@@ -42,7 +42,7 @@ function Post({ post }) {
                     <div className="post">
                         {post.user_id === user.id && <PostDropdown post={post} />}
                         <div style={{ width: "100%" }}>
-                            {post.user_id !== 1 ? (
+                            {post.user_id !== user.id ? (
                                 <PosterInfo poster={friends[post.user_id]} />
                             ) : (
                                 <PosterInfo poster={user} />
