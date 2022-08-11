@@ -67,7 +67,7 @@ export const removeFriend = (user_id, friend_id) => async dispatch => {
     });
     if (response.ok) {
         const data = await response.json();
-        dispatch(deleteFriend(data));
+        dispatch(deleteFriend(friend_id));
         return null;
     } else if (response.status < 500) {
         const data = await response.json();
@@ -99,7 +99,7 @@ export default function reducer(state = initialState, action) {
             return updateState;
         case DELETE_FRIENDS:
             const deleteState = { ...state };
-            delete deleteState[action.payload.id];
+            delete deleteState[action.payload];
             return deleteState;
         default:
             return state;
