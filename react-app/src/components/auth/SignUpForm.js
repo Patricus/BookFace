@@ -8,7 +8,7 @@ const SignUpForm = () => {
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [reEmail, setReEmail] = useState("");
-    const [bDay, setBDay] = useState(new Date().getDay());
+    const [bDay, setBDay] = useState(new Date().getDate());
     const [bMonth, setBMonth] = useState(new Date().getMonth());
     const [bYear, setBYear] = useState(new Date().getFullYear());
     const [birthday, setBirthday] = useState("");

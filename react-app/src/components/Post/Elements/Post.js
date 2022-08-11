@@ -6,6 +6,7 @@ import CreateCommentForm from "../../Comment/Form/CreateCommentForm";
 import PostDropdown from "./PostDropdown";
 import "./post.css";
 import PosterInfo from "./PosterInfo";
+import { getPosts } from "../../../store/posts";
 
 function Post({ post }) {
     const dispatch = useDispatch();
@@ -36,15 +37,15 @@ function Post({ post }) {
 
     return (
         <>
-            {post && (
+            {post && friends && user && (
                 <div className="post-container">
                     <div className="post">
                         {post.user_id === user.id && <PostDropdown post={post} />}
                         <div style={{ width: "100%" }}>
-                            {post.user_id === user.id ? (
-                                <PosterInfo poster={user} />
-                            ) : (
+                            {post.user_id !== 1 ? (
                                 <PosterInfo poster={friends[post.user_id]} />
+                            ) : (
+                                <PosterInfo poster={user} />
                             )}
                             <small>
                                 {post_time(post.created_at)}

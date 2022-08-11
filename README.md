@@ -1,129 +1,186 @@
-# Flask React Project
+# Bookface
 
-This is the starter for the Flask React project.
+---
 
-## Getting started
-1. Clone this repository (only this branch)
+Bookface is a Facebook clone and was built using PostgreSQL, Flask, SQLAlchemy, React, Redux, javascript and Python.
 
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
+Checkout Bookface at https://bookface-site.herokuapp.com/
 
-2. Install dependencies
+### Github Wiki Links:
 
-      ```bash
-      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
-      ```
+#### [Features List](https://github.com/Patricus/BookFace/wiki/Feature-List)
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+#### [Database Schema](https://github.com/Patricus/BookFace/wiki/Database-Schema)
 
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
+#### [User Stories](https://github.com/Patricus/BookFace/wiki/User-Stories)
 
-   ```bash
-   pipenv shell
-   ```
+#### [API Routes](https://github.com/Patricus/Bookface/wiki/API-Routes)
 
-   ```bash
-   flask db upgrade
-   ```
+#### [Wire Frames and Front End Routes](https://github.com/Patricus/BookFace/wiki/Wireframes-and-Front-End-Routes)
 
-   ```bash
-   flask seed all
-   ```
+## Login Page
 
-   ```bash
-   flask run
-   ```
+![](LINK HERE)
 
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+## Post Feed Page
 
-***
+![](LINK HERE)
+
+## Friends Page
+
+![](LINK HERE)
+
+## Profile Page
+
+![](LINK HERE)
+
+## Run Bookface on a local machine:
+
+-   This project requires AWS Buckets, if you don't know how to set buckets up follow this walkthrough's "Create your AWS User and Bucket" section:
+
+    > https://github.com/jamesurobertson/aws-s3-pern-demo#create-your-aws-user-and-bucket
+
+-   then follow these instructions to change bucket permissions:
+
+    > https://github.com/jamesurobertson/aws-s3-pern-demo#public-file-read-configuration
+
+-   Clone https://github.com/Patricus/BookFace
+-   Set up your database:
+    -   Create a database user with the name and password of your choice
+    -   Create a database with the name of your choice and make sure that the owner of the database is the database user that you created in the pervious step
+-   In your root directory run pipenv install
+-   Add a .env file in your root directory and make sure to add the following items listed below
+
+    ```
+    FLASK_APP=app
+    FLASK_ENV=development
+    SECRET_KEY=<<secret key>>
+    DATABASE_URL=postgresql://<<database user>>:<<password>>@localhost/<<database>>
+    S3_BUCKET=<<your s3 bucket name>>
+    S3_KEY=<<your s3 key>>
+    S3_SECRET=<<your s3 secret>>
+
+    ```
+
+-   cd into the react-app directory and run npm install
+-   Create a .env file in the root of the react-app directory and add the following code:
+    ```
+    REACT_APP_BASE_URL=http://localhost:5000
+    ```
+-   In order to get the backend running, make sure you are in the root directory and run the "pipenv shell" command to enter your python shell. Please run "flask db migrate" followed by "flask db upgrade", followed by "flask seed all". Finally we can run the command "flask run" and your backend should start right up, connected to an already seeded database.
+-   Lastly, open an additional terminal to run you your frontend. cd into react-app and use the command "npm start". This should automatically open up your app on localhost:3000
+
+## Technical Details:
+
+-   Friend's states are determined by a friend table that contains:
+    -   `user_id` The user that requested the friendship's id
+    -   `friend_id` The user that is being requested's id
+    -   `accepted` A boolean indicating if the friend request has been accepted
+
+```
+@friend_routes.route('/')
+@login_required
+def read_friends():
+    """
+    Read all friends.
+    """
+    friends = User.query.join(Friend, or_(Friend.friend_id == User.id, Friend.user_id == User.id)).filter(
+        and_(Friend.accepted == True, User.id != current_user.id)).all()
+
+    return {'friends': [friend.to_dict() for friend in friends]}
 
 
-*IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on alpine-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
+@friend_routes.route('/requests/')
+@login_required
+def read_friend_requests():
+    """
+    Read all friend requests.
+    """
+    friend_requests = User.query.join(Friend, Friend.user_id == User.id).filter(
+        and_(Friend.accepted == False, User.id != current_user.id, Friend.friend_id == current_user.id)).all()
 
-### Dev Containers (OPTIONAL for M1 Users)
-The following instructions detail an *optional* development setup for M1 Mac users having issues with the `psycopg` package.
+    return {'friend_requests': [friend_request.to_dict() for friend_request in friend_requests]}
 
-1. Make sure you have the [Microsoft Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension installed. 
-2. Make sure you have [Docker](https://www.docker.com/products/docker-desktop/) installed on your computer. 
-3. Clone the repository (only this branch)
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
-4. Open the repo in VS Code. 
-5. Click "Open in Container" when VS Code prompts to open container in the bottom right hand corner. 
-6. **Be Patient!** The initial install will take a LONG time, it's building a container that has postgres preconfigured and even installing all your project dependencies. (For both flask and react!)
 
-   **Note:** This will take much less time on future starts because everything will be cached.
+@friend_routes.route('/requests/sent/')
+@login_required
+def read_sent_requests():
+    """
+    Read all sent requests.
+    """
+    friend_requests = User.query.join(Friend, Friend.friend_id == User.id).filter(
+        and_(Friend.accepted == False, User.id != current_user.id, Friend.user_id == current_user.id)).all()
 
-7. Once everything is up, be sure to make a `.env` file based on `.env.example` in both the root directory and the *react-app* directory before running your app. You do not need a `DATABASE_URL` in the `.env` file if you are using this Docker setup for development - the URL is already set in the image (see `.devcontainer/Dockerfile` for the URL).
+    return {'friend_requests': [friend_request.to_dict() for friend_request in friend_requests]}
+```
 
-8. Get into your pipenv, migrate your database, seed your database, and run your flask app
+-   Backend errors are parsed and sorted to the correct input error variable to be displayed next to said input field.
 
-   ```bash
-   pipenv shell
-   ```
+```
+useEffect(() => {
+    const emailErrs = [];
+    const passwordErrs = [];
+    errors.forEach(error => {
+        error = error.split(":");
+        if (error[0] === "email") emailErrs.push(error[1]);
+        if (error[0] === "password") passwordErrs.push(error[1]);
+    });
+    setEmailErrors(emailErrs);
+    setPasswordErrors(passwordErrs);
+}, [errors]);
+```
 
-   ```bash
-   flask db upgrade
-   ```
+```
+{emailErrors.length > 0 && (
+    <div className="errors">
+        <div className="error">{emailErrors}</div>
+    </div>
+)}
+<div className="required"></div>
+<input
+    name="email"
+    type="email"
+    placeholder="Email"
+    value={email}
+    onChange={e => {
+        setEmail(e.target.value);
+    }}
+/>
+{passwordErrors.length > 0 && (
+    <div className="errors">
+        <div className="error">{passwordErrors}</div>
+    </div>
+)}
+<div className="required"></div>
+<input
+    name="password"
+    type="password"
+    placeholder="Password"
+    value={password}
+    onChange={e => {
+        setPassword(e.target.value);
+    }}
+/>
+```
 
-   ```bash
-   flask seed all
-   ```
+## To-Do:
 
-   ```bash
-   flask run
-   ```
+### Likes / Unlike a post
 
-9. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+Logged in users can like posts, see how many likes a post has, and unlike a post they have already liked.
 
-<br>
+### Search Bar
 
-## Deploy to Heroku
-This repo comes configured with Github Actions. When you push to your main branch, Github will automatically pull your code, package and push it to Heroku, and then release the new image and run db migrations. 
+Logged in users can use the search bar to find other users.
 
-1. Write your Dockerfile. In order for the Github action to work effectively, it must have a configured Dockerfile. Follow the comments found in this [Dockerfile](./Dockerfile) to write your own!
+### Groups
 
-2. Create a new project on Heroku.
+Logged in users can create and join groups, these groups will have:
 
-3. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres".
+-   A group owner.
+-   Their own group post feed.
+-   Control which users may join.
 
-4. Configure production environment variables. In your Heroku app settings -> config variables you should have two environment variables set:
+### Chat
 
-   |    Key          |    Value    |
-   | -------------   | ----------- |
-   | `DATABASE_URL`  | Autogenerated when adding postgres to Heroku app |
-   | `SECRET_KEY`    | Random string full of entropy |
-
-5. Generate a Heroku OAuth token for your Github Action. To do so, log in to Heroku via your command line with `heroku login`. Once you are logged in, run `heroku authorizations:create`. Copy the GUID value for the Token key.
-
-6. In your Github Actions Secrets you should have two environment variables set. You can set these variables via your Github repository settings -> secrets -> actions. Click "New respository secret" to create
-each of the following variables:
-
-   |    Key            |    Value    |
-   | -------------     | ----------- |
-   | `HEROKU_API_KEY`  | Heroku Oauth Token (from step 6)|
-   | `HEROKU_APP_NAME` | Heroku app name    |
-
-7. Push to your `main` branch! This will trigger the Github Action to build your Docker image and deploy your application to the Heroku container registry. Please note that the Github Action will automatically upgrade your production database with `flask db upgrade`. However, it will *not* automatically seed your database. You must manually seed your production database if/when you so choose (see step 8).
-
-8. *Attention!* Please run this command *only if you wish to seed your production database*: `heroku run -a HEROKU_APP_NAME flask seed all`
-
-## Helpful commands
-|    Command            |    Purpose    |
-| -------------         | ------------- |
-| `pipenv shell`        | Open your terminal in the virtual environment and be able to run flask commands without a prefix |
-| `pipenv run`          | Run a command from the context of the virtual environment without actually entering into it. You can use this as a prefix for flask commands  |
-| `flask db upgrade`    | Check in with the database and run any needed migrations  |
-| `flask db downgrade`  | Check in with the database and revert any needed migrations  |
-| `flask seed all`      | Just a helpful syntax to run queries against the db to seed data. See the **app/seeds** folder for reference and more details |
-| `heroku login -i`      | Authenticate your heroku-cli using the command line. Drop the -i to authenticate via the browser |
-| `heroku authorizations:create` | Once authenticated, use this to generate an Oauth token |
-| `heroku run -a <app name>` | Run a command from within the deployed container on Heroku |
+Logged in users can chat with their friends.
