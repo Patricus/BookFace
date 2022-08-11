@@ -7,13 +7,13 @@ import "./editProfileForm.css";
 
 // Form used to edit a post
 function EditProfileForm({ profile, setShowEditProfile }) {
-    const [bio, setBio] = useState(profile.bio);
+    const [bio, setBio] = useState(profile.bio || "");
     const [born_from, setBorn_from] = useState(profile.born_from);
     const [born_from_city, setBorn_from_city] = useState(
-        profile.born_from ? profile.born_from.split(", ")[0] : null
+        profile.born_from ? profile.born_from.split(", ")[0] : ""
     );
     const [born_from_state, setBorn_from_state] = useState(
-        profile.born_from ? profile.born_from.split(", ")[1] : null
+        profile.born_from ? profile.born_from.split(", ")[1] : ""
     );
     const [cover_pic, setCover_pic] = useState();
     const [previewCover_pic, setPreviewCover_pic] = useState(profile.cover_pic);
@@ -23,10 +23,10 @@ function EditProfileForm({ profile, setShowEditProfile }) {
     );
     const [lives_in, setLives_in] = useState(profile.lives_in);
     const [lives_in_city, setLives_in_city] = useState(
-        profile.lives_in ? profile.lives_in.split(", ")[0] : null
+        profile.lives_in ? profile.lives_in.split(", ")[0] : ""
     );
     const [lives_in_state, setLives_in_state] = useState(
-        profile.lives_in ? profile.lives_in.split(", ")[1] : null
+        profile.lives_in ? profile.lives_in.split(", ")[1] : ""
     );
     const [errors, setErrors] = useState([]);
 
