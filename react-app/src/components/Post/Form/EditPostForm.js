@@ -25,6 +25,7 @@ function EditPostForm({ post, setShowEditPost }) {
             return;
         } else {
             //Close modal
+            setErrors([]);
             setShowEditPost(false);
         }
     };
