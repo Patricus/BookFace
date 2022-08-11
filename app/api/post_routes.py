@@ -78,9 +78,9 @@ def update_post(id):
         if post.user_id != current_user.id:
             return {'errors': ["You don't own this post."]}, 403
 
-        post.text = form.data['text'],
-        post.image_link = form.data['image_link'],
-        post.edited_at = form.data['edited_at'],
+        post.text = form.data['text']
+        post.image_link = form.data['image_link']
+        post.edited_at = form.data['edited_at']
 
         db.session.commit()
         return post.to_dict()

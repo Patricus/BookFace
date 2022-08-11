@@ -6,7 +6,7 @@ import { Modal } from "../../Modal";
 // Form used to edit a post
 function EditPostForm({ post, setShowEditPost }) {
     const [text, setText] = useState(post.text);
-    const [image, setImage] = useState(post.image_link);
+    const [image, setImage] = useState();
     const [errors, setErrors] = useState([]);
     const [textErrors, setTextErrors] = useState([]);
     const [imageErrors, setImageErrors] = useState([]);
@@ -17,7 +17,30 @@ function EditPostForm({ post, setShowEditPost }) {
         e.preventDefault();
         setErrors([]);
 
-        const data = await dispatch(editPost(post.id, text, image));
+        let image_link = "";
+        if (image) {
+            const imageData = new FormData();
+            imageData.append("image", image);
+
+            const imageRes = await fetch(`/api/images/`, {
+                method: "POST",
+                body: imageData,
+            });
+
+            if (imageRes.ok) {
+                image_link = await imageRes.json();
+                image_link = image_link.url;
+            } else if (imageRes.status < 500) {
+                const data = await imageRes.json();
+                if (data.errors) {
+                    return [data.errors];
+                }
+            } else {
+                return ["An error occurred. Please try again."];
+            }
+        }
+
+        const data = await dispatch(editPost(post.id, text, image_link));
 
         if (data) {
             //Show errors
@@ -76,11 +99,11 @@ function EditPostForm({ post, setShowEditPost }) {
                         name="image"
                         type="file"
                         accept="image/*"
-                        onChange={e => setImage(e.target.value)}
+                        onChange={e => setImage(e.target.files[0])}
                     />
                     {image ? image.name : `Upload Photo`}
                 </label>
-                <button>Update profile</button>
+                <button>Update post</button>
             </form>
         </Modal>
     );
