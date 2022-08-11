@@ -53,7 +53,7 @@ function CreatePostForm() {
             setText("");
             setImage("");
             setErrors([]);
-            setShowCreatePost(false);
+            // setShowCreatePost(false);
         }
     };
 

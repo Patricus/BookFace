@@ -59,6 +59,8 @@ def read_posts():
                  or_(Friend.user_id == current_user.id,
                      Friend.friend_id == current_user.id)), Post.user_id == current_user.id)).all()
 
+    print(f"\n\n\n\n\n\n\n\n\n\n {posts} \n\n\n\n\n\n\n\n\n\n\n")
+
     return {'posts': [post.to_dict() for post in posts]}
 
 

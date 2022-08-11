@@ -44,7 +44,7 @@ function EditPostForm({ post, setShowEditPost }) {
 
     return (
         <Modal onClose={() => setShowEditPost(false)}>
-            <h2>Edit profile</h2>
+            <h2>Edit post</h2>
             <form className="post-form" onSubmit={submit}>
                 {textErrors.length > 0 && (
                     <div className="errors">
