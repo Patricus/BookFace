@@ -27,6 +27,12 @@ def age_check(form, field):
         raise ValidationError('Must be over 13.')
 
 
+def long_name_check(form, field):
+    # Check if name length is too long
+    if len(field.data) > 31:
+        raise ValidationError('Name must be less than 31 characters.')
+
+
 def confirm_password_check(form, field):
     # Check if confirm password == password
     if form.data['password'] != field.data:
@@ -41,9 +47,9 @@ def reEmail_check(form, field):
 
 class SignUpForm(FlaskForm):
     firstName = StringField(
-        'first_name', validators=[DataRequired()])
+        'first_name', validators=[DataRequired(), long_name_check])
     lastName = StringField(
-        'last_name', validators=[DataRequired()])
+        'last_name', validators=[DataRequired(), long_name_check])
     email = StringField('email', validators=[
         DataRequired(), Email(), user_exists])
     reEmail = StringField('reEmail', validators=[
