@@ -28,6 +28,7 @@ function EditProfileForm({ profile, setShowEditProfile }) {
     const [lives_in_state, setLives_in_state] = useState(
         profile.lives_in ? profile.lives_in.split(", ")[1] : ""
     );
+    const [bioErrors, setBioErrors] = useState(null);
     const [lives_in_errors, setLives_in_errors] = useState(null);
     const [born_from_errors, setBorn_from_errors] = useState(null);
     const [errors, setErrors] = useState([]);
@@ -41,6 +42,11 @@ function EditProfileForm({ profile, setShowEditProfile }) {
     useEffect(() => {
         setLives_in(`${lives_in_city}, ${lives_in_state}`);
     }, [setLives_in, lives_in_city, lives_in_state]);
+
+    useEffect(() => {
+        if (bio.length > 101) setBioErrors("Bio must be under 101 characters.");
+        else setBioErrors(null);
+    }, [bio]);
 
     useEffect(() => {
         if (lives_in_city && !lives_in_state) {
@@ -193,12 +199,18 @@ function EditProfileForm({ profile, setShowEditProfile }) {
                         {cover_pic ? cover_pic.name : `Upload Cover Photo`}
                     </label>
                     <h3>Bio</h3>
+                    {bioErrors && (
+                        <div className="profile-errors">
+                            <div className="profile-error">{bioErrors}</div>
+                        </div>
+                    )}
                     <textarea
                         name="bio"
                         placeholder="Describe yourself..."
                         value={bio}
                         onChange={e => setBio(e.target.value)}
                     />
+                    <small>{`Bio character count ${bio.length}/101`}</small>
                     <h3>Customize your intro</h3>
                     <div className="profile-datefields">
                         <label>Lives in</label>
