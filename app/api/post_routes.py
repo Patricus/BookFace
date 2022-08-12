@@ -53,10 +53,11 @@ def read_posts():
     Read posts.
     """
 
-    posts = Post.query.select_from(User).join(Friend,
-                                              Friend.user_id == User.id).filter(
-        or_(Post.user_id == current_user.id,
-            and_(or_(Friend.user_id == Post.user_id, Friend.friend_id == Post.user_id), Friend.accepted == True))).all()
+    posts = Post.query.select_from(User).join(Friend, or_(Friend.friend_id == User.id, Friend.user_id == User.id)).filter(
+        or_(Post.user_id == current_user.id, and_(Friend.accepted == True, or_(Friend.user_id == current_user.id, Friend.friend_id == current_user.id)))).all()
+
+    # friends = User.query.join(Friend, or_(Friend.friend_id == User.id, Friend.user_id == User.id)).filter(
+    #     and_(and_(or_(Friend.user_id == current_user.id, Friend.friend_id == current_user.id), Friend.accepted == True), User.id != current_user.id)).all()
 
     return {'posts': [post.to_dict() for post in posts]}
 

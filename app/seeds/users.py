@@ -8,7 +8,19 @@ def seed_users():
         last_name='Doe',
         email='demo@demo.com',
         password='password',
-        birthday='2022-02-02',
+        birthday='2000-01-01',
+        bio='This is my bio.',
+        lives_in='Santa Barbara, California',
+        born_from='Santa Clara, California',
+        profile_pic="https://i.imgur.com/rORsHku.png",
+        cover_pic='https://www.planetware.com/wpimages/2022/04/california-santa-barbara-top-attractions-things-to-do-intro-paragraph-beach.jpg')
+
+    demo2 = User(
+        first_name='Patrick',
+        last_name='Mcpherson',
+        email='pat@pat.com',
+        password='password',
+        birthday='1990-03-10',
         bio='This is my bio.',
         lives_in='Santa Barbara, California',
         born_from='Santa Clara, California',
@@ -16,6 +28,7 @@ def seed_users():
         cover_pic='https://www.planetware.com/wpimages/2022/04/california-santa-barbara-top-attractions-things-to-do-intro-paragraph-beach.jpg')
 
     db.session.add(demo)
+    db.session.add(demo2)
 
     db.session.commit()
 
