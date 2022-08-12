@@ -7,10 +7,10 @@ function Intro({ profile }) {
             <h3>Intro</h3>
             <p>
                 Bio <br />
-                {profile.bio}
+                {profile.bio ? profile.bio : `No bio, yet.`}
             </p>
-            <p>{`Lives in ${profile.lives_in}`}</p>
-            <p>{`From ${profile.born_from}`}</p>
+            {profile.lives_in && <p>{`Lives in ${profile.lives_in}`}</p>}
+            {profile.born_from && <p>{`From ${profile.born_from}`}</p>}
         </div>
     );
 }

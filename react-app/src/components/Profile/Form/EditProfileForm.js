@@ -33,11 +33,19 @@ function EditProfileForm({ profile, setShowEditProfile }) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        setBorn_from(`${born_from_city}, ${born_from_state}`);
+        if (born_from_city && !born_from_state) setBorn_from(born_from_city);
+        if (!born_from_city && born_from_state) setBorn_from(born_from_state);
+        if (born_from_city && born_from_state) {
+            setBorn_from(`${born_from_city}, ${born_from_state}`);
+        }
     }, [setBorn_from, born_from_city, born_from_state]);
 
     useEffect(() => {
-        setLives_in(`${lives_in_city}, ${lives_in_state}`);
+        if (lives_in_city && !lives_in_state) setBorn_from(lives_in_city);
+        if (!lives_in_city && lives_in_state) setBorn_from(lives_in_state);
+        if (lives_in_city && lives_in_state) {
+            setLives_in(`${lives_in_city}, ${lives_in_state}`);
+        }
     }, [setLives_in, lives_in_city, lives_in_state]);
 
     const submit = async e => {
