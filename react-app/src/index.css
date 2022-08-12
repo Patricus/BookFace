@@ -46,6 +46,9 @@ a {
     cursor: pointer;
     text-align: center;
     line-height: 32px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .custom-file-upload:hover {
