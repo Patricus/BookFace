@@ -69,3 +69,33 @@
 #update-profile-button:hover {
     background-color: #3a73ce;
 }
+
+.profile-errors {
+    position: relative;
+    align-self: flex-start;
+}
+
+.profile-errors::after {
+    content: "";
+    position: absolute;
+    background-color: #be4b49;
+    top: -5px;
+    right: 0px;
+    height: 20px;
+    width: 12px;
+    clip-path: polygon(100% 0, 0 0, 50% 50%);
+    box-shadow: 0 0 0 1px rgb(139 3 0 / 75%), 0 1px 10px rgb(0 0 0 / 35%);
+}
+
+.profile-error {
+    position: absolute;
+    background-color: #be4b49;
+    padding: 1px 16px;
+    width: max-content;
+    left: -15px;
+    bottom: 3px;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px rgb(139 3 0 / 75%), 0 1px 10px rgb(0 0 0 / 35%);
+    color: #fff;
+}

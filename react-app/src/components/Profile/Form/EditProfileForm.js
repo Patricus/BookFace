@@ -28,29 +28,48 @@ function EditProfileForm({ profile, setShowEditProfile }) {
     const [lives_in_state, setLives_in_state] = useState(
         profile.lives_in ? profile.lives_in.split(", ")[1] : ""
     );
+    const [lives_in_errors, setLives_in_errors] = useState(null);
+    const [born_from_errors, setBorn_from_errors] = useState(null);
     const [errors, setErrors] = useState([]);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (born_from_city && !born_from_state) setBorn_from(born_from_city);
-        if (!born_from_city && born_from_state) setBorn_from(born_from_state);
-        if (born_from_city && born_from_state) {
-            setBorn_from(`${born_from_city}, ${born_from_state}`);
-        }
+        setBorn_from(`${born_from_city}, ${born_from_state}`);
     }, [setBorn_from, born_from_city, born_from_state]);
 
     useEffect(() => {
-        if (lives_in_city && !lives_in_state) setBorn_from(lives_in_city);
-        if (!lives_in_city && lives_in_state) setBorn_from(lives_in_state);
-        if (lives_in_city && lives_in_state) {
-            setLives_in(`${lives_in_city}, ${lives_in_state}`);
-        }
+        setLives_in(`${lives_in_city}, ${lives_in_state}`);
     }, [setLives_in, lives_in_city, lives_in_state]);
+
+    useEffect(() => {
+        if (lives_in_city && !lives_in_state) {
+            setLives_in_errors("Please add a state.");
+        }
+        if (!lives_in_city && lives_in_state) {
+            setLives_in_errors("Please add a city.");
+        }
+        if (lives_in_city && lives_in_state) {
+            setLives_in_errors(null);
+        }
+        if (born_from_city && !born_from_state) {
+            setBorn_from_errors("Please add a state.");
+        }
+        if (!born_from_city && born_from_state) {
+            setBorn_from_errors("Please add a city.");
+        }
+        if (born_from_city && born_from_state) {
+            setBorn_from_errors(null);
+        }
+    }, [born_from_city, born_from_state, lives_in_city, lives_in_state]);
 
     const submit = async e => {
         e.preventDefault();
         setErrors([]);
+
+        if (lives_in_errors || born_from_errors) {
+            return;
+        }
 
         const data = await dispatch(editUser(bio, born_from, cover_pic, profile_pic, lives_in));
 
@@ -183,6 +202,11 @@ function EditProfileForm({ profile, setShowEditProfile }) {
                     <h3>Customize your intro</h3>
                     <div className="profile-datefields">
                         <label>Lives in</label>
+                        {lives_in_errors && (
+                            <div className="profile-errors">
+                                <div className="profile-error">{lives_in_errors}</div>
+                            </div>
+                        )}
                         <input
                             name="lives_in_city"
                             placeholder="What city do you live in?"
@@ -202,6 +226,11 @@ function EditProfileForm({ profile, setShowEditProfile }) {
                     </div>
                     <div className="profile-datefields">
                         <label>Born from</label>
+                        {born_from_errors && (
+                            <div className="profile-errors">
+                                <div className="profile-error">{born_from_errors}</div>
+                            </div>
+                        )}
                         <input
                             name="born_from_city"
                             placeholder="What city do you live in?"
