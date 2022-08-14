@@ -83,6 +83,9 @@ function ProfilePage() {
                                 .filter(post => {
                                     return post.user_id === profile.id;
                                 })
+                                .sort((a, b) => {
+                                    return new Date(b.created_at) - new Date(a.created_at);
+                                })
                                 .map(post => {
                                     return <Post key={post.id} post={post} />;
                                 })}
