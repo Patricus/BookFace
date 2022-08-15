@@ -14,8 +14,6 @@ Checkout Bookface at https://bookface-site.herokuapp.com/
 
 #### [User Stories](https://github.com/Patricus/BookFace/wiki/User-Stories)
 
-#### [API Routes](https://github.com/Patricus/Bookface/wiki/API-Routes)
-
 #### [Wire Frames and Front End Routes](https://github.com/Patricus/BookFace/wiki/Wireframes-and-Front-End-Routes)
 
 ## Login Page
