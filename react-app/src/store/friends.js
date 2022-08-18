@@ -66,7 +66,6 @@ export const removeFriend = (user_id, friend_id) => async dispatch => {
         body: JSON.stringify({ user_id, friend_id }),
     });
     if (response.ok) {
-        const data = await response.json();
         dispatch(deleteFriend(friend_id));
         return null;
     } else if (response.status < 500) {

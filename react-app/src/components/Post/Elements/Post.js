@@ -6,7 +6,6 @@ import CreateCommentForm from "../../Comment/Form/CreateCommentForm";
 import PostDropdown from "./PostDropdown";
 import "./post.css";
 import PosterInfo from "./PosterInfo";
-import { getPosts } from "../../../store/posts";
 
 function Post({ post }) {
     const dispatch = useDispatch();
