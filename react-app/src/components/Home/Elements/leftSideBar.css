@@ -1,7 +1,6 @@
 #left-sidebar {
     max-width: 340px;
     width: 18%;
-    /* padding-right: 5px; */
     box-sizing: border-box;
     margin-left: 10px;
 }
@@ -29,4 +28,5 @@
     gap: 10px;
     text-decoration: none;
     color: rgb(5, 5, 5);
+    overflow: hidden;
 }
