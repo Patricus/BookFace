@@ -111,6 +111,11 @@
     align-self: flex-start;
 }
 
+#signup-form input,
+#signup-form select {
+    background-color: whitesmoke;
+}
+
 #login-form input:focus,
 #signup-form input:focus,
 #name-input input:focus {
