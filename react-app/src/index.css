@@ -86,3 +86,7 @@ input[type="file"] {
     left: 5px;
     top: -20px;
 }
+
+img {
+    background-color: whitesmoke;
+}
