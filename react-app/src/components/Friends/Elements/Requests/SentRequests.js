@@ -7,10 +7,13 @@ function SentRequests({ requests, setShowSentRequests }) {
         <Modal onClose={() => setShowSentRequests(false)}>
             <div>
                 <h2>Sent Requests</h2>
-                {requests &&
+                {Object.keys(requests).length ? (
                     Object.values(requests).map(request => {
                         return <RequestSentCard key={request.id} request={request} />;
-                    })}
+                    })
+                ) : (
+                    <h3>No sent requests.</h3>
+                )}
             </div>
         </Modal>
     );

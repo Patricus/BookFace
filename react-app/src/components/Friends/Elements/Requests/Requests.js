@@ -27,10 +27,13 @@ function Requests({ requests }) {
                 </button>
             </div>
             <div className="cardContainer">
-                {requests &&
+                {Object.keys(requests).length ? (
                     Object.values(requests).map(request => (
                         <RequestCard key={request.id} request={request} />
-                    ))}
+                    ))
+                ) : (
+                    <h2>No Friend Request.</h2>
+                )}
             </div>
         </div>
     );
