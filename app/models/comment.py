@@ -1,3 +1,4 @@
+from app.models.likes import Like
 from .db import db
 
 
@@ -19,6 +20,8 @@ class Comment(db.Model):
                             cascade='all, delete-orphan', passive_deletes=True)
 
     def to_dict(self):
+        likes = Like.query.filter(Like.post_id == self.id).all().count()
+
         return {
             'id': self.id,
             'user_id': self.user_id,
@@ -26,4 +29,5 @@ class Comment(db.Model):
             'text': self.text,
             'created_at': self.created_at,
             'edited_at': self.edited_at,
+            'likes': likes
         }

@@ -1,3 +1,4 @@
+from app.models.likes import Like
 from .db import db
 from .comment import Comment
 
@@ -17,10 +18,10 @@ class Post(db.Model):
     comments = db.relationship('Comment', back_populates='posts',
                                cascade='all, delete-orphan', passive_deletes=True)
     likes = db.relationship('Like', back_populates='posts',
-                               cascade='all, delete-orphan', passive_deletes=True)
+                            cascade='all, delete-orphan', passive_deletes=True)
 
     def to_dict(self):
-        comments = Comment.query.filter(Comment.post_id == self.id).all()
+        likes = Like.query.filter(Like.post_id == self.id).all().count()
 
         return {
             'id': self.id,
@@ -29,7 +30,7 @@ class Post(db.Model):
             'image_link': self.image_link,
             'created_at': self.created_at,
             'edited_at': self.edited_at,
-            'comments': {}
-            # 'comments': [comment.to_dict() for comment in comments]
+            'comments': {},
+            'likes': likes
 
         }
