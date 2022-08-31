@@ -46,7 +46,7 @@ def create_comment():
 @login_required
 def read_comments(id):
     """
-    Read of a post comments.
+    Read comments of a post.
     """
 
     post_comments = Comment.query.filter(

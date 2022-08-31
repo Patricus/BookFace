@@ -56,5 +56,5 @@ class User(db.Model, UserMixin):
             'born_from': self.born_from,
             'profile_pic': self.profile_pic,
             'cover_pic': self.cover_pic,
-            'likes': [like.to_dict() for like in likes]
+            'likes': {like.id: like.to_dict() for like in likes}
         }

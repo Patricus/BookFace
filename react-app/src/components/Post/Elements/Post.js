@@ -12,6 +12,7 @@ function Post({ post }) {
 
     const user = useSelector(state => state.session.user);
     const friends = useSelector(state => state.friends);
+    const comments = Object.values(useSelector(state => state.posts[post.id].comments));
 
     useEffect(() => {
         if (post) dispatch(getComments(post.id));
@@ -55,10 +56,16 @@ function Post({ post }) {
                         <p>{post.text}</p>
                         {post.image_link && <img src={post.image_link} alt="post" />}
                     </div>
-                    {post.comments &&
-                        Object.values(post.comments).map(comment => (
-                            <Comment key={comment.id} comment={comment} />
-                        ))}
+                    <div>
+                        <span>{`Likes: ${post.likes}`}</span>
+                        {comments ? (
+                            <span>{`Comments: ${comments.length}`}</span>
+                        ) : (
+                            <span>Comments: 0</span>
+                        )}
+                    </div>
+                    {comments &&
+                        comments.map(comment => <Comment key={comment.id} comment={comment} />)}
                     <CreateCommentForm post_id={post.id} />
                 </div>
             )}

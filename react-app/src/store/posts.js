@@ -53,6 +53,7 @@ export const getPosts = () => async dispatch => {
     const response = await fetch("/api/posts/");
     if (response.ok) {
         const data = await response.json();
+        console.log("data", data);
         dispatch(readPosts(data));
         return null;
     } else if (response.status < 500) {
