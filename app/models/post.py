@@ -16,6 +16,8 @@ class Post(db.Model):
     users = db.relationship('User', back_populates='posts')
     comments = db.relationship('Comment', back_populates='posts',
                                cascade='all, delete-orphan', passive_deletes=True)
+    likes = db.relationship('Like', back_populates='posts',
+                               cascade='all, delete-orphan', passive_deletes=True)
 
     def to_dict(self):
         comments = Comment.query.filter(Comment.post_id == self.id).all()
