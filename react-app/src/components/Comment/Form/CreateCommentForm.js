@@ -38,6 +38,7 @@ function CreateCommentForm({ post_id }) {
                     </div>
                 )}
                 <textarea
+                    id={`comment-${post_id}-input`}
                     name="text"
                     placeholder="Write a comment..."
                     value={text}

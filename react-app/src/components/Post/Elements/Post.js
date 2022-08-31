@@ -35,6 +35,11 @@ function Post({ post }) {
         return new Date(date).toLocaleDateString();
     };
 
+    const focusInput = () => {
+        const toFocus = document.getElementById(`comment-${post.id}-input`);
+        toFocus.focus();
+    };
+
     return (
         <>
             {post && friends && user && (
@@ -56,13 +61,17 @@ function Post({ post }) {
                         <p>{post.text}</p>
                         {post.image_link && <img src={post.image_link} alt="post" />}
                     </div>
-                    <div>
+                    <div className="counter">
                         <span>{`Likes: ${post.likes}`}</span>
                         {comments ? (
                             <span>{`Comments: ${comments.length}`}</span>
                         ) : (
                             <span>Comments: 0</span>
                         )}
+                    </div>
+                    <div className="like-comment">
+                        <button>Like</button>
+                        <button onClick={focusInput}>Comment</button>
                     </div>
                     {comments &&
                         comments.map(comment => <Comment key={comment.id} comment={comment} />)}
