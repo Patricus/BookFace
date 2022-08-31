@@ -1,3 +1,4 @@
+from app.models.likes import Like
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -23,6 +24,8 @@ class User(db.Model, UserMixin):
                             cascade='all, delete-orphan', passive_deletes=True)
     comments = db.relationship("Comment", back_populates="users",
                                cascade='all, delete-orphan', passive_deletes=True)
+    likes = db.relationship("Like", back_populates="users",
+                            cascade='all, delete-orphan', passive_deletes=True)
     friend1 = db.relationship("Friend", foreign_keys="[Friend.user_id]", back_populates="user1",
                               cascade='all, delete-orphan', passive_deletes=True)
     friend2 = db.relationship("Friend", foreign_keys="[Friend.friend_id]", back_populates="user2",
@@ -40,7 +43,7 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password, password)
 
     def to_dict(self):
-        posts = Post.query.filter(Post.user_id == self.id).all()
+        likes = Like.query.filter(Like.user_id == self.id).all()
 
         return {
             'id': self.id,
@@ -53,4 +56,5 @@ class User(db.Model, UserMixin):
             'born_from': self.born_from,
             'profile_pic': self.profile_pic,
             'cover_pic': self.cover_pic,
+            'likes': [like.to_dict() for like in likes]
         }
