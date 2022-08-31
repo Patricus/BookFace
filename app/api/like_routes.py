@@ -46,9 +46,12 @@ def read_likes():
     Read likes for current user.
     """
 
-    likes = Like.query.join(User, User.id == current_user.id)
+    all_likes = Like.query.join(User, User.id == current_user.id)
+    post_likes = all_likes.filter(lambda like: like.comment_id == None)
+    comment_likes = all_likes.filter(lambda like: like.post_id == None)
 
-    return {'likes': [like.to_dict() for like in likes]}
+    return {'likes': {'post_likes': [like.to_dict() for like in post_likes]},
+            'comment_likes': [like.to_dict() for like in comment_likes]}
 
 
 @ like_routes.route('/<int:id>/', methods=['DELETE'])
