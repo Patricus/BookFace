@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import EditCommentForm from "../Form/EditCommentForm";
 import CommentDropdown from "./CommentDropdown";
 import "./comment.css";
 import defaultProfilePic from "../../images/default-profile.png";
+import { makeLike, removeLike } from "../../../store/likes";
 
 function Comment({ comment }) {
     const [showEditComment, setShowEditComment] = useState(false);
     const [commenter, setCommenter] = useState(null);
 
+    const dispatch = useDispatch();
+
     const user = useSelector(state => state.session.user);
+    const likes = Object.values(useSelector(state => state.likes)).filter(
+        like => like.comment_id === comment.id
+    );
 
     useEffect(() => {
         (async () => {
@@ -33,6 +39,16 @@ function Comment({ comment }) {
         if (post_date < 7) return Math.floor(post_date) + "d";
         // more than a week
         return new Date(date).toLocaleDateString();
+    };
+
+    const like = () => {
+        if (likes < 1) {
+            dispatch(makeLike(null, comment.id));
+            comment.likes++;
+        } else {
+            dispatch(removeLike(likes[0].id));
+            comment.likes--;
+        }
     };
 
     return (
@@ -67,7 +83,7 @@ function Comment({ comment }) {
                                     <h4>{`${commenter.first_name} ${commenter.last_name}`}</h4>
                                     <p>{comment.text}</p>
                                 </div>
-                                <button>{`Likes: ${comment.likes}`}</button>
+                                <button onClick={like}>{`Likes: ${comment.likes}`}</button>
                             </div>
                         </>
                     )}
