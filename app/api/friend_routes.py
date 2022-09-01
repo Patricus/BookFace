@@ -30,12 +30,6 @@ def create_friend_request():
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        # Check if request already exists
-        friend_request_check = Friend.query.filter(
-            or_(and_(Friend.user_id == current_user.id, Friend.friend_id == form.data['friend_id']), and_(Friend.friend_id == current_user.id, Friend.user_id == form.data['friend_id'])))
-
-        # TODO create check logic
-
         # Create the friend request
         friend_request = Friend(
             user_id=current_user.id,

@@ -6,6 +6,7 @@ import CreateCommentForm from "../../Comment/Form/CreateCommentForm";
 import PostDropdown from "./PostDropdown";
 import "./post.css";
 import PosterInfo from "./PosterInfo";
+import { getLikes, makeLike, removeLike } from "../../../store/likes";
 
 function Post({ post }) {
     const dispatch = useDispatch();
@@ -13,6 +14,9 @@ function Post({ post }) {
     const user = useSelector(state => state.session.user);
     const friends = useSelector(state => state.friends);
     const comments = Object.values(useSelector(state => state.posts[post.id].comments));
+    const likes = Object.values(useSelector(state => state.likes)).filter(
+        like => like.post_id === post.id
+    );
 
     useEffect(() => {
         if (post) dispatch(getComments(post.id));
@@ -38,6 +42,16 @@ function Post({ post }) {
     const focusInput = () => {
         const toFocus = document.getElementById(`comment-${post.id}-input`);
         toFocus.focus();
+    };
+
+    const like = () => {
+        if (likes < 1) {
+            dispatch(makeLike(post.id, null));
+            post.likes++;
+        } else {
+            dispatch(removeLike(likes[0].id));
+            post.likes--;
+        }
     };
 
     return (
@@ -70,7 +84,7 @@ function Post({ post }) {
                         )}
                     </div>
                     <div className="like-comment">
-                        <button>Like</button>
+                        <button onClick={like}>Like</button>
                         <button onClick={focusInput}>Comment</button>
                     </div>
                     {comments &&

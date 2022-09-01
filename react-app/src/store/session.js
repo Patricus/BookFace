@@ -183,7 +183,7 @@ export default function reducer(state = initialState, action) {
         case REMOVE_USER:
             return { user: null };
         default:
-            const defaultState = { ...state, ...likes(state, action) };
+            const defaultState = { ...state};
             return defaultState;
     }
 }

@@ -83,17 +83,17 @@ export default function reducer(state = initialState, action) {
     switch (action.type) {
         case CREATE_LIKE:
             const createState = { ...state };
-            createState.user.likes[action.payload.id] = action.payload;
+            createState[action.payload.id] = action.payload;
             return createState;
         case READ_LIKE:
-            const readState = { ...state };
+            const readState = {};
             action.payload.likes.forEach(like => {
-                readState.user.likes[like.id] = like;
+                readState[like.id] = like;
             });
             return readState;
         case DELETE_LIKE:
             const deleteState = { ...state };
-            delete deleteState.user.likes[action.payload.id];
+            delete deleteState[action.payload.id];
             return deleteState;
         default:
             return state;

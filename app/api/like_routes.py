@@ -24,7 +24,7 @@ def create_like():
     Create a like.
     """
 
-    data = request.data
+    data = request.get_json()
 
     # Create the like
     like = Like(

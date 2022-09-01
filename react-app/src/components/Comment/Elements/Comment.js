@@ -67,6 +67,7 @@ function Comment({ comment }) {
                                     <h4>{`${commenter.first_name} ${commenter.last_name}`}</h4>
                                     <p>{comment.text}</p>
                                 </div>
+                                <button>{`Likes: ${comment.likes}`}</button>
                             </div>
                         </>
                     )}

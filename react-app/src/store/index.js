@@ -6,6 +6,7 @@ import friends from "./friends";
 import users from "./users";
 import sentRequests from "./sentRequests";
 import receivedRequests from "./receivedRequests";
+import likes from "./likes";
 
 const rootReducer = combineReducers({
     session,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
         received: receivedRequests,
     }),
     users,
+    likes,
 });
 
 let enhancer;
