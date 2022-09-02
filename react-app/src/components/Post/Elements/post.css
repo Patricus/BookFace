@@ -1,5 +1,4 @@
 .post {
-    border-bottom: 1px solid lightgrey;
     width: 100%;
 }
 
@@ -68,6 +67,40 @@
     position: absolute;
     top: 30px;
     left: 60px;
+}
+
+.counter {
+    padding: 5px;
+    margin: 0 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.like-comment {
+    margin: 3px 15px;
+    padding: 10px;
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+    display: flex;
+    justify-content: space-around;
+}
+
+.blueLike {
+    background-color: #3a73ce;
+    font-weight: 600;
+    color: white;
+}
+
+.blueLike:hover,
+.greyLike:hover {
+    background-color: #1877f2;
+    box-shadow: 0 0 2px #1877f2;
+}
+
+.greyLike {
+    background-color: rgb(136, 136, 136);
+    font-weight: 600;
+    color: lightgray;
 }
 
 .poster-info > img {

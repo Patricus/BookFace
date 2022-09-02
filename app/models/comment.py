@@ -20,7 +20,7 @@ class Comment(db.Model):
                             cascade='all, delete-orphan', passive_deletes=True)
 
     def to_dict(self):
-        likes = Like.query.filter(Like.post_id == self.id).count()
+        likes = Like.query.filter(Like.comment_id == self.id).count()
 
         return {
             'id': self.id,

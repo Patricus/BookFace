@@ -84,7 +84,9 @@ function Post({ post }) {
                         )}
                     </div>
                     <div className="like-comment">
-                        <button onClick={like}>Like</button>
+                        <button className={likes.length ? "blueLike" : "greyLike"} onClick={like}>
+                            Like
+                        </button>
                         <button onClick={focusInput}>Comment</button>
                     </div>
                     {comments &&

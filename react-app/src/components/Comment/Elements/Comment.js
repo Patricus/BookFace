@@ -13,9 +13,10 @@ function Comment({ comment }) {
     const dispatch = useDispatch();
 
     const user = useSelector(state => state.session.user);
-    const likes = Object.values(useSelector(state => state.likes)).filter(
+    const userLikes = Object.values(useSelector(state => state.likes)).filter(
         like => like.comment_id === comment.id
     );
+    // const commentLikes = useSelector(state =>)
 
     useEffect(() => {
         (async () => {
@@ -42,11 +43,11 @@ function Comment({ comment }) {
     };
 
     const like = () => {
-        if (likes < 1) {
+        if (userLikes.length < 1) {
             dispatch(makeLike(null, comment.id));
             comment.likes++;
         } else {
-            dispatch(removeLike(likes[0].id));
+            dispatch(removeLike(userLikes[0].id));
             comment.likes--;
         }
     };
@@ -83,7 +84,9 @@ function Comment({ comment }) {
                                     <h4>{`${commenter.first_name} ${commenter.last_name}`}</h4>
                                     <p>{comment.text}</p>
                                 </div>
-                                <button onClick={like}>{`Likes: ${comment.likes}`}</button>
+                                <button
+                                    className={userLikes.length > 0 ? "blueLike" : "greyLike"}
+                                    onClick={like}>{`Likes: ${comment.likes}`}</button>
                             </div>
                         </>
                     )}
