@@ -91,16 +91,19 @@
     color: white;
 }
 
-.blueLike:hover,
-.greyLike:hover {
+.blueLike:hover {
     background-color: #1877f2;
-    box-shadow: 0 0 2px #1877f2;
+    box-shadow: 0 0 3px #1877f2;
+}
+
+.greyLike:hover {
+    background-color: whitesmoke;
+    box-shadow: 0 0 3px rgb(136, 136, 136);
 }
 
 .greyLike {
-    background-color: rgb(136, 136, 136);
     font-weight: 600;
-    color: lightgray;
+    color: black;
 }
 
 .poster-info > img {
