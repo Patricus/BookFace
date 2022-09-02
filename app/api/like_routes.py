@@ -46,7 +46,7 @@ def read_likes():
     Read likes for current user.
     """
 
-    likes = Like.query.join(User, User.id == current_user.id)
+    likes = Like.query.filter(Like.user_id == current_user.id)
 
     return {'likes': [like.to_dict() for like in likes]}
 
