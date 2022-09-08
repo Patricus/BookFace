@@ -1,4 +1,3 @@
-import likes from "./likes";
 // constants
 const SET_USER = "session/SET_USER";
 const UPDATE_USER = "session/UPDATE_USER";
@@ -183,7 +182,7 @@ export default function reducer(state = initialState, action) {
         case REMOVE_USER:
             return { user: null };
         default:
-            const defaultState = { ...state};
+            const defaultState = { ...state };
             return defaultState;
     }
 }

@@ -6,7 +6,7 @@ import CreateCommentForm from "../../Comment/Form/CreateCommentForm";
 import PostDropdown from "./PostDropdown";
 import "./post.css";
 import PosterInfo from "./PosterInfo";
-import { getLikes, makeLike, removeLike } from "../../../store/likes";
+import { makeLike, removeLike } from "../../../store/likes";
 
 function Post({ post }) {
     const dispatch = useDispatch();
@@ -41,8 +41,8 @@ function Post({ post }) {
 
     const focusInput = () => {
         const toFocus = document.getElementById(`comment-${post.id}-input`);
-        toFocus.scrollIntoView({ behavior: "smooth", block: "end" });
-        setTimeout(() => toFocus.focus(), 600);
+        toFocus.scrollIntoView({ behavior: "smooth", block: "center" });
+        setTimeout(() => toFocus.focus(), 500);
     };
 
     const like = () => {
