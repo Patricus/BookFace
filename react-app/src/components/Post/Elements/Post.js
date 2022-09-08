@@ -41,7 +41,8 @@ function Post({ post }) {
 
     const focusInput = () => {
         const toFocus = document.getElementById(`comment-${post.id}-input`);
-        toFocus.focus();
+        toFocus.scrollIntoView({ behavior: "smooth", block: "end" });
+        setTimeout(() => toFocus.focus(), 600);
     };
 
     const like = () => {
@@ -76,7 +77,10 @@ function Post({ post }) {
                         {post.image_link && <img src={post.image_link} alt="post" />}
                     </div>
                     <div className="counter">
-                        <span>{`Likes: ${post.likes}`}</span>
+                        <span>
+                            <i class="fa-solid fa-thumbs-up" style={{ color: "#3a73ce" }}></i>
+                            {` ${post.likes}`}
+                        </span>
                         {comments ? (
                             <span>{`Comments: ${comments.length}`}</span>
                         ) : (
