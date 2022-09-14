@@ -4,6 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import MenuButton from "./MenuButton";
 import B from "../images/B.png";
 import "./navbar.css";
+import Searchbar from "./Searchbar";
 
 const NavBar = () => {
     const user = useSelector(state => state.session.user);
@@ -18,6 +19,7 @@ const NavBar = () => {
                                 <img src={B} alt="Logo" />
                             </div>
                         </Link>
+                        <Searchbar />
                     </div>
                     <div id="nav-buttons">
                         <NavLink

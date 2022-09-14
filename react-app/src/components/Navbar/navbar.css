@@ -129,3 +129,8 @@
 .profile-dropdown-button {
     width: 16em;
 }
+
+#navbar > div:nth-child(1) {
+    display: flex;
+    align-items: center;
+}
