@@ -85,7 +85,6 @@ function Comment({ comment }) {
                                     <p>{comment.text}</p>
                                 </div>
                                 <button
-                                    style={{ position: "relative", top: "-7px" }}
                                     className={userLikes.length > 0 ? "blueLike" : "greyLike"}
                                     onClick={like}>
                                     <i
