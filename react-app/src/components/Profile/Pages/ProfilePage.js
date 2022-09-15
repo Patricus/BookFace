@@ -86,7 +86,6 @@ function ProfilePage() {
                     </div>
                     <div id="right-column">
                         {user === profile && <CreatePostForm />}
-                        {console.log("posts", posts)}
                         {posts.length > 0 ? (
                             posts
                                 .sort((a, b) => {
