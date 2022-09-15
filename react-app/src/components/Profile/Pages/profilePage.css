@@ -17,7 +17,7 @@
     position: relative;
     left: 50px;
     font-size: 34px;
-    max-width: min-content;
+    max-width: 1025px;
 }
 
 #edit-profile-button {
