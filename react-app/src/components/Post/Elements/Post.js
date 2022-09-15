@@ -78,7 +78,7 @@ function Post({ post }) {
                     </div>
                     <div className="counter">
                         <span>
-                            <i class="fa-solid fa-thumbs-up" style={{ color: "#3a73ce" }}></i>
+                            <i className="fa-solid fa-thumbs-up" style={{ color: "#3a73ce" }}></i>
                             {` ${post.likes}`}
                         </span>
                         {comments ? (

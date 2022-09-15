@@ -88,7 +88,7 @@ function Comment({ comment }) {
                                     className={userLikes.length > 0 ? "blueLike" : "greyLike"}
                                     onClick={like}>
                                     <i
-                                        class="fa-solid fa-thumbs-up"
+                                        className="fa-solid fa-thumbs-up"
                                         style={
                                             userLikes.length > 0
                                                 ? {
