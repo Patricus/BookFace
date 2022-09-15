@@ -134,3 +134,7 @@
     display: flex;
     align-items: center;
 }
+
+.searchIcon {
+    cursor: pointer;
+}

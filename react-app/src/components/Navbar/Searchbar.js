@@ -54,6 +54,11 @@ function Searchbar() {
         } else setFilteredUsers([]);
     };
 
+    const searchClear = () => {
+        setInput("");
+        document.querySelector(".searchInput > input").focus();
+    };
+
     return (
         <div className="searchbar">
             <div className="searchInput">
@@ -64,9 +69,11 @@ function Searchbar() {
                     onChange={filterUsers}
                 />
                 {input.length ? (
-                    <i className="fa-solid fa-xmark"></i>
+                    <i className="fa-solid fa-xmark searchIcon" onClick={searchClear}></i>
                 ) : (
-                    <i className="fa-solid fa-magnifying-glass"></i>
+                    <i
+                        className="fa-solid fa-magnifying-glass searchIcon"
+                        onClick={() => document.querySelector(".searchInput > input").focus()}></i>
                 )}
             </div>
             <div className="searchDropdown">
