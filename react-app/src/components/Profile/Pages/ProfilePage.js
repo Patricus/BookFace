@@ -21,7 +21,9 @@ function ProfilePage() {
     const sent = useSelector(state => state.requests.sent);
     const received = useSelector(state => state.requests.received);
     const users = useSelector(state => state.users);
-    const posts = Object.values(useSelector(state => state.posts));
+    const posts = Object.values(useSelector(state => state.posts)).filter(post => {
+        return post.user_id === profile.id;
+    });
 
     const dispatch = useDispatch();
 
@@ -41,7 +43,7 @@ function ProfilePage() {
     if (!profile)
         return (
             <div id="noFriend">
-                <h1>You aren't friends with this user, or they don't exist.</h1>
+                <h1>User not found.</h1>
                 <Link to="/">Back to home</Link>
             </div>
         );
@@ -84,11 +86,9 @@ function ProfilePage() {
                     </div>
                     <div id="right-column">
                         {user === profile && <CreatePostForm />}
+                        {console.log("posts", posts)}
                         {posts.length > 0 ? (
                             posts
-                                .filter(post => {
-                                    return post.user_id === profile.id;
-                                })
                                 .sort((a, b) => {
                                     return new Date(b.created_at) - new Date(a.created_at);
                                 })
@@ -96,7 +96,9 @@ function ProfilePage() {
                                     return <Post key={post.id} post={post} />;
                                 })
                         ) : (
-                            <h2>No Posts Yet.</h2>
+                            <div style={{ display: "flex", justifyContent: "center" }}>
+                                <h2>No Posts Yet.</h2>
+                            </div>
                         )}
                     </div>
                 </div>
