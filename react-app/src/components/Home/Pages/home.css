@@ -1,6 +1,6 @@
 #home {
     display: grid;
-    grid-template-columns: fit-content 680px fit-content;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas: " left mid right ";
     gap: 15px;
     max-width: 1920px;

@@ -37,8 +37,12 @@ const NavBar = () => {
                             activeClassName="activeNav">
                             <div className="nav-button"></div>
                         </NavLink>
-                        <div className="nav-button empty-nav"></div>
-                        <div className="nav-button empty-nav"></div>
+                        <span to="///" id="" className="empty-navlink" activeClassName="activeNav">
+                            <div className="nav-button"></div>
+                        </span>
+                        <span to="///" id="" className="empty-navlink" activeClassName="activeNav">
+                            <div className="nav-button"></div>
+                        </span>
                         <NavLink
                             to="/contact"
                             exact={true}

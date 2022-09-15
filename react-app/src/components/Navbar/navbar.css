@@ -1,7 +1,10 @@
 #navbar {
     display: grid;
-    grid-template-columns: 1fr 680px 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: " left  mid  right ";
+    gap: auto;
     align-items: center;
+    justify-items: center;
     background-color: white;
     border-bottom: 1px solid lightgrey;
     padding: 6px 15px;
@@ -19,8 +22,13 @@
 
 .navlink {
     margin: 0 2px;
-    width: fit-content;
-    padding: 0px 38px;
+    width: 120px;
+    border-radius: 10px;
+}
+
+.empty-navlink {
+    margin: 0 2px;
+    width: 120px;
     border-radius: 10px;
 }
 
@@ -44,19 +52,15 @@
 }
 
 #nav-buttons {
+    width: 680px;
     display: grid;
-    grid-template-columns: repeat(5, 127px);
-    gap: 5px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    height: 100%;
 }
 
 .nav-button {
-    margin: 0 3px;
-    height: 34px;
-    width: 45px;
-}
-
-.empty-nav {
-    padding: 5px 40px;
+    /* max-width: 136px; */
 }
 
 #home-link {
@@ -137,13 +141,23 @@
     justify-self: start;
 }
 
-#navbar > div:nth-child(2) {
+/* #navbar > div:nth-child(2) {
     width: 100%;
     justify-self: center;
-}
+} */
 
 #navbar > div:nth-child(3) {
     justify-self: end;
+}
+
+.searchInput > input {
+    width: 100%;
+}
+
+.searchInput {
+    display: flex;
+    align-items: center;
+    width: 250px;
 }
 
 .searchIcon {
