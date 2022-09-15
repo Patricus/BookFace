@@ -204,13 +204,12 @@
     justify-self: start;
 }
 
-/* #navbar > div:nth-child(2) {
-    width: 100%;
-    justify-self: center;
-} */
-
 #navbar > div:nth-child(3) {
     justify-self: end;
+}
+
+.searchbar {
+    position: relative;
 }
 
 .searchInput > input {
@@ -225,4 +224,25 @@
 
 .searchIcon {
     cursor: pointer;
+}
+
+.searchDropdown {
+    position: absolute;
+    top: 25px;
+    display: grid;
+    grid-auto-flow: row;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    width: 100%;
+}
+
+.profileSearch {
+    padding: 5px 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.profileSearch:hover {
+    background-color: whitesmoke;
 }

@@ -56,6 +56,7 @@ function Searchbar() {
 
     const searchClear = () => {
         setInput("");
+        setFilteredUsers([]);
         document.querySelector(".searchInput > input").focus();
     };
 
@@ -82,6 +83,7 @@ function Searchbar() {
                         return (
                             <Link
                                 key={user.id}
+                                className="profileSearch"
                                 to={`/profile/${user.id}`}>{`${user.first_name} ${user.last_name}`}</Link>
                         );
                     })}
