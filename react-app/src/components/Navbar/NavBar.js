@@ -27,20 +27,20 @@ const NavBar = () => {
                             exact={true}
                             id="home-link"
                             className="navlink"
-                            activeClassName="activeNav">
+                            activeclassname="activeNav">
                             <div className="nav-button"></div>
                         </NavLink>
                         <NavLink
                             to="/friends"
                             id="friend-link"
                             className="navlink"
-                            activeClassName="activeNav">
+                            activeclassname="activeNav">
                             <div className="nav-button"></div>
                         </NavLink>
-                        <span to="///" id="" className="empty-navlink" activeClassName="activeNav">
+                        <span to="///" id="" className="empty-navlink" activeclassname="activeNav">
                             <div className="nav-button"></div>
                         </span>
-                        <span to="///" id="" className="empty-navlink" activeClassName="activeNav">
+                        <span to="///" id="" className="empty-navlink" activeclassname="activeNav">
                             <div className="nav-button"></div>
                         </span>
                         <NavLink

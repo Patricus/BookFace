@@ -86,6 +86,7 @@
     background-color: transparent;
     border-radius: 5px;
     transition: all 100ms ease 150ms;
+    z-index: 100;
 }
 
 #home-link:hover:not(.activeNav)::before {
@@ -119,6 +120,7 @@
     background-color: transparent;
     border-radius: 5px;
     transition: all 100ms ease 150ms;
+    z-index: 100;
 }
 
 #friend-link:hover:not(.activeNav)::before {
@@ -152,6 +154,7 @@
     background-color: transparent;
     border-radius: 5px;
     transition: all 100ms ease 150ms;
+    z-index: 100;
 }
 
 #contact-link:hover:not(.activeNav)::before {

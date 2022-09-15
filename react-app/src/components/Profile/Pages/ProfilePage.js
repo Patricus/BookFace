@@ -84,7 +84,7 @@ function ProfilePage() {
                     </div>
                     <div id="right-column">
                         {user === profile && <CreatePostForm />}
-                        {posts.length > 0 &&
+                        {posts.length > 0 ? (
                             posts
                                 .filter(post => {
                                     return post.user_id === profile.id;
@@ -94,7 +94,10 @@ function ProfilePage() {
                                 })
                                 .map(post => {
                                     return <Post key={post.id} post={post} />;
-                                })}
+                                })
+                        ) : (
+                            <h2>No Posts Yet.</h2>
+                        )}
                     </div>
                 </div>
             </div>
