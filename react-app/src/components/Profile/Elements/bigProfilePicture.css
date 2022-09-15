@@ -8,6 +8,7 @@
     border: 5px solid white;
     border-radius: 50%;
     overflow: hidden;
+    flex-shrink: 0;
 }
 
 #bigPicImg {

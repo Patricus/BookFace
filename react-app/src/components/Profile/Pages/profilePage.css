@@ -7,7 +7,7 @@
 
 #underCover {
     position: relative;
-    max-width: 1265px;
+    max-width: 1025px;
     width: 100vw;
     display: flex;
     border-bottom: 0 1px 2px lightgray;
@@ -16,8 +16,11 @@
 #underCover > h1 {
     position: relative;
     left: 50px;
-    font-size: 34px;
-    max-width: 1025px;
+    font-size: 36px;
+    max-width: 790px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 1;
 }
 
 #edit-profile-button {
