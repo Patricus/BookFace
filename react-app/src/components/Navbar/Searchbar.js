@@ -82,6 +82,10 @@ function Searchbar() {
                     filteredUsers.map(user => {
                         return (
                             <Link
+                                onClick={() => {
+                                    setFilteredUsers([]);
+                                    setInput("");
+                                }}
                                 key={user.id}
                                 className="profileSearch"
                                 to={`/profile/${user.id}`}>{`${user.first_name} ${user.last_name}`}</Link>

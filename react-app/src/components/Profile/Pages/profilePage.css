@@ -16,7 +16,8 @@
 #underCover > h1 {
     position: relative;
     left: 50px;
-    font-size: 40px;
+    font-size: 34px;
+    max-width: min-content;
 }
 
 #edit-profile-button {

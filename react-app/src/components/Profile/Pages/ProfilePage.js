@@ -18,6 +18,9 @@ function ProfilePage() {
     const profileId = parseInt(useParams().id);
     const user = useSelector(state => state.session.user);
     const friends = useSelector(state => state.friends);
+    const sent = useSelector(state => state.requests.sent);
+    const received = useSelector(state => state.requests.received);
+    const users = useSelector(state => state.users);
     const posts = Object.values(useSelector(state => state.posts));
 
     const dispatch = useDispatch();
@@ -30,7 +33,10 @@ function ProfilePage() {
     useEffect(() => {
         if (profileId === user.id) setProfile(user);
         if (friends[profileId]) setProfile(friends[profileId]);
-    }, [user, friends, profileId]);
+        if (sent[profileId]) setProfile(sent[profileId]);
+        if (received[profileId]) setProfile(received[profileId]);
+        if (users[profileId]) setProfile(users[profileId]);
+    }, [user, friends, sent, received, users, profileId]);
 
     if (!profile)
         return (

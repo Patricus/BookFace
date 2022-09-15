@@ -214,12 +214,17 @@
 
 .searchInput > input {
     width: 100%;
+    border: none;
+    outline: none;
 }
 
 .searchInput {
     display: flex;
     align-items: center;
     width: 250px;
+    border: 2px rgba(0, 0, 0, 0.3) solid;
+    border-radius: 25px;
+    padding: 5px;
 }
 
 .searchIcon {
@@ -228,12 +233,15 @@
 
 .searchDropdown {
     position: absolute;
-    top: 25px;
+    top: 33px;
     display: grid;
     grid-auto-flow: row;
     background-color: white;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 100;
 }
 
 .profileSearch {
