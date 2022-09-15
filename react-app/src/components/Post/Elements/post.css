@@ -26,15 +26,15 @@
 .post-menu-button {
     position: absolute;
     right: 10px;
-    top: -5px;
+    top: 5px;
     background-color: white;
     border-radius: 50%;
-    border: none;
     cursor: pointer;
     font-size: 24px;
     font-weight: 600;
     color: rgba(0, 0, 0, 0.5);
-    padding: 0 10px 10px 10px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+    padding: 0 6px;
 }
 
 .post-menu-button:hover {
@@ -114,13 +114,13 @@
 }
 
 .poster-info {
-    width: 100%;
+    max-width: 680px;
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
 }
 
 .post-dropdown {

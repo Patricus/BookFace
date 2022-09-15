@@ -1,8 +1,8 @@
 #left-sidebar {
     max-width: 340px;
-    width: 18%;
     box-sizing: border-box;
     margin-left: 10px;
+    grid-area: left;
 }
 
 #left-sidebar > a > img {

@@ -1,10 +1,10 @@
 #right-sidebar {
     max-width: 340px;
-    width: 20%;
     margin-right: 10px;
     display: flex;
     flex-direction: column;
     gap: 5px;
+    grid-area: right;
 }
 
 #right-sidebar > h3 {

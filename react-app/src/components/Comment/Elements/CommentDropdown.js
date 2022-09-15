@@ -22,7 +22,7 @@ function CommentDropdown({ setShowEditComment, comment }) {
     return (
         <>
             <button className="comment-menu-button" onClick={() => setShowDropdown(!showDropdown)}>
-                ...
+                <i className="fa-solid fa-ellipsis"></i>
             </button>
             {showDropdown && (
                 <div className="comment-dropdown">

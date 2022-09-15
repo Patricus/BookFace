@@ -26,7 +26,7 @@ function PostDropdown({ post }) {
             {showEditPost && <EditPostForm post={post} setShowEditPost={setShowEditPost} />}
             <div style={{ position: "relative" }}>
                 <div className="post-menu-button" onClick={() => setShowDropdown(!showDropdown)}>
-                    ...
+                    <i className="fa-solid fa-ellipsis"></i>
                 </div>
                 {showDropdown && (
                     <div className="post-dropdown">

@@ -1,6 +1,10 @@
 #home {
-    display: flex;
-    justify-content: space-evenly;
+    display: grid;
+    grid-template-columns: fit-content 680px fit-content;
+    grid-template-areas: " left mid right ";
+    gap: 15px;
+    max-width: 1920px;
+    margin: 0 auto;
 }
 
 .profile-img-circle {
@@ -9,8 +13,8 @@
     width: 40px;
 }
 
-@media only screen and (max-width: 1920px) {
+/* @media only screen and (max-width: 1920px) {
     #home {
         justify-content: space-between;
     }
-}
+} */

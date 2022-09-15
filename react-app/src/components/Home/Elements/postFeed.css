@@ -1,16 +1,14 @@
 #feed {
-    display: flex;
-    flex-direction: column;
+    display: grid;
     gap: 15px;
-    width: 100%;
-    margin-top: 24px;
+    width: 680px;
+    margin: 24px auto;
     flex: 0;
-    /* border: 1px solid blue; */
+    grid-area: mid;
 }
 
 #feed > * {
     width: 100%;
-    /* border: 1px solid red; */
 }
 
 #create-post {
