@@ -50,6 +50,7 @@ function Searchbar() {
                             );
                         })
                     )
+                    .slice(0, 10)
             );
         } else setFilteredUsers([]);
     };
