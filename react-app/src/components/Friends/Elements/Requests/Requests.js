@@ -17,7 +17,7 @@ function Requests({ requests }) {
     }, [dispatch]);
 
     return (
-        <div style={{ position: "relative" }}>
+        <div>
             {showSentRequests && (
                 <SentRequests requests={sent} setShowSentRequests={setShowSentRequests} />
             )}

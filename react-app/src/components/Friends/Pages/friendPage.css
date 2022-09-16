@@ -41,8 +41,8 @@
 
 #sent-requests-button {
     position: absolute;
-    top: 18px;
-    left: -150px;
+    top: 95px;
+    left: calc(20vw - 5em);
 }
 
 .cardContainer {
