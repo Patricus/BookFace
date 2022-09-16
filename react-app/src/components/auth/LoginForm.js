@@ -68,6 +68,19 @@ const LoginForm = () => {
                             setPassword(e.target.value);
                         }}
                     />
+                    <small style={{ position: "relative", marginBottom: "5px", color: "#919191" }}>
+                        <strong
+                            style={{
+                                fontSize: "24px",
+                                color: "red",
+                                position: "absolute",
+                                left: "-14px",
+                                top: "-4px",
+                            }}>
+                            *
+                        </strong>
+                        Required
+                    </small>
                     <button id="login-button" type="submit">
                         Log In
                     </button>

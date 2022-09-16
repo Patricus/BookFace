@@ -195,6 +195,19 @@ const SignUpForm = () => {
                                 ))}
                             </select>
                         </div>
+                        <small style={{ position: "relative", marginTop: "5px", color: "#919191" }}>
+                            <strong
+                                style={{
+                                    fontSize: "24px",
+                                    color: "red",
+                                    position: "absolute",
+                                    left: "-14px",
+                                    top: "-4px",
+                                }}>
+                                *
+                            </strong>
+                            Required
+                        </small>
                         <button className="green-button" type="submit">
                             Sign Up
                         </button>
