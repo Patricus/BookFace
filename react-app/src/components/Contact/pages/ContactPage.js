@@ -12,6 +12,7 @@ function ContactPage() {
                 <h1 style={{ marginBottom: 0 }}>Patrick James McPherson</h1>
                 <a
                     style={{
+                        fontSize: "24px",
                         padding: "0",
                         marginBottom: "20px",
                         color: "#1877f2",
