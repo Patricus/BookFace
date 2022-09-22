@@ -10,7 +10,7 @@
     max-width: 300px;
     width: 20vw;
     min-width: max-content;
-    height: calc(100vh - 77px);
+    min-height: calc(100vh - 77px);
     background-color: white;
     margin-right: 40px;
     padding: 10px 30px;
