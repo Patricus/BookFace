@@ -2,7 +2,6 @@ import React from "react";
 import "./contactPage.css";
 import githubLogo from "../../images/GitHub_Logo.png";
 import linkedinLogo from "../../images/LI-Logo.png";
-import computerHands from "../../images/computer-hands.jpg";
 
 function ContactPage() {
     return (
