@@ -197,3 +197,16 @@
     clip-path: polygon(0 0, 0% 100%, 100% 50%);
     box-shadow: 0 0 0 1px rgb(139 3 0 / 75%), 0 1px 10px rgb(0 0 0 / 35%);
 }
+
+#remove-image-button {
+    background-color: #be4b49;
+}
+
+#remove-image-button:hover {
+    background-color: #b44341;
+}
+
+#remove-image-button.disabled {
+    background-color: #a57675;
+    cursor: not-allowed;
+}

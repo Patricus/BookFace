@@ -7,6 +7,7 @@ import { Modal } from "../../Modal";
 function EditPostForm({ post, setShowEditPost }) {
     const [text, setText] = useState(post.text);
     const [image, setImage] = useState();
+    const [postImageLink, setPostImageLink] = useState(post.image_link);
     const [errors, setErrors] = useState([]);
     const [textErrors, setTextErrors] = useState([]);
     const [imageErrors, setImageErrors] = useState([]);
@@ -17,7 +18,7 @@ function EditPostForm({ post, setShowEditPost }) {
         e.preventDefault();
         setErrors([]);
 
-        let image_link = "";
+        let image_link = postImageLink;
         if (image) {
             const imageData = new FormData();
             imageData.append("image", image);
@@ -52,6 +53,18 @@ function EditPostForm({ post, setShowEditPost }) {
             setShowEditPost(false);
         }
     };
+
+    const removePhoto = e => {
+        e.preventDefault();
+        setPostImageLink(null);
+        setImage(null);
+    };
+
+    useEffect(() => {
+        const removeButton = document.getElementById("remove-image-button");
+        if (image || postImageLink) removeButton.classList.remove("disabled");
+        else removeButton.classList.add("disabled");
+    }, [image, postImageLink]);
 
     useEffect(() => {
         const textErrs = [];
@@ -101,8 +114,11 @@ function EditPostForm({ post, setShowEditPost }) {
                         accept="image/*"
                         onChange={e => setImage(e.target.files[0])}
                     />
-                    {image ? image.name : `Upload Photo`}
+                    {image ? image.name : postImageLink ? `Change Photo` : `Upload Photo`}
                 </label>
+                <button type="button" id="remove-image-button" onClick={removePhoto}>
+                    Remove Photo
+                </button>
                 <button>Update post</button>
             </form>
         </Modal>
