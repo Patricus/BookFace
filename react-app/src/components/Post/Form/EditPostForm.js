@@ -116,10 +116,12 @@ function EditPostForm({ post, setShowEditPost }) {
                     />
                     {image ? image.name : postImageLink ? `Change Photo` : `Upload Photo`}
                 </label>
-                <button type="button" id="remove-image-button" onClick={removePhoto}>
-                    Remove Photo
-                </button>
-                <button>Update post</button>
+                <div style={{ display: "flex", gap: "10px" }}>
+                    <button type="button" id="remove-image-button" onClick={removePhoto}>
+                        Remove Photo
+                    </button>
+                    <button>Update post</button>
+                </div>
             </form>
         </Modal>
     );
