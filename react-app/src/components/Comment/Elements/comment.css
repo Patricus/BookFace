@@ -82,3 +82,11 @@
     gap: 10px;
     z-index: 1;
 }
+
+.greyLike {
+    color: #65676b;
+}
+
+.comment-button {
+    box-shadow: none;
+}

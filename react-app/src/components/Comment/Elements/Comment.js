@@ -85,17 +85,13 @@ function Comment({ comment }) {
                                     <p>{comment.text}</p>
                                 </div>
                                 <button
-                                    className={userLikes.length > 0 ? "blueLike" : "greyLike"}
+                                    className={
+                                        userLikes.length > 0
+                                            ? "comment-button blueLike"
+                                            : "comment-button greyLike"
+                                    }
                                     onClick={like}>
-                                    <i
-                                        className="fa-solid fa-thumbs-up"
-                                        style={
-                                            userLikes.length > 0
-                                                ? {
-                                                      color: "white",
-                                                  }
-                                                : { color: "#3a73ce" }
-                                        }></i>
+                                    <i className="fa-solid fa-thumbs-up"></i>
                                     {` ${comment.likes}`}
                                 </button>
                             </div>
