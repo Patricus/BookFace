@@ -5,6 +5,7 @@
     flex-direction: column;
     gap: 5px;
     grid-area: right;
+    justify-self: end;
 }
 
 #right-sidebar > h3 {
@@ -52,5 +53,6 @@
 
 .ad > img {
     width: 90px;
+    height: 90px;
     border-radius: 50%;
 }
