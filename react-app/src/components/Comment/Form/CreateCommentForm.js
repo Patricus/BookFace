@@ -11,7 +11,7 @@ function CreateCommentForm({ post_id }) {
     const dispatch = useDispatch();
 
     const submit = async e => {
-        // e.preventDefault();
+        if (e.preventDefault) e.preventDefault();
         setErrors([]);
 
         const data = await dispatch(makeComment(post_id, text));
