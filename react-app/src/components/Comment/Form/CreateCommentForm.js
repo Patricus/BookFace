@@ -11,7 +11,7 @@ function CreateCommentForm({ post_id }) {
     const dispatch = useDispatch();
 
     const submit = async e => {
-        e.preventDefault();
+        // e.preventDefault();
         setErrors([]);
 
         const data = await dispatch(makeComment(post_id, text));
@@ -22,6 +22,13 @@ function CreateCommentForm({ post_id }) {
         } else {
             setText("");
             setErrors([]);
+        }
+    };
+
+    const checkEnter = e => {
+        if (e.keyCode === 13 && !e.shiftKey) {
+            const form = document.querySelector(".comment-form");
+            submit(form);
         }
     };
 
@@ -42,6 +49,7 @@ function CreateCommentForm({ post_id }) {
                     name="text"
                     placeholder="Write a comment..."
                     value={text}
+                    onKeyDown={checkEnter}
                     onChange={e => setText(e.target.value)}
                 />
                 <button className="comment-submit-button">Comment</button>
