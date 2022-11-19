@@ -1,16 +1,19 @@
-from .db import db
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 
 class Like(db.Model):
     __tablename__ = "likes"
 
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(
-        'users.id', ondelete='CASCADE'), nullable=False)
+        add_prefix_for_prod('users.id'), ondelete='CASCADE'), nullable=False)
     post_id = db.Column(db.Integer, db.ForeignKey(
-        'posts.id', ondelete='CASCADE'))
+        add_prefix_for_prod('posts.id'), ondelete='CASCADE'))
     comment_id = db.Column(db.Integer, db.ForeignKey(
-        'comments.id', ondelete='CASCADE'))
+        add_prefix_for_prod('comments.id'), ondelete='CASCADE'))
 
     users = db.relationship('User', back_populates='likes')
     posts = db.relationship('Post', back_populates='likes')

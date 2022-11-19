@@ -1,5 +1,5 @@
 from app.models.likes import Like
-from .db import db
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from .post import Post
@@ -7,6 +7,9 @@ from .post import Post
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
+
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(30), nullable=False)
