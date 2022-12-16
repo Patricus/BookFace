@@ -52,9 +52,8 @@ def read_friends():
     """
     Read all friends.
     """
-
-    friends = User.query.join(Friend, or_(
-        Friend.friend_id == User.id, Friend.user_id == User.id)).filter(User.id != current_user.id).all()
+    friends = User.query.join(Friend, and_(Friend.accepted == True, or_(
+        Friend.friend_id == User.id, Friend.user_id == User.id))).filter(User.id != current_user.id).all()
 
     return {'friends': [friend.to_dict() for friend in friends]}
 
