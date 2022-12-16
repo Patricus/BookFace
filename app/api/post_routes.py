@@ -1,11 +1,8 @@
 from flask import Blueprint, request
 from sqlalchemy import and_, or_
-from app.models import Post, db
+from app.models import Post, Friend, User, db
 from app.forms import PostForm, EditPostForm
 from flask_login import current_user, login_required
-
-from app.models.friend import Friend
-from app.models.user import User
 
 post_routes = Blueprint('post', __name__)
 
