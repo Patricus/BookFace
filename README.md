@@ -4,7 +4,7 @@
 
 Bookface is a Facebook clone and was built using PostgreSQL, Flask, SQLAlchemy, React, Redux, javascript and Python.
 
-Checkout Bookface at https://bookface-site.herokuapp.com/
+Checkout Bookface at https://bookface-frwd.onrender.com/
 
 ### Github Wiki Links:
 
