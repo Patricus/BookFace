@@ -8,7 +8,7 @@ def seed_posts():
         text="Exciting News! I'm thrilled to announce my new career as a Software Developer!\nI'm turning my passion for software development into a thriving profession. From designing user interfaces to building applications, I'm ready to create innovative solutions in this dynamic field.\nI'm committed to continuous learning and staying ahead of emerging trends. If you are in the tech industry, I'd love to hear from you. Let's connect! Here's to new beginnings, innovation, and excellence in the world of software development!\n#SoftwareDevelopment #NewBeginnings #PassionToProfession",
         created_at='2022-10-10 10:10:10',
         edited_at='2022-10-10 10:10:10',
-        image_link='https://bookface-site.s3.amazonaws.com/942aa83a5f714b938ebf7131b497e04c.jpg')
+        image_link='https://bookface-site.s3.amazonaws.com/fa51927a64f24270a59f84b6eb2dc489.jpg')
 
     db.session.add(post)
 
