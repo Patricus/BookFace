@@ -1,5 +1,6 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
+from .posts import seed_posts, undo_posts
 from app.models.db import db, environment, SCHEMA
 
 # Creates a seed group to hold our commands
@@ -17,12 +18,15 @@ def seed():
         # Add a truncate command here for every table that will be seeded.
         db.session.commit()
 
+    # Add seed functions here
     seed_users()
-    # Add other seed functions here
-
+    seed_posts()
 
 # Creates the `flask seed undo` command
+
+
 @seed_commands.command('undo')
 def undo():
+    # Add undo functions here
     undo_users()
-    # Add other undo functions here
+    undo_posts()
