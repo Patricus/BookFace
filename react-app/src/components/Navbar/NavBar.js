@@ -7,58 +7,77 @@ import "./navbar.css";
 import Searchbar from "./Searchbar";
 
 const NavBar = () => {
-    const user = useSelector(state => state.session.user);
+  const user = useSelector(state => state.session.user);
+  const friendRequestsNum = Object.keys(useSelector(state => state.requests.received)).length;
 
-    return (
-        <>
-            {user && (
-                <nav id="navbar">
-                    <div>
-                        <Link to="/">
-                            <div id="logo">
-                                <img src={B} alt="Logo" />
-                            </div>
-                        </Link>
-                        <Searchbar />
-                    </div>
-                    <div id="nav-buttons">
-                        <NavLink
-                            to="/"
-                            exact={true}
-                            id="home-link"
-                            className="navlink"
-                            activeClassName="activeNav">
-                            <div className="nav-button"></div>
-                        </NavLink>
-                        <NavLink
-                            to="/friends"
-                            id="friend-link"
-                            className="navlink"
-                            activeClassName="activeNav">
-                            <div className="nav-button"></div>
-                        </NavLink>
-                        <span to="///" id="" className="empty-navlink" activeclassname="activeNav">
-                            <div className="nav-button"></div>
-                        </span>
-                        <span to="///" id="" className="empty-navlink" activeclassname="activeNav">
-                            <div className="nav-button"></div>
-                        </span>
-                        <NavLink
-                            to="/contact"
-                            exact={true}
-                            id="contact-link"
-                            className="navlink"
-                            activeClassName="activeNav">
-                            <div className="nav-button"></div>
-                        </NavLink>
-                    </div>
-                    <div id="menu-button">
-                        <MenuButton />
-                    </div>
-                </nav>
-            )}
-        </>
-    );
+  return (
+    <>
+      {user && (
+        <nav id="navbar">
+          <div>
+            <Link to="/">
+              <div id="logo">
+                <img
+                  src={B}
+                  alt="Logo"
+                />
+              </div>
+            </Link>
+            <Searchbar />
+          </div>
+          <div id="nav-buttons">
+            <NavLink
+              to="/"
+              exact={true}
+              id="home-link"
+              className="navlink"
+              activeClassName="activeNav"
+            >
+              <div className="nav-button"></div>
+            </NavLink>
+            <NavLink
+              to="/friends"
+              id="friend-link"
+              className="navlink"
+              activeClassName="activeNav"
+            >
+              <div className="nav-button">
+                {friendRequestsNum > 0 && <div id="friend-requests-num">{friendRequestsNum}</div>}
+              </div>
+            </NavLink>
+            <span
+              to="///"
+              id=""
+              className="empty-navlink"
+              activeclassname="activeNav"
+            >
+              <div className="nav-button"></div>
+            </span>
+            <span
+              to="///"
+              id=""
+              className="empty-navlink"
+              activeclassname="activeNav"
+            >
+              <div className="nav-button"></div>
+            </span>
+            <NavLink
+              to="/contact"
+              exact={true}
+              id="contact-link"
+              className="navlink"
+              activeClassName="activeNav"
+            >
+              <div className="nav-button"></div>
+            </NavLink>
+          </div>
+          <div id="menu-button">
+            <MenuButton />
+          </div>
+        </nav>
+      )}
+    </>
+  );
 };
 
 export default NavBar;
