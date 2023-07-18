@@ -12,6 +12,42 @@ def seed_posts():
 
     db.session.add(post)
 
+    post = Post(
+        user_id=3,
+        text="Guess who just ran their first marathon? This girl! It was tough, but crossing that finish line was an incredible feeling. #MarathonRunner",
+        created_at='2023-1-9 10:10:10',
+        edited_at='2023-1-9 10:10:10',
+        image_link='')
+
+    db.session.add(post)
+
+    post = Post(
+        user_id=2,
+        text="Spent the weekend exploring a new hiking trail and enjoying the breathtaking views. Nature never fails to amaze me!",
+        created_at='2022-11-1 10:10:10',
+        edited_at='2022-11-1 10:10:10',
+        image_link='')
+
+    db.session.add(post)
+
+    post = Post(
+        user_id=3,
+        text="Exciting news! I just adopted the cutest little puppy today. Meet my new fur baby, Max! 🐶❤️",
+        created_at='2022-11-1 10:10:10',
+        edited_at='2022-11-1 10:10:10',
+        image_link='https://bookface-site.s3.amazonaws.com/05f78ade597647958c40353e50f858a4.jpg')
+
+    db.session.add(post)
+
+    post = Post(
+        user_id=1,
+        text="Just had the most amazing vacation in a tropical paradise! 🌴☀️ Feeling refreshed and ready to take on the world!",
+        created_at='2022-11-1 10:10:10',
+        edited_at='2022-11-1 10:10:10',
+        image_link='')
+
+    db.session.add(post)
+
     db.session.commit()
 
 

@@ -7,7 +7,6 @@ import patrick from "../../images/patrick.png";
 import { getFriends } from "../../../store/friends";
 
 function RightSideBar() {
-  const user = useSelector(state => state.session.user);
   const friends = Object.values(useSelector(state => state.friends));
 
   const dispatch = useDispatch();
